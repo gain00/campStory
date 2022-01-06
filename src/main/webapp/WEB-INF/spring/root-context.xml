@@ -44,7 +44,7 @@
    <!-- @Controller , @Component , @service 컨트롤에 등록 ( 객체생성 ) 한다. -->
   
    <context:component-scan base-package="com.campstory.service" />
-   
+   <context:component-scan base-package="com.campstory.mybatis" />
    
    <!-- mybatis 설정 추가 해당 패키지의 인터페이스를 객체생성한다.-->
     <mybatis-spring:scan base-package="com.campstory.mybatis"/>
