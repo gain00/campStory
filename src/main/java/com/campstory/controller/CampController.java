@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.campstory.bean.CampDTO;
 import com.campstory.service.CampService;
 
+
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 
@@ -66,5 +67,19 @@ public class CampController {
 		
 		return "camp/list";
 	}
-
+	@RequestMapping("info")
+	public String content(String contentid ,Model model,int pageNum, CampDTO dto) {
+		
+		
+		model.addAttribute("campDTO", service.getContent(contentid));
+		model.addAttribute("contentid", contentid);
+		model.addAttribute("pageNum", pageNum);
+		
+			
+			
+			
+		log.info("=========/camp/info?contentid="+contentid);
+		log.info("======캠핑장명===="+dto.getFacltnm());
+		return"camp/info";
+	}
 }

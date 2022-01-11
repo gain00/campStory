@@ -36,15 +36,23 @@
 <select id="getContent" resultType="com.campstory.bean.CampDTO">
 	<![CDATA[
 		
-	select * from
-	(select a.contentid, a.facltnm, a.lineintro, a.intro, a.allar,a.hvofbgnde,a.hvofenddle,a.featurenm,a.induty,a.lctcl,a.donm,a.sigungunm,a.zipcode,a.addr1,a.addr2,
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime, good,readcount, managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus from
+	(select a.contentid , a.facltnm, a.lineintro, a.intro, a.allar,a.hvofbgnde,a.hvofenddle,a.featurenm,a.induty,a.lctcl,a.donm,a.sigungunm,a.zipcode,a.addr1,a.addr2,
 	a.mapx,a.mapy,a.direction,a.tel,a.homepage,a.resveurl,a.resvecl,a.sbrscl,a.sbrsetc,a.posblfcltycl,a.posblfcltyetc,a.cltureventat,a.clturevent,a.exprnprogrmat,a.exprnprogrm,
-	a.themaenvrncl,a.animalcmgcl,a.toureracl,a.firstimageurl,a.createdtime,a.modifiedtime,
-	b.contentid,b.managenmpr,b.gnrlsiteco,b.autositeco,b.glampsiteco,b.caravsiteco,b.indvdlcaravSiteco,b.sitedstnc,b.sitemg1width,b.sitemg2width,b.sitemg3width,b.sitemg1vrticl,b.sitemg2vrticl,b.sitemg3vrticl,
+	a.themaenvrncl,a.animalcmgcl,a.toureracl,a.firstimageurl,a.createdtime,a.modifiedtime,good,readcount,
+	b.contentid AS bcontentid ,b.managenmpr,b.gnrlsiteco,b.autositeco,b.glampsiteco,b.caravsiteco,b.indvdlcaravSiteco,b.sitedstnc,b.sitemg1width,b.sitemg2width,b.sitemg3width,b.sitemg1vrticl,b.sitemg2vrticl,b.sitemg3vrticl,
 	b.sitemg1co,b.sitemg2co,b.sitemg3co,b.sitebottomcl1,b.sitebottomcl2,b.sitebottomcl3,b.sitebottomcl4,b.sitebottomcl5,b.tooltip,b.glampinnerfclty,b.caravinnerfclty,
-	c.contentid,c.prmisnde,c.operpdcl,c.operdecl,c.trleracmpnyat,c.caravacmpnyat,c.toiletco,c.swrmco,c.wtrplco,c.braziercl,c.extshrco,c.frprvtwrppco,c.frprvtsandco,
+	c.contentid AS ccontentid ,c.prmisnde,c.operpdcl,c.operdecl,c.trleracmpnyat,c.caravacmpnyat,c.toiletco,c.swrmco,c.wtrplco,c.braziercl,c.extshrco,c.frprvtwrppco,c.frprvtsandco,
 	c.firesensorco,c.eqpmnlendcl,c.insrncat,c.trsagntno,c.bizrno,c.facltdivnm,c.mangedivnm,c.mgcdiv,c.managesttus
-	from camp_info1 a, camp_info2 b, camp_info3 c where a.contentid = b.contentid  and b.contentid = c.contentid) where contentid =#{contentid};
+	from camp_info1 a, camp_info2 b, camp_info3 c where a.contentid = b.contentid  and b.contentid =  c.contentid) where contentid = #{contentid}
 		
 	]]> 
 </select>

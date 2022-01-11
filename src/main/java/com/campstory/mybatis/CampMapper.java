@@ -13,7 +13,7 @@ public interface CampMapper {
 	
 	public List<CampDTO> getList(@Param("startRow") int startRow, @Param("endRow")int endRow);
 	
-	public CampDTO getContent(String contentid);
+	public CampDTO getContent(@Param("contentid") String contentid);
 	
 	public int getCount();
 }

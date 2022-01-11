@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 
 
 <head>
@@ -50,9 +51,54 @@
     </c:if>
     
     <br/>
+   
+</div>
+   	<c:if test="${campDTO.sbrscl !='0' }">
+   	<div class="sbrscl" display="flex" align="center">
+   	<c:if test = "${fn:contains(campDTO.sbrscl, '전기')}">
+	<span><img src="../resources/camp/images/elec.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '무선인터넷')}">
+	<span><img src="../resources/camp/images/wifi.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '장작판매')}">
+	<span><img src="../resources/camp/images/wood.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '온수')}">
+	<span><img src="../resources/camp/images/hotwater.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '트램폴린')}">
+	<span><img src="../resources/camp/images/tram.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '물놀이장')}">
+	<span><img src="../resources/camp/images/pool.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '운동시설')}">
+	<span><img src="../resources/camp/images/exercise.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '놀이터')}">
+	<span><img src="../resources/camp/images/slide.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '산책로')}">
+	<span><img src="../resources/camp/images/walk.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '운동장')}">
+	<span><img src="../resources/camp/images/field.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '마트')}">
+	<span><img src="../resources/camp/images/mart.png" width="100px" height="100px"/></span>
+	</c:if>
+	<c:if test = "${fn:contains(campDTO.sbrscl, '편의점')}">
+	<span><img src="../resources/camp/images/conv.png" width="100px" height="100px"/></span>
+	</c:if>
+   	
+   	
+   
+   </div>
+   </c:if>
+   <c:if test="${campDTO.sbrscl =='0' }"></c:if>	  
     <hr color="#DFD8CA" size="2"  align="center" />
     <br/>
-</div>	  
 </c:forEach>
 	
 </table>
