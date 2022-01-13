@@ -6,7 +6,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,6 +73,33 @@ public class CampController {
 	@RequestMapping("info")
 	public String content(String contentid ,Model model,int pageNum, CampDTO dto) {
 		
+		Date today = new Date();
+		
+		Calendar cal = Calendar.getInstance();
+		String format = "MM/dd (E)";
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		String today1 = sdf.format(cal.getTime());
+		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
+		String day1 = sdf.format(cal.getTime());
+		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
+		String day2 = sdf.format(cal.getTime());
+		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
+		String day3 = sdf.format(cal.getTime());
+		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
+		String day4 = sdf.format(cal.getTime());
+		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
+		String day5 = sdf.format(cal.getTime());
+		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
+		String day6 = sdf.format(cal.getTime());
+		
+		
+		model.addAttribute("day0" ,today1);
+		model.addAttribute("day1", day1 );
+		model.addAttribute("day2", day2 );
+		model.addAttribute("day3", day3 );
+		model.addAttribute("day4", day4 );
+		model.addAttribute("day5", day5 );
+		model.addAttribute("day6", day6 );
 		
 		model.addAttribute("campDTO", service.getContent(contentid));
 		model.addAttribute("contentid", contentid);

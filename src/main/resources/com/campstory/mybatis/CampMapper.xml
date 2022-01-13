@@ -15,11 +15,11 @@
 	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
                   sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
                   sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
-                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,r 
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,r 
 		from (select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
                   sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
                   sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
-                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,rownum r 
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,rownum r 
 		from  camp_info1  order by modifiedtime desc ) 
 		where r >= #{startRow} and r <= #{endRow} 
 	

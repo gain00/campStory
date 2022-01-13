@@ -12,6 +12,25 @@
 
 <body>
 
+<div>
+	<table>
+		<tr>
+			<td>
+				<select name="camp_search">
+					<option value="8">8개</option>
+					<option value="12">12개</option>
+					<option value="16">16개</option>
+					<option value="20">20개</option>
+					<option value="28">28개</option>
+					<option value="36">36개</option>
+				</select>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+	
+	</table>	
+</div>
 
   <c:if test="${count == 0}">
 <table width="700" border="1" cellpadding="0" cellspacing="0">
