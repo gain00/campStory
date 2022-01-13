@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인터페이스의 이름  -->
+<mapper namespace="com.campstory.mybatis.MemberMapper">
+
+	<insert id="input" >
+		insert into member(id,pw,phone,email,birth,location,reg_date) 
+			values(#{id}, #{pw}, #{phone}, #{email}, #{birth}, #{location}, sysdate)
+	</insert>
+	
+	<insert id="input_kakao" >
+		insert into member(id,pw,phone,email,birth,location,reg_date,status) 
+			values(#{id}, 'campST!890#234', '000-0000-0000', 
+					#{email}, sysdate, '대한민국', sysdate, '회원_kakao')
+	</insert>
+	
+	<select id="loginCheck" resultType="int" >
+		select count(*) from member where id=#{id} and pw=#{pw} and status='회원'
+	</select>
+	
+	<select id="idCheck" resultType="int">
+		select count(*) from member where id=#{id}
+	</select>
+	
+	<select id="delCheck" resultType="int" >
+		select count(*) from member where id=#{id} and status='탈퇴'
+	</select>
+	
+	<update id="delete">
+		update member set status='탈퇴' where id=#{id}
+	</update>
+	
+	<select id="userInfo" resultType="com.campstory.bean.MemberDTO">
+		select * from member where id=#{id}
+	</select>
+	
+	<update id="update" >
+		update member set 
+			pw=#{pw}, phone=#{phone}, email=#{email}, birth=#{birth}, location=#{location} where id=#{id}
+	</update>
+	
+</mapper>

@@ -43,11 +43,12 @@
    <!-- package 내에 @Controller , @Component, @Service를 관리한다.  -->
    <!-- @Controller , @Component , @service 컨트롤에 등록 ( 객체생성 ) 한다. -->
   
-   <context:component-scan base-package="com.campstory.service" />
+   <context:component-scan base-package="com.campstory.bean" />
    <context:component-scan base-package="com.campstory.mybatis" />
+   <context:component-scan base-package="com.campstory.service" />
    
    <!-- mybatis 설정 추가 해당 패키지의 인터페이스를 객체생성한다.-->
-    <mybatis-spring:scan base-package="com.campstory.mybatis"/>
+   <mybatis-spring:scan base-package="com.campstory.mybatis"/>
    <aop:aspectj-autoproxy></aop:aspectj-autoproxy> 
     
 
