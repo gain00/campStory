@@ -1,21 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:if test="${result != 1}">
-	<script>
-		alert("비밀번호를 확인하세요.");
-		history.go(-1);
-	</script>
-</c:if>
-
-<h1> update.jsp 입니다. </h1>
+<h1> update_kakao.jsp 입니다. </h1>
 
 <form action="/member/updatePro" method="post" >
 
-	id : ${memberDTO.id} <br />
-	pw : <input type="password" name="pw"		value="${memberDTO.pw}"	/> <br />
+	회원명 : ${sessionScope.memId} <br />
 	전화번호 : <input type="text" 	name="phone" 	value="${memberDTO.phone}"	/> <br />
 	email : <input type="text" 	name="email" 	value="${memberDTO.email}"	/> <br />
 	birth : <input type="date" 	name="birth" 
@@ -35,6 +26,7 @@
 	
 	<br /><br />
 	<input type="hidden" name="id" value="${memberDTO.id}" />
+	<input type="hidden" name="pw" value="${memberDTO.pw}" />
 	<input type="submit" value="회원정보 수정" />
 	
 </form>

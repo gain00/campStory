@@ -63,8 +63,10 @@
 			<beans:property name="" /> set 메서드 호출
 			ref = 참조 (레퍼런스)
 		 -->
-		<beans:bean id="campDTO" class="com.campstory.bean.CampDTO" />
-		
+		<!-- <beans:bean id="memberDTO" class="com.campstory.bean" />  -->
+	
+	<beans:bean id="campDTO" class="com.campstory.bean.CampDTO" />	
+	<beans:bean id="memberDTO" class="com.campstory.bean.MemberDTO" />	
 		
 	<context:component-scan base-package="org.mvc.aop" />
    <!-- AOP Advice 클래스 자동 등록 -->

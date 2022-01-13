@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>loginPro.jsp 페이지 입니다 ... ! </h1>
+<h1>loginPro_kakao.jsp 페이지 입니다 ... ! </h1>
 
 <c:if test="${result == 0}">
 	<script>
-		alert("id/pw를 확인하세요.");
-		history.go(-1);
+		alert("카카오 id로 신규 등록 되었습니다.");
+		window.location="/member/update_kakao";
 	</script>
 </c:if>
 
