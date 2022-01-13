@@ -9,11 +9,53 @@
 
 </head>
 
+<style>
+	.camp_name{
+	width : 800px;
+	margin : auto;
+	}
+
+	.camp_info{
+	width : 900px;
+	display:flex;
+	margin : auto;
+	}
+	.camp_info1 {
+	margin : auto;
+	}
+	.info_intro, .sbrscl {
+	width : 1100px;
+	margin : auto;
+	
+	}
+	
+	.weather {
+	margin : auto;
+	width : 1500px;
+	}
+	
+	.weather_day {
+	
+	display : flex;
+	
+	}
+	.weather1,.weather2,.weather3,.weather4,.weather5,.weather6,.weather7  {
+	margin : auto;
+	align : center;
+	}
+	#map ,  .info_detail {
+	width : 900px;
+	margin : auto;
+	}
+	
+
+</style>
+
 <body>  
-	<h2> ${campDTO.facltnm}</h2>
+	<h2 class="camp_name"> ${campDTO.facltnm}</h2>
 	<hr color="#DFD8CA" size="2"  align="center" />
     <br/>
-   <div class ="camp_info" style= display:flex; >
+   <div class ="camp_info"  >
   <!--   facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
                   sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
                   sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
@@ -55,7 +97,7 @@
    	 전화번호 : 없음	
    	</c:if>
    	</li>
-   	<li>홈페이지 : <a href="${campDTO.homepage }">${campDTO.homepage }</a></li>
+   	<li>홈페이지 : <a href="${campDTO.homepage }">홈페이지 바로가기</a></li>
    	
    	<li> 
    	<c:if test="${campDTO.hvofbgnde != '0'}">
@@ -140,7 +182,7 @@
    	
    </div>
    <c:if test="${campDTO.sbrsetc == '0'}">
-   		
+   			
    	</c:if>
    	 <c:if test="${campDTO.sbrsetc != '0'}">
    	<br/><li>기타 부대시설 : ${campDTO.sbrsetc}</li>
@@ -151,6 +193,159 @@
    
    <hr color="#DFD8CA" size="2"  align="center" />
     <br/>
+    <div class="weather">
+    	<h2> ${campDTO.sigungunm } 날씨 정보</h2>
+	    <div class="weather_day"  >
+	    
+	    	<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	    		<script>
+	    		
+		    	var mapX = ${campDTO.mapx};
+			 	var mapY = ${campDTO.mapy};	
+			 	
+			 	
+    		
+    			
+    	    	
+			 	
+			 	
+	    		$.getJSON('https://api.openweathermap.org/data/2.5/onecall?lat='+ mapY +'&lon='+ mapX +'&exclude=minutely,hourly&lang=kr&units=metric&appid=9d1e9314176b9d0c29d493c1bba09273', 
+	    		function(result){
+	    			
+	    				$('.ctemp0').append(result.daily[0].temp.day + ' 도');
+		    			$('.lowtemp0').append(result.daily[0].temp.min + ' 도');
+		    			$('.hightemp0').append(result.daily[0].temp.max + ' 도');
+		    			$('.description0').append(result.daily[0].weather[0].description);
+		    			var wiconUrl0 = '<img src="http://openweathermap.org/img/wn/' + result.daily[0].weather[0].icon +'.png" >';
+		    			$('.icon0').append(wiconUrl0);
+		    			
+		    			$('.ctemp1').append(result.daily[1].temp.day + ' 도');
+		    			$('.lowtemp1').append(result.daily[1].temp.min + ' 도');
+		    			$('.hightemp1').append(result.daily[1].temp.max + ' 도');
+		    			$('.description1').append(result.daily[1].weather[0].description);
+		    			var wiconUrl1 = '<img src="http://openweathermap.org/img/wn/' + result.daily[1].weather[0].icon +'.png" >';
+		    			$('.icon1').append(wiconUrl1);
+		    			
+		    			$('.ctemp2').append(result.daily[2].temp.day + ' 도');
+		    			$('.lowtemp2').append(result.daily[2].temp.min + ' 도');
+		    			$('.hightemp2').append(result.daily[2].temp.max + ' 도');
+		    			$('.description2').append(result.daily[2].weather[0].description);
+		    			var wiconUrl2 = '<img src="http://openweathermap.org/img/wn/' + result.daily[2].weather[0].icon +'.png" >';
+		    			$('.icon2').append(wiconUrl2);
+	    				
+		    			$('.ctemp3').append(result.daily[3].temp.day + ' 도');
+		    			$('.lowtemp3').append(result.daily[3].temp.min + ' 도');
+		    			$('.hightemp3').append(result.daily[3].temp.max + ' 도');
+		    			$('.description3').append(result.daily[3].weather[0].description);
+		    			var wiconUrl3 = '<img src="http://openweathermap.org/img/wn/' + result.daily[3].weather[0].icon +'.png" >';
+		    			$('.icon3').append(wiconUrl3);
+		    			
+		    			$('.ctemp4').append(result.daily[4].temp.day + ' 도');
+		    			$('.lowtemp4').append(result.daily[4].temp.min + ' 도');
+		    			$('.hightemp4').append(result.daily[4].temp.max + ' 도');
+		    			$('.description4').append(result.daily[4].weather[0].description);
+		    			var wiconUrl4 = '<img src="http://openweathermap.org/img/wn/' + result.daily[4].weather[0].icon +'.png" >';
+		    			$('.icon4').append(wiconUrl4);
+		    			
+		    			$('.ctemp5').append(result.daily[5].temp.day + ' 도');
+		    			$('.lowtemp5').append(result.daily[5].temp.min + ' 도');
+		    			$('.hightemp5').append(result.daily[5].temp.max + ' 도');
+		    			$('.description5').append(result.daily[5].weather[0].description);
+		    			var wiconUrl5 = '<img src="http://openweathermap.org/img/wn/' + result.daily[5].weather[0].icon +'.png" >';
+		    			$('.icon5').append(wiconUrl5);
+		    			
+		    			$('.ctemp6').append(result.daily[6].temp.day + ' 도');
+		    			$('.lowtemp6').append(result.daily[6].temp.min + ' 도');
+		    			$('.hightemp6').append(result.daily[6].temp.max + ' 도');
+		    			$('.description6').append(result.daily[6].weather[0].description);
+		    			var wiconUrl6 = '<img src="http://openweathermap.org/img/wn/' + result.daily[6].weather[0].icon +'.png" >';
+		    			$('.icon6').append(wiconUrl6);
+		    			
+	    		});
+	    		
+	    		
+	    		
+	    	</script>
+	    	
+	    	
+	    	
+	    	<div class ="weather0" >
+	    	<h3 class="day0">${day0} </h3>
+	    	<span class="icon0"> </span>
+	    	<h3 class="description0"> </h3>
+	    	<li class="ctemp0"> 평균온도 : </li> 
+	    	<li class="lowtemp0"> 최저온도 : </li> 
+	    	<li class="hightemp0"> 최고온도 : </li>
+	    	
+	    	</div>
+	    	
+	    	<div class ="weather1" >
+	    	<h3 class="day1">${day1 } </h3>
+	    	<span class="icon1"> </span>
+	    	<h3 class="description1"> </h3>
+	    	<li class="ctemp1"> 평균온도 : </li> 
+	    	<li class="lowtemp1"> 최저온도 : </li> 
+	    	<li class="hightemp1"> 최고온도 : </li>
+	    	
+	    	</div>
+	    	
+	    	<div class ="weather2" >
+	    	<h3 class="day2">${day2 } </h3>
+	    	<span class="icon2"> </span>
+	    	<h3 class="description2"> </h3>
+	    	<li class="ctemp2"> 평균온도 : </li> 
+	    	<li class="lowtemp2"> 최저온도 : </li> 
+	    	<li class="hightemp2"> 최고온도 : </li>
+	    	
+	    	
+	    	</div>
+	    	<div class ="weather3" >
+	    	<h3 class="day3">${day3 } </h3>
+	    	<span class="icon3"> </span>
+	    	<h3 class="description3"> </h3>
+	    	<li class="ctemp3"> 평균온도 : </li> 
+	    	<li class="lowtemp3"> 최저온도 : </li> 
+	    	<li class="hightemp3"> 최고온도 : </li>
+	    	
+	    	</div>
+	    	<div class ="weather4" >
+	    	<h3 class="day4">${day4 } </h3>
+	    	<span class="icon4"> </span>
+	    	<h3 class="description4"> </h3>
+	    	<li class="ctemp4"> 평균온도 : </li> 
+	    	<li class="lowtemp4"> 최저온도 : </li> 
+	    	<li class="hightemp4"> 최고온도 : </li>
+	    	 
+	    	</div>
+	    	<div class ="weather5" >
+	    	<h3 class="day5">${day5 } </h3>
+	    	<span class="icon5"> </span>
+	    	<h3 class="description5"> </h3>
+	    	<li class="ctemp5"> 평균온도 : </li> 
+	    	<li class="lowtemp5"> 최저온도 : </li> 
+	    	<li class="hightemp5"> 최고온도 : </li>
+	    	 
+	    	</div>
+	    	<div class ="weather6" >
+	    	<h3 class="day6">${day6 } </h3>
+	    	<span class="icon6"> </span>
+	    	<h3 class="description6"> </h3>
+	    	<li class="ctemp6"> 평균온도 : </li> 
+	    	<li class="lowtemp6"> 최저온도 : </li> 
+	    	<li class="hightemp6"> 최고온도 : </li>
+	    	 
+	    	</div>
+	    	
+	    	
+    	</div>
+    </div>	
+    	<hr color="#DFD8CA" size="2"  align="center" />
+    <br/>
+    
+    	
+    
+    
+    
    <div id="map" style="width:750px;height:350px;"></div>
 
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=83db66c074a5f9d9786237eec858c915"></script>
