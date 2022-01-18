@@ -10,7 +10,7 @@
 </head>
 
 <style>
-	.camp_name{
+	#camp_name{
 	width : 800px;
 	margin : auto;
 	}
@@ -43,7 +43,7 @@
 	margin : auto;
 	align : center;
 	}
-	#map ,  .info_detail {
+	#map ,  .info_detail ,.review{
 	width : 900px;
 	margin : auto;
 	}
@@ -52,7 +52,7 @@
 </style>
 
 <body>  
-	<h2 class="camp_name"> ${campDTO.facltnm}</h2>
+	<h2 id="camp_name"> ${campDTO.facltnm}</h2>
 	<hr color="#DFD8CA" size="2"  align="center" />
     <br/>
    <div class ="camp_info"  >
@@ -97,7 +97,7 @@
    	 전화번호 : 없음	
    	</c:if>
    	</li>
-   	<li>홈페이지 : <a href="${campDTO.homepage }">홈페이지 바로가기</a></li>
+   	<li>홈페이지 : <a href="${fn:substring(campDTO.homepage,0,3) eq 'http'? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
    	
    	<li> 
    	<c:if test="${campDTO.hvofbgnde != '0'}">
@@ -198,6 +198,66 @@
 	    <div class="weather_day"  >
 	    
 	    	<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	    	
+	    		<script>
+	    		let cname = '${campDTO.facltnm}';
+	    		   $.ajax({
+	    			   
+	    			    async: true, //동기 or 비동기
+	    			    url: "https://dapi.kakao.com/v2/search/blog",  
+	    			    data: {
+	    			        query: cname +'캠핑'
+	    			        
+	    			    },
+	    			    beforeSend: function (xhr) {
+	    			        xhr.setRequestHeader('Authorization',
+	    			            'KakaoAK 40516903f3ab835c2b8b12e0e572cde7')
+	    			    },
+	    			    type: "GET",
+	    			    timeout: 3000,
+	    			    dataType: "json",
+	    			    success: function (result) {
+	    			    	
+	    			    		for (var i = 0; i<11; i++){
+	    			    		var rv_title = result.documents[i].title;
+	    			    		var rv_contents = result.documents[i].contents;
+	    			    		var rv_url = result.documents[i].url;
+	    			    		var blogname = result.documents[i].blogname;
+	    			    		var thumbnail = result.documents[i].thumbnail;
+	    			    		var datetime = result.documents[i].datetime;
+	    			    		
+	    			    	
+	    			    		var tableHtml = 
+	    			    						'<table>'+
+	    			    	   					'<tr>' +
+	    			            				'<th colspan="3"><a href="' +rv_url + '">'+ rv_title +'</a></th>' +
+					    				        '</tr>'+
+					    				        '<tr>'+
+					    				            '<td rowspan="2"><img src="' +thumbnail+ '"width="150px"+height="150px"></td>'
+					    				           + '<td colspan="2">'+ rv_contents +'</td>'+
+					    				        '</tr>' +
+					    				        '<tr>' +
+					    				        	
+					    				            '<td>'+'블로그 명 :  '+blogname+ '</td><td>작성일자 :      ' +datetime+'</td>' +
+					    				            
+					    				        '</tr>'+'</table>'+'<br/><br/>';
+					    		$('.review').append(tableHtml);		        
+	    			    		
+	    			    	}
+	    			    	
+	    			       
+	    			       
+	    			    },
+	    			    error: function (error) {
+	    			        alert("실패")
+
+	    			    }
+	    			})
+     		
+
+        
+        </script>
+	    	
 	    		<script>
 	    		
 		    	var mapX = ${campDTO.mapx};
@@ -392,7 +452,7 @@
 
 		// 마커 위에 표시할 인포윈도우를 생성한다
 		var infowindow = new kakao.maps.InfoWindow({
-		    content : '<div style="padding:7px; ">${campDTO.facltnm}</div>' // 인포윈도우에 표시할 내용
+		    content : '<div style="padding:2px;  ">${campDTO.facltnm}</div>' // 인포윈도우에 표시할 내용
 		});
 
 		// 인포윈도우를 지도에 표시한다
@@ -491,15 +551,13 @@
          	
          </ul>	
          
-        
-         
-         			
-      		
-     	
-     	
-     	
-     
      </div>
+     	<hr color="#DFD8CA" size="2"  align="center" />
+    <br/>
+    
+        <div class = "review">
+        <h2>${campDTO.facltnm} 블로그 리뷰</h2>
+        </div>
 </body>
 </html>      
 

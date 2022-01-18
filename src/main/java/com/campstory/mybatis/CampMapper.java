@@ -16,4 +16,12 @@ public interface CampMapper {
 	public CampDTO getContent(@Param("contentid") String contentid);
 	
 	public int getCount();
+	
+	public int getDSearchCount(@Param("sql") String sql);
+	
+	public List<CampDTO> getDSearchList(@Param("sql") String sql);
+	
+	public int getKSearchCount(@Param("keyword") String keyword);
+	
+	public List<CampDTO> getKSearchList(@Param("keyword") String keyword, @Param("startRow") int startRow, @Param("endRow")int endRow);
 }
