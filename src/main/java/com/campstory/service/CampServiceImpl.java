@@ -34,4 +34,28 @@ public class CampServiceImpl implements CampService {
 		return mapper.getContent(contentid);
 	}
 
+	@Override
+	public int getDSearchCount(String sql) {
+		// TODO Auto-generated method stub
+		return mapper.getDSearchCount(sql);
+	}
+
+	@Override
+	public List<CampDTO> getDSearchList(String sql) {
+		// TODO Auto-generated method stub
+		return mapper.getDSearchList(sql);
+	}
+
+	@Override
+	public int getKSearchCount(String keyword) {
+		// TODO Auto-generated method stub
+		return mapper.getKSearchCount(keyword);
+	}
+
+	@Override
+	public List<CampDTO> getKSearchList(String keyword, int startRow, int endRow) {
+		// TODO Auto-generated method stub
+		return mapper.getKSearchList(keyword, startRow, endRow);
+	}
+
 }

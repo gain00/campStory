@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
-    
-
-
+   
 <style>
 	.search_keyword{ 
 	width : 900px;
@@ -215,7 +213,27 @@
 </c:forEach>
 	
 </table>
+<c:if test="${ searchcount > 0}">
+<div align="center">	
+   <fmt:parseNumber var="result" value="${currentPage / 10}" integerOnly="true" />
+  
+   <c:if test="${endPage > pageCount}">
+        <c:set var="endPage" value="${pageCount}"/>
+   </c:if> 
+          
+   <c:if test="${startPage > 10}">
+        <a href="/camp/klist?pageNum=${startPage - 10 }&keyword=${keyword}">[이전]</a>
+   </c:if>
 
+   <c:forEach var="i" begin="${startPage}" end="${endPage}">
+       <a href="/camp/klist?pageNum=${i}&donm=${donm}&keyword=${keyword}">[${i}]</a>
+   </c:forEach>
+
+   <c:if test="${endPage < pageCount}">
+        <a href="/camp/klist?pageNum=${startPage + 10}&keyword=${keyword}">[다음]</a>
+   </c:if>
+</c:if>
+</div>
 </center>
 </body>
 
@@ -231,5 +249,3 @@
 		}
 	}
 	</script>
-
-

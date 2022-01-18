@@ -33,7 +33,7 @@
 </select>	
 	
 	
-<select id="getContent" resultType="com.campstory.bean.CampDTO">
+<select id="getContent" resultType="com.campstory.bean.CampDTO" >
 	<![CDATA[
 		
 	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
@@ -56,7 +56,61 @@
 		
 	]]> 
 </select>
-	
 
+<select id="getDSearchCount" resultType="int">
+		<![CDATA[
+		select count(*) from Camp_info1 where ${sql}
+		]]> 
+</select>		
+
+<select id="getDSearchList" resultType="com.campstory.bean.CampDTO">
+		<![CDATA[	
+	
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,r 
+		from (select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,rownum r 
+		from  camp_info1 where ${sql} order by modifiedtime desc ) 
+		
+	
+		]]> 
+</select>
+
+<select id="getKSearchList" resultType="com.campstory.bean.CampDTO">
+		<![CDATA[	
+	
+	 
+			select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,r 
+		from (select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,rownum r 
+		from  camp_info1 where facltnm like '%' || #{keyword} || '%' or donm like '%' || #{keyword} || '%' or sigungunm like '%' || #{keyword} || '%'  order by modifiedtime desc ) 
+		where  r >= #{startRow} and r <= #{endRow} 
+		
+
+		
+	
+		]]> 
+</select>
+
+<select id="getKSearchCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from Camp_info1 where facltnm like '%' || #{keyword} || '%'
+				or donm like '%' || #{keyword} || '%'
+				or sigungunm like '%' || #{keyword} || '%'
+		
+		
+		]]> 
+</select>
+	
 	
 </mapper>

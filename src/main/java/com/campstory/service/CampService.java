@@ -12,5 +12,13 @@ public interface CampService {
 	public List<CampDTO> getList(int startRow, int endRow);
 	
 	public CampDTO getContent(String contentid);
+	
+	public int getDSearchCount(String sql);
+	
+	public List<CampDTO> getDSearchList(String sql);
+	
+	public int getKSearchCount(String keyword);
+	
+	public List<CampDTO> getKSearchList(String keyword, int startRow, int endRow);
 
 }
