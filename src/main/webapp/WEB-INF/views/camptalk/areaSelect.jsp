@@ -47,14 +47,15 @@
 
 	</map>
 </section>
-<script>
+<input type="button" value="test" onclick="test()"/>
+<script>	
 	function mapimg(img) {
-	$('#map_change').attr('src','<%=map%>' + img);
+		$('#map_change').attr('src','<%=map%>' + img);
 	}
 	
 	function areaS(area) {
 		$("map[name=webtong_Map] area").on("click focus", function() {
-			window.location = "/campTalk/talkList?area=" + area;
+			opener.location.replace("/campTalk/talkList?areaEng="+area);
 			self.close();
 		});
 	}

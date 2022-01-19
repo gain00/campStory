@@ -8,10 +8,23 @@ import com.campstory.bean.CampTalkDTO;
 
 public interface CampTalkMapper {
 	
-	public List<CampTalkDTO> getTalkList(String area);
+	public List<CampTalkDTO> getTalkList(@Param("area") String area, @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd);
 	
 	public int talkWrite(CampTalkDTO dto);
 	
-	public List<String> searchList(@Param("facltnm") String name, @Param("area") String area);
+	public List<CampTalkDTO> getCampSearchList(@Param("camp") String camp, @Param("area") String area, @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd);
 	
+	public int getTotalCount(String area);
+	
+	public int talkGoodUp(int num_talk);
+	
+	public int goodListInput(@Param("id") String id, @Param("num_talk") int num_talk);
+	
+	public int talkGoodDown(int num_talk);
+	
+	public int goodListDel(@Param("id") String id, @Param("num_talk") int num_talk);
+	
+	public List<CampTalkDTO> goodListAll();
+	
+	public int getTotalCampCount(@Param("area") String area, @Param("camp") String camp);
 }	
