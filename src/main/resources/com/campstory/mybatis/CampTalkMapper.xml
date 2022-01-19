@@ -6,21 +6,53 @@
 
 <!-- 인터페이스의 이름  -->
 <mapper namespace="com.campstory.mybatis.CampTalkMapper">
-	
-	
+		
 	<select id="getTalkList" resultType="com.campstory.bean.CampTalkDTO">
 	 	<![CDATA[
-	 	select * from (select contentid, facltnm, mapx, mapy, donm, rownum r from 
-	 	(select * from camp_info1 where donm=#{area}))where r >=1 and r<= 5
+		 	select * from 
+		 	(select resul.*, rownum rn from 
+		 	(select talk.*, info.mapx, info.mapy, info.firstimageurl from 
+		 		camptalk talk, camp_info1 info where talk.contentid= info.contentid and talk.area like '%'||#{area}||'%' order by reg_time desc) 
+		 	resul) where rn >= #{rowStart} and rn <=#{rowEnd}
 		]]>
 	</select>
 	
 	<insert id="talkWrite">
-		insert into camptalk(num_talk, area, camp, content, reg_time) values(0,#{area},#{camp},#{content},'2020-10-10')
+		insert into camptalk(num_talk, area, camp, content, reg_time, contentid) values(0,#{area},#{camp},#{content},'2020-10-10',#{contentid})
 	</insert>
 	
-	<select id="searchList" resultType="String">
-		select facltnm from camp_info1 where facltnm like '%'|| #{facltnm} ||'%'
-	
+	<select id="getCampSearchList" resultType="com.campstory.bean.CampTalkDTO">
+		<![CDATA[
+			select * from 
+			(select contentid, facltnm, donm, addr1,rownum rn from 
+			(select * from camp_info1 where donm like '%'||#{area}||'%' and facltnm like '%'||#{camp}||'%' )
+			) where rn >= #{rowStart} and rn<= #{rowEnd}
+		]]>
 	</select>	
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from camptalk where area like '%' || #{area} || '%'
+	</select>
+	
+	<update id="talkGoodUp">
+		update camptalk set good = good +1 where num_talk=#{num_talk}
+	</update>
+	<insert id="goodListInput">
+		insert into talkgoodlist values(0,#{id},#{num_talk})
+	</insert>
+	<update id="talkGoodDown">
+		update camptalk set good = good -1 where num_talk=#{num_talk}
+	</update>
+	<delete id="goodListDel">
+		delete talkgoodlist where writer = #{id} and num_talk=#{num_talk} 
+	</delete>
+	
+	<select id="goodListAll" resultType="com.campstory.bean.CampTalkDTO">
+		select * from talkgoodlist
+	</select>
+	
+	<select id="getTotalCampCount" resultType="int">
+		select count(*) from camp_info1 where donm like '%'||#{area}||'%' and facltnm like '%'||#{camp}||'%' 
+	</select>
+	
 </mapper>

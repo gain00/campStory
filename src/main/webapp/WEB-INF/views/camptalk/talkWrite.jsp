@@ -5,10 +5,10 @@
     
 <form action="/campTalk/talkWritePro" method="post" name="cs">
 	<table border="1">
-
 		<tr><td>캠핑장 : </td><td> 
 		<input type="text" name="camp" id="camp" readonly="readonly" onclick="campSearch()" />
-		<input type="hidden" name="area" id="area"/> 
+		<input type="hidden" name="contentid" id="contentid" />
+		<input type="hidden" name="area" id="area" /> 
 		<input type="button" value="검색" onclick="campSearch()"/> </td></tr>
 		<tr><td>내용 : </td><td> <input type="text" name="content" /> </td></tr>
 		<tr><td colspan="2">
@@ -23,7 +23,7 @@
 
 	function campSearch(){
 		url = "/campTalk/campSearch"
-		open(url,"캠핑장 검색","width=600,height=400,left="+popupX+",top="+popupY);
+		open(url,"캠핑장 검색","width=600,height=400,left="+popupX+",top="+popupY+",scrollbars=yes");
 	}
 
 </script>
