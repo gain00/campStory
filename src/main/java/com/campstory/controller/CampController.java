@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.campstory.bean.CampDTO;
 import com.campstory.service.CampService;
@@ -73,7 +74,11 @@ public class CampController {
 		return "camp/list";
 	}
 	@RequestMapping("info")
-	public String content(String contentid ,Model model,int pageNum, CampDTO dto) {
+	public String content(String contentid ,Model model,String pageNum, CampDTO dto,HttpServletRequest req) {
+		pageNum = req.getParameter("pageNum");
+		if(pageNum == null ) {
+			pageNum = "1";
+		}
 		
 		Date today = new Date();
 		
@@ -233,5 +238,14 @@ public class CampController {
 		
 		return "camp/klist";
 	}
-	
+	@RequestMapping("readcount")
+	public String readcount(String contentid,String pageNum, RedirectAttributes rttr,HttpServletRequest req) {
+		pageNum = req.getParameter("pageNum");
+		if(pageNum == null ) {
+			pageNum = "1";
+		}
+		service.readcountUp(contentid);
+		rttr.addAttribute("contentid", contentid);
+		return "redirect:/camp/info";
+	}
 }

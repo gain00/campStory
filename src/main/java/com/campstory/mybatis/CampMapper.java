@@ -24,4 +24,6 @@ public interface CampMapper {
 	public int getKSearchCount(@Param("keyword") String keyword);
 	
 	public List<CampDTO> getKSearchList(@Param("keyword") String keyword, @Param("startRow") int startRow, @Param("endRow")int endRow);
+	
+	public int readcountUp(@Param("contentid") String contentid);
 }

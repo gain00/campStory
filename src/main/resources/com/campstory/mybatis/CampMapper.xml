@@ -111,6 +111,11 @@
 		
 		]]> 
 </select>
-	
+<update id="readcountUp">
+	update camp_info1 set 
+		readcount = readcount+1
+		where contentid=#{contentid}
+
+</update>	
 	
 </mapper>
