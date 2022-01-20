@@ -18,7 +18,11 @@
 	</insert>
 	
 	<select id="loginCheck" resultType="int" >
-		select count(*) from member where id=#{id} and pw=#{pw} and status='회원'
+		select count(*) from member where id=#{id} and pw=#{pw} and (status='회원' or status='관리자')
+	</select>
+	
+	<select id="adminCheck" resultType="int" >
+		select count(*) from member where id=#{id} and pw=#{pw} and status='관리자'
 	</select>
 	
 	<select id="idCheck" resultType="int">

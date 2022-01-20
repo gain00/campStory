@@ -10,6 +10,8 @@ public interface MemberMapper {
 
 	public int loginCheck(MemberDTO memberDTO);
 	
+	public int adminCheck(MemberDTO memberDTO);
+	
 	public int idCheck(String id);
 	
 	public int delCheck(String id);

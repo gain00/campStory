@@ -10,6 +10,8 @@ public interface MemberService {
 	
 	public int memberLoginCheck(MemberDTO memberDTO);
 	
+	public int memberAdminCheck(MemberDTO memberDTO);
+	
 	public int memberIdCheck(String id);
 	
 	public int memberDelCheck(String id);

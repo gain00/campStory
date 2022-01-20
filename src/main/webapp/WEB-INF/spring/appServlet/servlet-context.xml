@@ -55,6 +55,7 @@
 	
 	<context:component-scan base-package="com.campstory.controller" />
 	<context:component-scan base-package="com.campstory.command" />
+
 	<!-- 	
 	<context:component-scan base-package="org.mvc.exception" />
 	-->
@@ -66,6 +67,8 @@
 		<!-- <beans:bean id="memberDTO" class="com.campstory.bean" />  -->
 	
 	<beans:bean id="campDTO" class="com.campstory.bean.CampDTO" />	
+	<beans:bean id="campTalkDTO" class="com.campstory.bean.CampTalkDTO" />	
+	<beans:bean id="csDTO" class="com.campstory.bean.CsDTO" />	
 	<beans:bean id="memberDTO" class="com.campstory.bean.MemberDTO" />	
 		
 	<context:component-scan base-package="org.mvc.aop" />
