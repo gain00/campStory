@@ -58,4 +58,10 @@ public class CampServiceImpl implements CampService {
 		return mapper.getKSearchList(keyword, startRow, endRow);
 	}
 
+	@Override
+	public int readcountUp(String contentid) {
+		// TODO Auto-generated method stub
+		return mapper.readcountUp(contentid);
+	}
+
 }
