@@ -30,6 +30,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int memberAdminCheck(MemberDTO memberDTO) {
+		return mapper.adminCheck(memberDTO);
+	}
+	
+	@Override
 	public int memberIdCheck(String id) {
 		return mapper.idCheck(id);
 	}

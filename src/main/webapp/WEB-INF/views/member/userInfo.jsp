@@ -6,7 +6,7 @@
 <h1> userInfo.jsp 입니다. </h1>
 
 
-<c:if test="${memberDTO.status eq '회원'}">
+<c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
 	id : ${memberDTO.id} <br />
 	전화번호 : ${memberDTO.phone} <br />
 	이메일 : ${memberDTO.email} <br />
@@ -27,7 +27,7 @@
 </c:if>
 
 
-<c:if test="${memberDTO.status eq '회원'}">
+<c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
 	<form action="/member/update" method="post" >
 
 		<input type="hidden" name="id" value="${sessionScope.memId}" />

@@ -59,6 +59,9 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(MemberDTO dto, HttpSession session, Model model) {
 		if(service.memberLoginCheck(dto) == 1) {
+			if(service.memberAdminCheck(dto) == 1) {
+				session.setAttribute("adminId", dto.getId());
+			}
 			session.setAttribute("memId", dto.getId());
 			model.addAttribute("result", 1);
 		}else {
