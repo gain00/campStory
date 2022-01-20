@@ -47,7 +47,7 @@ function kakaoLogin() {
 		<input type="submit" value="로그인" />
 
 </form>
-
+<a href="/member/input" >회원가입</a>
 <br /><br />
 
 <a href="javascript:void(0);" onclick="kakaoLogin();">카카오 로그인</a><br /><br />

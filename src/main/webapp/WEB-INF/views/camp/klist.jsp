@@ -44,9 +44,10 @@
 	}
 </style>
 <body>
+<%@ include file = "../include/header.jsp" %>
 <div class ="search_keyword">
 	<form action="klist" method="get">
-		<input type="text" id="searchbar" name="keyword" />
+		<input type="text" id="searchbar" name="keyword" placeholder="지역명 / 캠핑장 명을 검색 해 주세요"/>
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
 	</form>
 </div>
@@ -142,7 +143,7 @@
 <c:forEach items="${searchlist}" var="campDTO">
 <div align="center">
 	<br/>
-   <a href="/camp/info?contentid=${campDTO.contentid }&pageNum=${pageNum}">
+   <a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}">
   <h3>${campDTO.facltnm }</h3></a> <br/> 
     ${campDTO.sigungunm }<br/>
     ${campDTO.induty } <br/>
