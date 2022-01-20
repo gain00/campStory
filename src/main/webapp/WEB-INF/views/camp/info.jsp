@@ -52,6 +52,8 @@
 </style>
 
 <body>  
+<%@ include file = "../include/header.jsp" %>
+
 	<h2 id="camp_name"> ${campDTO.facltnm}</h2>
 	<hr color="#DFD8CA" size="2"  align="center" />
     <br/>
