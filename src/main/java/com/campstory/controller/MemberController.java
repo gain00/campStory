@@ -59,11 +59,12 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(MemberDTO dto, HttpSession session, Model model) {
 		if(service.memberLoginCheck(dto) == 1) {
-			if(service.memberAdminCheck(dto) == 1) {
+           if(service.memberAdminCheck(dto) == 1) {
 				session.setAttribute("adminId", dto.getId());
 			}
 			session.setAttribute("memId", dto.getId());
 			model.addAttribute("result", 1);
+			session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
 		}else {
 			if(service.memberDelCheck(dto.getId()) == 1) {
 				model.addAttribute("result", 2);
@@ -83,18 +84,21 @@ public class MemberController {
 				session.setAttribute("memId", kakao_nickname);
 				session.setAttribute("kakaoId", kakao_id);
 				model.addAttribute("result", 1);
+				session.setAttribute("status", service.memberUserInfo(kakao_id).getStatus());
 			}else {
 				if(kakao_email.equals("no_check_email")) {
 					memDTO.setId(kakao_id);
 					service.memberInsert_kakao(memDTO);
 					session.setAttribute("memId", kakao_nickname);
 					session.setAttribute("kakaoId", kakao_id);
+					session.setAttribute("status", service.memberUserInfo(kakao_id).getStatus());
 				}else {
 					memDTO.setId(kakao_id);
 					memDTO.setEmail(kakao_email);
 					service.memberInsert_kakao(memDTO);
 					session.setAttribute("memId", kakao_nickname);
 					session.setAttribute("kakaoId", kakao_id);
+					session.setAttribute("status", service.memberUserInfo(kakao_id).getStatus());
 				}
 				model.addAttribute("result", 0);
 			}

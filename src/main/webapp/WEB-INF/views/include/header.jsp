@@ -24,71 +24,7 @@ function kakaoLogout() {
 </script>
 
 
-<style>
-    .navbar {
-        display: flex;
-        margin: auto;
-        padding: auto;
-        height: 80px;
-        text-align: center;
-        vertical-align : bottom;
-    }
-    
-    .navbtn {
-        width: auto;
-        margin: auto;
-        padding: auto;
-        display :flex;
-        text-align: center;
-        
-    }
-  
-    a.navbtn{
-    	
-    	margin: auto;
-    	text-align: center;
-    	text-decoration-line : none;
-    	color: black;
-    }
-    a.navbtn.h4{
-    	width: 80px;
-    	margin: auto;
-    	text-align: center;
-    }
-    .logbtn {
-        width: 150px;
-        margin: auto;
-        display : inline-block;
-        
-    }
-    #loginbtn, #logoutbtn {
-        width: 100px;
-        height: 40px;
-        vertical-align : bottom;
-        text-align: center;
-    }
-    #logoutbtn.navbtn{
-    	text-align: center;
-    }
-    
-    #userid {
-    	margin : auto;
-    	text-align: right;
-    	width: 60px;
-    	
-    }
-    
-    #cs_logo {
-        width: 80px;
-        height: 80px;
-    }
-    #userinfochk {
-    	
-    	margin:auto;
-    	text-align: center;
-    }
-    
-</style>
+
 
 
 <nav class="navbar">

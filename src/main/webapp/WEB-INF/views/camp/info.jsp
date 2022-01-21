@@ -9,47 +9,10 @@
 
 </head>
 
-<style>
-	#camp_name{
-	width : 800px;
-	margin : auto;
-	}
+<script type="text/javascript">
+	function good() { window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=50px; ,height=50px;'); }
 
-	.camp_info{
-	width : 900px;
-	display:flex;
-	margin : auto;
-	}
-	.camp_info1 {
-	margin : auto;
-	}
-	.info_intro, .sbrscl {
-	width : 1100px;
-	margin : auto;
-	
-	}
-	
-	.weather {
-	margin : auto;
-	width : 1500px;
-	}
-	
-	.weather_day {
-	
-	display : flex;
-	
-	}
-	.weather1,.weather2,.weather3,.weather4,.weather5,.weather6,.weather7  {
-	margin : auto;
-	align : center;
-	}
-	#map ,  .info_detail ,.review{
-	width : 900px;
-	margin : auto;
-	}
-	
-
-</style>
+</script>
 
 <body>  
 <%@ include file = "../include/header.jsp" %>
@@ -130,10 +93,17 @@
    	<c:if test="${campDTO.resveurl == '0'}">
    	</c:if>
    	<br/><br/>
-   	<div class ="button" display="flex">
+   	<div class ="usr_button">
+   		<c:if test="${goodCount == 0 }">
+   			<section class="info_btn"><input type="image" src="../resources/camp/images/good_off.png" width="30px" height="30px" onclick="good()">
+   			좋아요  (${campDTO.good } )</section>
+   		</c:if>
+   		<c:if test="${goodCount == 1 }">
+   			<section class="info_btn"><input type="image" src="../resources/camp/images/good_on.png" width="30px" height="30px" onclick="good()">
+   			좋아요취소  ( ${campDTO.good } )</section>
+   		</c:if>
    		
-   		<span><input type="image" src="../resources/camp/images/good_off.png" width="30px" height="30px" onclick="">좋아요 </span>
-   		<span><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="">즐겨찾기 </span>
+   		<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="">즐겨찾기 </span>
    		
    	</div>
    	

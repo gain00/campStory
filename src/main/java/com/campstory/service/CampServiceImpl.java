@@ -64,4 +64,34 @@ public class CampServiceImpl implements CampService {
 		return mapper.readcountUp(contentid);
 	}
 
+	@Override
+	public int goodCheck(String contentid, String id) {
+		// TODO Auto-generated method stub
+		return mapper.goodCheck(contentid, id);
+	}
+
+	@Override
+	public int goodUp(String contentid) {
+		// TODO Auto-generated method stub
+		return mapper.goodUp(contentid);
+	}
+
+	@Override
+	public int goodDown(String contentid) {
+		// TODO Auto-generated method stub
+		return mapper.goodDown(contentid);
+	}
+
+	@Override
+	public int goodInsert(String contentid, String id) {
+		// TODO Auto-generated method stub
+		return mapper.goodInsert(contentid, id);
+	}
+
+	@Override
+	public int goodDelete(String contentid, String id) {
+		// TODO Auto-generated method stub
+		return mapper.goodDelete(contentid, id);
+	}
+
 }

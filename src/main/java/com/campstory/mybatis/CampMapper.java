@@ -26,4 +26,14 @@ public interface CampMapper {
 	public List<CampDTO> getKSearchList(@Param("keyword") String keyword, @Param("startRow") int startRow, @Param("endRow")int endRow);
 	
 	public int readcountUp(@Param("contentid") String contentid);
+	
+	public int goodCheck(@Param("contentid") String contentid , @Param("id") String id);
+	
+	public int goodUp(@Param("contentid") String contentid);
+	
+	public int goodDown(@Param("contentid") String contentid);
+	
+	public int goodInsert(@Param("contentid") String contentid , @Param("id") String id);
+	
+	public int goodDelete(@Param("contentid") String contentid , @Param("id") String id);
 }

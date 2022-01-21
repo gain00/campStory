@@ -116,6 +116,39 @@
 		readcount = readcount+1
 		where contentid=#{contentid}
 
-</update>	
+</update>
+
+<select id="goodCheck" resultType="int">
+		<![CDATA[
+		select count(*) from good where contentid = #{contentid} and id = #{id}
+		]]> 
+</select>
+<update id="goodUp" parameterType="String"> 
+<![CDATA[
+	update camp_info1 set 
+		good = good +1
+		where contentid = #{contentid}
+]]> 
+</update>
+<update id="goodDown" parameterType="String">
+<![CDATA[
+	update camp_info1 set 
+		good = good -1
+		where contentid = #{contentid}
+]]> 
+</update>
+
+<insert id="goodInsert" parameterType="String">
+	<![CDATA[
+		insert into good(contentid,id)
+		values(#{contentid}, #{id})
+		]]> 
+</insert>
+
+<delete id="goodDelete" parameterType="String">
+	<![CDATA[
+		delete good where contentid=#{contentid} and id=#{id} 
+		]]> 
+</delete>		
 	
 </mapper>

@@ -24,5 +24,15 @@ public interface CampService {
 	public List<CampDTO> getKSearchList(String keyword, int startRow, int endRow);
 	
 	public int readcountUp(String contentid);
+	
+	public int goodCheck(String contentid , String id);
+	
+	public int goodUp(String contentid);
+	
+	public int goodDown(String contentid);
+	
+	public int goodInsert(String contentid , String id);
+	
+	public int goodDelete(String contentid , String id);
 
 }
