@@ -2,8 +2,3 @@
     pageEncoding="UTF-8"%>
 
 <h1> updatePro.jsp 입니다. </h1>
-
-<script>
-	alert("회원정보 수정 완료");
-	window.location="/member/userInfo";
-</script>
