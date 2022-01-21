@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 인터페이스의 이름  -->
+<mapper namespace="com.campstory.mybatis.CsMapper">
+	
+	<insert id="insertArticle" parameterType="com.campstory.bean.CsDTO" >
+		insert into cs(num_question,title,content,reg_time,category,writer,secret) 
+			values(seq_cs.nextval,#{title},#{content},sysdate,#{category},#{writer},#{secret})
+	</insert>
+	
+	<select id="getArticleCount" resultType="int" >
+		select count(*) from cs
+	</select>
+	
+	<select id="getArticleCount_col" resultType="int" >
+		select count(*) from cs where ${colum} like '%${search}%'
+	</select>
+	
+	<select id="getCateCount" resultType="int" >
+		select count(*) from cs where category=#{category}
+	</select>
+	
+	<select id="getCateCount_col" resultType="int" >
+		select count(*) from cs where category=#{category} and ${colum} like '%${search}%'
+	</select>
+
+	<select id="getArticles" parameterType="int" resultType="com.campstory.bean.CsDTO" >
+		<![CDATA[
+			select num_question,title,content,reg_time,category,writer,re_comment,secret,r 
+			from (select num_question,title,content,reg_time,category,writer,re_comment,secret,rownum r from 
+					(select * from cs order by num_question desc)) where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<select id="getArticles_col" parameterType="int" resultType="com.campstory.bean.CsDTO" >
+		<![CDATA[
+			select num_question,title,content,reg_time,category,writer,re_comment,secret,r 
+			from (select num_question,title,content,reg_time,category,writer,re_comment,secret,rownum r from 
+					(select * from cs where ${colum} like '%${search}%' order by num_question desc)) where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<select id="getCate" resultType="com.campstory.bean.CsDTO" >
+		<![CDATA[
+			select num_question,title,content,reg_time,category,writer,re_comment,secret,r 
+			from (select num_question,title,content,reg_time,category,writer,re_comment,secret,rownum r from 
+					(select * from cs where category=#{category} order by num_question desc)) where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<select id="getCate_col" resultType="com.campstory.bean.CsDTO" >
+		<![CDATA[
+			select num_question,title,content,reg_time,category,writer,re_comment,secret,r 
+			from (select num_question,title,content,reg_time,category,writer,re_comment,secret,rownum r from 
+					(select * from cs where category=#{category} and ${colum} like '%${search}%' order by num_question desc)) where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<select id="getUpdate" parameterType="int" resultType="com.campstory.bean.CsDTO" >
+		select * from cs where num_question=#{num_question}
+	</select>
+
+	<update id="updateArticle" parameterType="com.campstory.bean.CsDTO" >
+		update cs set 
+			title=#{title},content=#{content},reg_time=sysdate,category=#{category},secret=#{secret} where num_question=#{num_question}
+	</update>
+	
+	<update id="updateArticleAdmin" parameterType="com.campstory.bean.CsDTO" >
+		update cs set 
+			re_comment=#{re_comment} where num_question=#{num_question}
+	</update>
+	
+	<delete id="deleteArticle" >
+		delete from cs where num_question=#{num_question}
+	</delete>
+
+</mapper>
