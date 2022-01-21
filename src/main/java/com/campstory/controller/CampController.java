@@ -13,13 +13,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.campstory.bean.CampDTO;
@@ -74,7 +76,8 @@ public class CampController {
 		return "camp/list";
 	}
 	@RequestMapping("info")
-	public String content(String contentid ,Model model,String pageNum, CampDTO dto,HttpServletRequest req) {
+	public String content(String contentid ,Model model,String pageNum, CampDTO dto,HttpServletRequest req,
+			HttpSession session,String id) {
 		pageNum = req.getParameter("pageNum");
 		if(pageNum == null ) {
 			pageNum = "1";
@@ -99,7 +102,16 @@ public class CampController {
 		cal.add(cal.DATE, +1); //날짜를 하루 더한다.
 		String day6 = sdf.format(cal.getTime());
 		
-		
+		int count = 0;
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		if (id != null) {
+			count = service.goodCheck(contentid, id);
+		}
+		 
 		model.addAttribute("day0" ,today1);
 		model.addAttribute("day1", day1 );
 		model.addAttribute("day2", day2 );
@@ -111,7 +123,7 @@ public class CampController {
 		model.addAttribute("campDTO", service.getContent(contentid));
 		model.addAttribute("contentid", contentid);
 		model.addAttribute("pageNum", pageNum);
-		
+		model.addAttribute("goodCount", count);
 			
 			
 			
@@ -247,5 +259,41 @@ public class CampController {
 		service.readcountUp(contentid);
 		rttr.addAttribute("contentid", contentid);
 		return "redirect:/camp/info";
+	}
+	
+	@RequestMapping("good")
+	public String good( String id ,HttpServletRequest req, Model model,HttpSession session,
+			@RequestParam(value ="contentid",required=false,defaultValue="") String contentid) {
+	
+		
+		
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		log.info(id);
+		log.info(contentid);
+		if (id != null ) {
+			int count = service.goodCheck(contentid, id);
+			if (count == 0){
+				service.goodUp(contentid);
+				service.goodInsert(contentid, id);
+			}else {
+				service.goodDown(contentid);
+				service.goodDelete(contentid, id);
+			}
+			
+			
+			
+			model.addAttribute("goodCount", count);
+			model.addAttribute("contentid", contentid);
+		}
+		
+		
+		
+		
+		
+		return "camp/good";
 	}
 }

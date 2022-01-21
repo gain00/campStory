@@ -136,6 +136,7 @@
     #userinfochk {
     	
     	margin:auto;
+    	padding: 10px;
     	text-align: center;
     }
         .main_intro{
@@ -185,5 +186,19 @@
     	padding: 40px;
     	text-align: center;
     	position: relative;
+    }
+    
+    .usr_button {
+    	
+    	margin : auto;
+    	display: flex;
+    	vertical-align : bottom;
+    }
+    .info_btn {
+    	width : 200px;
+    	padding: 20px;
+    	margin : auto;
+    	font-weight: bold;
+    	vertical-align : bottom;
     }
     
