@@ -46,4 +46,20 @@
 			pw=#{pw}, phone=#{phone}, email=#{email}, birth=#{birth}, location=#{location} where id=#{id}
 	</update>
 	
+	<select id="getLikeList" resultType="com.campstory.bean.CampDTO">
+		select * from good where id=#{id}
+	</select>
+	
+	<select id="getLikeInfo" resultType="com.campstory.bean.CampDTO">
+		select * from (select * from camp_info1 order by modifiedtime desc) where contentid=#{contentid}
+	</select>
+	
+	<select id="getFavList" resultType="com.campstory.bean.MemberDTO">
+		select * from favorite where id=#{id}
+	</select>
+	
+	<select id="getFavInfo" resultType="com.campstory.bean.CampDTO">
+		select * from (select * from camp_info1 order by modifiedtime desc) where contentid=#{contentid}
+	</select>
+	
 </mapper>

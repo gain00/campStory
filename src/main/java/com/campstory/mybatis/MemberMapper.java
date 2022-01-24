@@ -1,5 +1,8 @@
 package com.campstory.mybatis;
 
+import java.util.List;
+
+import com.campstory.bean.CampDTO;
 import com.campstory.bean.MemberDTO;
 
 public interface MemberMapper {
@@ -21,4 +24,12 @@ public interface MemberMapper {
 	public MemberDTO userInfo(String id);
 	
 	public int update(MemberDTO memberDTO);
+	
+	public List<CampDTO> getLikeList(String id);
+	
+	public CampDTO getLikeInfo(String contentid);
+	
+	public List<MemberDTO> getFavList(String id);
+	
+	public CampDTO getFavInfo(String contentid);
 }

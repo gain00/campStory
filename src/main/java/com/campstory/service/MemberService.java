@@ -1,5 +1,8 @@
 package com.campstory.service;
 
+import java.util.List;
+
+import com.campstory.bean.CampDTO;
 import com.campstory.bean.MemberDTO;
 
 public interface MemberService {
@@ -21,4 +24,12 @@ public interface MemberService {
 	public MemberDTO memberUserInfo(String id);
 	
 	public int memberUpdate(MemberDTO memberDTO);
+	
+	public List<CampDTO> memberLikeList(String id);
+	
+	public CampDTO memberLikeInfo(String contentid);
+	
+	public List<MemberDTO> memberFavList(String id);
+	
+	public CampDTO memberFavInfo(String contentid);
 }

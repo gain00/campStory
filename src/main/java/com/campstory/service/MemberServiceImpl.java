@@ -1,8 +1,11 @@
 package com.campstory.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.campstory.bean.CampDTO;
 import com.campstory.bean.MemberDTO;
 import com.campstory.mybatis.MemberMapper;
 
@@ -57,6 +60,26 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberUpdate(MemberDTO memberDTO) {
 		return mapper.update(memberDTO);
+	}
+
+	@Override
+	public List<CampDTO> memberLikeList(String id) {
+		return mapper.getLikeList(id);
+	}
+
+	@Override
+	public CampDTO memberLikeInfo(String contentid) {
+		return mapper.getLikeInfo(contentid);
+	}
+
+	@Override
+	public List<MemberDTO> memberFavList(String id) {
+		return mapper.getFavList(id);
+	}
+
+	@Override
+	public CampDTO memberFavInfo(String contentid) {
+		return mapper.getFavInfo(contentid);
 	}
 
 }

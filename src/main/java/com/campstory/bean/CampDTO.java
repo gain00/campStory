@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class CampDTO {
 
+	String id;
 	String contentid;
 	String facltnm;
 	String lineintro;
