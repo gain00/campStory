@@ -149,6 +149,34 @@
 	<![CDATA[
 		delete good where contentid=#{contentid} and id=#{id} 
 		]]> 
-</delete>		
-	
+</delete>
+
+<select id="keywordCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from keyword where keyword = #{keyword}
+
+		]]> 
+</select>	
+
+<insert id="keywordInsert" parameterType="String">
+	<![CDATA[
+		insert into keyword(keyword,s_count)
+		values(#{keyword}, 1)
+		]]> 
+</insert>
+
+<update id="keywordUp" parameterType="String"> 
+<![CDATA[
+	update keyword set 
+		s_count = s_count +1
+		where keyword = #{keyword}
+]]> 
+</update>
+
+<select id="getKeywordList" resultType="com.campstory.bean.KeywordDTO" >
+		<![CDATA[
+	select keyword  from (select keyword, rownum r from keyword order by s_count desc)where r >=1 and r <= 5
+	]]> 
+</select>
 </mapper>

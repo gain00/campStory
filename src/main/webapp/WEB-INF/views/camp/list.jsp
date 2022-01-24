@@ -12,45 +12,7 @@
 
 </head>
 
-<style>
-	.search_keyword{ 
-	width : 900px;
-	height : 70px;
-	margin : auto;
-	
-	text-align : center;
-	}
-	.search_detail{ 
-	width : 1000px;
-	margin : auto;
-	text-align : center;
-	}
-	.search-disply{
-	width : 800px;
-	margin : auto;
-	text-align : right;
-	}
-	#searchbar {
-	width : 300px;
-	height : 70px;
-	}
-	#searchbtn {
-	width : 60px;
-	height : 60px;
-	vertical-align : bottom;
-	}
-	#searchbtn2 {
-	width : 150px;
-	height : 150px;
-	vertical-align : bottom;
-	}
-	#dt_th {
-	width : 70px;
-	}
-	#dt_td {
-	width : 600px;
-	}
-</style>
+
 <body>
 <%@ include file = "../include/header.jsp" %>
 
@@ -59,6 +21,12 @@
 		<input type="text" id="searchbar" name="keyword" placeholder="지역명 / 캠핑장 명을 검색 해 주세요"/>
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
 	</form>
+	<div id="kwordList">
+		<c:forEach var="keywordlist" items="${keywordlist }">
+		<a href = "/camp/klist?keyword=${keywordlist.keyword}" class="mainkeyword"># ${keywordlist.keyword}</a>
+		</c:forEach>
+	
+	</div>
 </div>
 <br/>
 <div class="search-disply">

@@ -51,29 +51,29 @@ public class CapmTalkController {
 		
 		log.info("List--------------List >> Area=========" + list);
 		
-		return "campTalk/talkList";
+		return "camptalk/talkList";
 	}
 	
 	@RequestMapping("areaSelect")
 	public String areaSelect() {
-		return "/campTalk/areaSelect";
+		return "/camptalk/areaSelect";
 	}
 	
 	@RequestMapping("talkWrite")
 	public String write() {
 		log.info("-----  talkWrite --------");
-		return "/campTalk/talkWrite";
+		return "/camptalk/talkWrite";
 	}
 	
 	@RequestMapping("talkWritePro")
 	public String writePro(CampTalkDTO dto) {
 		service.talkWrite(dto);
-		return "/campTalk/talkWritePro";
+		return "/camptalk/talkWritePro";
 	}
 	
 	@RequestMapping("campSearch")
 	public String search() {
-		return "/campTalk/campSearch";
+		return "/camptalk/campSearch";
 	}
 	
 	@RequestMapping("campSearchList")
@@ -91,7 +91,7 @@ public class CapmTalkController {
 		model.addAttribute("page", page);
 		model.addAttribute("camp", camp);
 		model.addAttribute("area", areaEng);
-		return "/campTalk/campSearch";
+		return "/camptalk/campSearch";
 	}
 	
 	@RequestMapping("goodUp")
@@ -99,7 +99,7 @@ public class CapmTalkController {
 		String id = "testid1";
 		service.talkGoodUp(num_talk);
 		service.goodListInput(id, num_talk);
-		return "redirect:/campTalk/talkList";
+		return "redirect:/camptalk/talkList";
 	}
 	
 	@RequestMapping("goodDown")
@@ -107,7 +107,7 @@ public class CapmTalkController {
 		String id = "testid1";
 		service.talkGoodDown(num_talk);
 		service.goodListDel(id, num_talk);
-		return "redirect:/campTalk/talkList";
+		return "redirect:/camptalk/talkList";
 	}
 	
 }

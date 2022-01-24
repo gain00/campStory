@@ -19,12 +19,14 @@
 		<c:if test="${goodCount == 0 }">
 		<script type="text/javascript">
 			alert('좋아요 를 눌렀습니다.');
+			opener.parent.location.reload();
 			window.close();
 		</script>
 		</c:if>
 		<c:if test="${goodCount == 1 }">
 		<script type="text/javascript">
 			alert('좋아요 를 취소했습니다.');
+			opener.parent.location.reload();
 			window.close();
 		</script>
 		</c:if>

@@ -25,6 +25,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.campstory.bean.CampDTO;
+import com.campstory.bean.KeywordDTO;
 import com.campstory.service.CampService;
 
 
@@ -60,6 +61,9 @@ public class CampController {
 		
 		List<CampDTO> list = service.getList (startRow, endRow);
 		
+		List<KeywordDTO> mainkeywordlist = service.getKeywordList();
+		
+		model.addAttribute("keywordlist",mainkeywordlist);	
 		log.info(" ===========list" +list);
 		 // View 데이터 전달.
 		model.addAttribute("count", service.getCount());
@@ -181,7 +185,9 @@ public class CampController {
 		
 		
 		int count = service.getDSearchCount(sql);
-
+		List<KeywordDTO> mainkeywordlist = service.getKeywordList();
+		
+		model.addAttribute("keywordlist",mainkeywordlist);	
 		
 		
 		List<CampDTO> searchlist = service.getDSearchList(sql);
@@ -231,6 +237,17 @@ public class CampController {
 		
 		
 		List<CampDTO> searchlist = service.getKSearchList(keyword, startRow, endRow);
+		int keyCount = service.keywordCount(keyword);
+		if(keyword !=null) {
+			if (keyCount == 0) {
+				service.keywordInsert(keyword);
+			}else {
+				service.keywordUp(keyword);
+			}
+		}
+		
+		
+		List<KeywordDTO> keywordlist = service.getKeywordList();
 		
 		log.info(" ===========list" +searchlist);
 		 // View 데이터 전달.
@@ -245,7 +262,7 @@ public class CampController {
 		model.addAttribute("endPage",startPage + pageBlock-1);
 		model.addAttribute("searchlist",searchlist);
 		model.addAttribute("keyword", keyword);
-		
+		model.addAttribute("keywordlist",keywordlist);
 
 		
 		return "camp/klist";

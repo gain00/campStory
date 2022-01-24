@@ -10,7 +10,9 @@
 </head>
 
 <script type="text/javascript">
-	function good() { window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=50px; ,height=50px;'); }
+	function good() { 
+		window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=50px; ,height=50px;');
+		}
 
 </script>
 
@@ -62,7 +64,13 @@
    	 전화번호 : 없음	
    	</c:if>
    	</li>
-   	<li>홈페이지 : <a href="${fn:substring(campDTO.homepage,0,3) eq 'http'? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
+   	<c:if test="${campDTO.homepage != '0'}">
+   	 <li>홈페이지 : <a href="${fn:substring(campDTO.homepage,0,3) eq 'http'? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
+   	</c:if>
+   	<c:if test="${campDTO.homepage == '0'}">
+   	 <li>홈페이지 : 정보 미제공</li>
+   	</c:if>
+   	
    	
    	<li> 
    	<c:if test="${campDTO.hvofbgnde != '0'}">
@@ -79,12 +87,41 @@
    		
    	</c:if>
    	</li>
+   	<c:if test="${campDTO.lctcl == '0'}">
+   		<li>캠핑장 환경 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.lctcl != '0'}">
+   		<li>캠핑장 환경 : ${campDTO.lctcl }</li>
+   	</c:if>
+   		<c:if test="${campDTO.induty  == '0'}">
+   		<li>캠핑장 유형 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.induty  != '0'}">
+   		<li>캠핑장 유형 : ${campDTO.induty  }</li>
+   	</c:if>
+   	<c:if test="${campDTO.operpdcl  == '0'}">
+   		<li>운영기간 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.operpdcl  != '0'}">
+   		<li>운영기간 : ${campDTO.operpdcl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.operdecl  == '0'}">
+   		<li>운영일  : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.operdecl  != '0'}">
+   		<li>운영일 : ${campDTO.operdecl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.resvecl  == '0'}">
+   		<li>예약방법 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.resvecl  != '0'}">
+   		<li>예약방법 : ${campDTO.resvecl }</li>
+   	</c:if>
    	
-   	<li>캠핑장 환경 : ${campDTO.lctcl }</li>
-   	<li>캠핑장 유형 : ${campDTO.induty }</li>
-   	<li>운영기간 : ${campDTO.operpdcl }</li>
-   	<li>운영일 : ${campDTO.operdecl }</li>
-   	<li>예약방법 : ${campDTO.resvecl }</li>
+   	
+   	
+   	
+   	
    	
    	
    	<c:if test="${campDTO.resveurl != '0'}">
@@ -435,11 +472,17 @@
     <br/>
     <div class="info_intro" width= "300px">
     	<h3>캠핑장 소개</h3>
-    	<c:set var="dtointro" value="${campDTO.intro }"></c:set>
+    	<c:if test="${campDTO.intro  == '0'}">
+   		<h4> 등록된 소개 정보 없음</h4> 
+   	</c:if>
+   	<c:if test="${campDTO.intro  != '0'}">
+   		<c:set var="dtointro" value="${campDTO.intro }"></c:set>
     	<c:set var="introArr" value="${fn:split(dtointro,'.')}"></c:set>
 		<c:forEach var="intro" items="${introArr}">
     		<h4>${intro}</h4>
 		</c:forEach>
+   	</c:if>
+    	
 
 
     </div>	
@@ -447,12 +490,50 @@
     <hr color="#DFD8CA" size="2"  align="center" />
     <br/>
      <div class="info_detail">
-     	<li>주변 이용가능 시설 : ${campDTO.posblfcltycl }</li>
-     	<li>주변 이용 가능시설 기타 : ${campDTO.posblfcltyetc }</li>
-     	<li>자체문화 행사명 : ${campDTO.clturevent }</li>
-     	<li>체험프로그램명 : ${campDTO.exprnprogrm }</li>
-     	<li>테마환경 : ${campDTO.themaenvrncl }</li>
-     	<li>애완동물 출입 : ${campDTO.animalcmgcl }</li>
+    <p class="unknowninfo">주의 :  정보가 0일 경우 제공 되지 않는 정보 일 수 있습니다.</p>
+    <c:if test="${campDTO.posblfcltycl  == '0'}">
+   		<li>주변 이용가능 시설 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.posblfcltycl  != '0'}">
+   		<li>주변 이용가능 시설 : ${campDTO.posblfcltycl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.posblfcltyetc  == '0'}">
+   		<li>주변 이용 가능시설 기타 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.posblfcltyetc  != '0'}">
+   		<li>주변 이용 가능시설 기타 : ${campDTO.posblfcltyetc }</li>
+   	</c:if>
+   	<c:if test="${campDTO.clturevent  == '0'}">
+   		<li>자체문화 행사명 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.clturevent  != '0'}">
+   		<li>자체문화 행사명 : ${campDTO.clturevent }</li>
+   	</c:if>
+   	<c:if test="${campDTO.exprnprogrm  == '0'}">
+   		<li>체험프로그램명 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.exprnprogrm  != '0'}">
+   		<li>체험프로그램명 : ${campDTO.exprnprogrm }</li>
+   	</c:if>
+   	<c:if test="${campDTO.themaenvrncl  == '0'}">
+   		<li>테마환경 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.themaenvrncl  != '0'}">
+   		<li>테마환경 : ${campDTO.themaenvrncl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.animalcmgcl  == '0'}">
+   		<li>애완동물 출입 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.animalcmgcl  != '0'}">
+   		<li>애완동물 출입 : ${campDTO.animalcmgcl }</li>
+   	</c:if>
+   	
+     	
+     	
+     	
+     	
+     	
+     	
      	<br/><br/>
      	
      	
@@ -467,7 +548,8 @@
 	     	<li>개인 카라반 야영장 : ${campDTO.indvdlcaravSiteco } 석 </li>
      	</ul>
      	
-        <li>사이트 상세정보</li> 			
+        <li>사이트 상세정보  </li>
+        	 			
          	<ul>
          		<li>사이트간 거리 : ${campDTO.sitedstnc } m </li>
          		<br/><br/>
