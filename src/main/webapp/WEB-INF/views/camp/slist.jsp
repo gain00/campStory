@@ -52,8 +52,14 @@
 		<input type="text" id="searchbar" name="keyword" placeholder="지역명 / 캠핑장 명을 검색 해 주세요"/>
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
 	</form>
+	<div id="kwordList">
+		<c:forEach var="keywordlist" items="${keywordlist }">
+		<a href = "/camp/klist?keyword=${keywordlist.keyword}" class="mainkeyword"># ${keywordlist.keyword}</a>
+		</c:forEach>
+	
+	</div>
 </div>
-<br/>
+<br/><br/>
 <div class="search-disply">
 	<a href="javascript:doDisplay();">상세검색</a>
 </div>

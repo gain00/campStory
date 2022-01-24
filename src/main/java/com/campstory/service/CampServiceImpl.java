@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.campstory.bean.CampDTO;
+import com.campstory.bean.KeywordDTO;
 import com.campstory.mybatis.CampMapper;
 
 import lombok.Setter;
@@ -92,6 +93,30 @@ public class CampServiceImpl implements CampService {
 	public int goodDelete(String contentid, String id) {
 		// TODO Auto-generated method stub
 		return mapper.goodDelete(contentid, id);
+	}
+
+	@Override
+	public int keywordCount(String keyword) {
+		// TODO Auto-generated method stub
+		return mapper.keywordCount(keyword);
+	}
+
+	@Override
+	public int keywordInsert(String keyword) {
+		// TODO Auto-generated method stub
+		return mapper.keywordInsert(keyword);
+	}
+
+	@Override
+	public int keywordUp(String keyword) {
+		// TODO Auto-generated method stub
+		return mapper.keywordUp(keyword);
+	}
+
+	@Override
+	public List<KeywordDTO> getKeywordList() {
+		// TODO Auto-generated method stub
+		return mapper.getKeywordList();
 	}
 
 }

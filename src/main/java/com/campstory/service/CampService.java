@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.campstory.bean.CampDTO;
+import com.campstory.bean.KeywordDTO;
 
 
 public interface CampService {
@@ -34,5 +35,13 @@ public interface CampService {
 	public int goodInsert(String contentid , String id);
 	
 	public int goodDelete(String contentid , String id);
+	
+	public int keywordCount(String keyword);
+	
+	public int keywordInsert(String keyword);
+	
+	public int keywordUp(String keyword);
+	
+	public List<KeywordDTO> getKeywordList();
 
 }

@@ -18,6 +18,11 @@
 	margin : auto;
 	
 	}
+	.info_detail {
+	font-size: 15px !important;
+    font-weight: bold;
+    text-decoration : none;
+	}
 	
 	.weather {
 	margin : auto;
@@ -53,6 +58,7 @@
 	.search-disply{
 	width : 800px;
 	margin : auto;
+	padding : 20px;
 	text-align : right;
 	}
 	#searchbar {
@@ -201,4 +207,29 @@
     	font-weight: bold;
     	vertical-align : bottom;
     }
+    #kwordList{
+    	padding : 20px;
+    	margin:auto;
+    }
+   
+    
+    .keyword , #kwordList > .mainkeyword{
+	padding: 5px;
+	margin: auto !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-decoration : none !important; 
+    color: black !important; 
+    background-color: silver !important; 
+    background-size: 3px !important;  
+	}
+	
+	
+	.info_detail > .unknowninfo {
+		font-size: 17px;
+		font-weight: bold;
+		color: gray;
+		
+		
+	}
     
