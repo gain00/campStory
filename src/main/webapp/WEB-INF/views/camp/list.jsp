@@ -22,7 +22,7 @@
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
 	</form>
 	<div id="kwordList">
-		<c:forEach var="keywordlist" items="${keywordlist }">
+		<c:forEach var="keywordlist" items="${keywordlist }" begin="0" end="4" step="1">
 		<a href = "/camp/klist?keyword=${keywordlist.keyword}" class="mainkeyword"># ${keywordlist.keyword}</a>
 		</c:forEach>
 	
@@ -118,32 +118,42 @@
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
     
 <c:forEach items="${list}" var="campDTO">
-<div align="center">
-	<br/>
-   <a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}">
-  <h3>${campDTO.facltnm }</h3></a> <br/> 
-    ${campDTO.sigungunm }<br/>
-    ${campDTO.induty } <br/>
+<div class="listinfo">
+     <a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}" class="camp_name">
+                ${campDTO.facltnm }</a>
+    <div class="infocard">
+	
+        <div class="infocard1">
+             
+
+            <c:if test="${campDTO.firstimageurl == '0'}">
+                <img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="250px"/>
+            </c:if>
+            
+            <c:if test="${campDTO.firstimageurl != '0' }">
+                <img src= "${campDTO.firstimageurl }" width="300px" height="250px" /><br/>
+            </c:if>
+
+        </div>
+        <div class="infocard2">
+        ${campDTO.sigungunm }<br/><br/>
+        ${campDTO.induty } <br/><br/>
 	<c:if test="${campDTO.lineintro == '0'}">
 		
 	</c:if> 
 	<c:if test="${campDTO.lineintro != '0' }">
-		${campDTO.lineintro }<br/>
+		${campDTO.lineintro }<br/><br/>
 	</c:if> 
+	<br/>
+	<img src ="../resources/camp/images/eye.png" width="30px" height="30px"  class="viewcount"> ${campDTO.readcount} &emsp;&emsp;
+	<img src ="../resources/camp/images/heart.png" width="30px" height="30px" class="goodcount"> ${campDTO.good}
     <br/>
-    <c:if test="${campDTO.firstimageurl == '0'}">
-    	<img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="250px"/>
-    </c:if>
+
+        </div>
+    </div>
     
-    <c:if test="${campDTO.firstimageurl != '0' }">
-    	<img src= "${campDTO.firstimageurl }" width="300px" height="250px" /><br/>
-    </c:if>
-    
-    <br/>
-   
-</div>
-   	<c:if test="${campDTO.sbrscl !='0' }">
-   	<div class="sbrscl" display="flex" align="center">
+    <c:if test="${campDTO.sbrscl !='0' }">
+    <div class="sbrscl">
    	<c:if test = "${fn:contains(campDTO.sbrscl, '전기')}">
 	<span><img src="../resources/camp/images/elec.png" width="100px" height="100px"/></span>
 	</c:if>
@@ -180,11 +190,11 @@
 	<c:if test = "${fn:contains(campDTO.sbrscl, '편의점')}">
 	<span><img src="../resources/camp/images/conv.png" width="100px" height="100px"/></span>
 	</c:if>
-   	
-   	
-   
-   </div>
-   </c:if>
+
+    </div>
+    </c:if>
+</div>
+
    <c:if test="${campDTO.sbrscl =='0' }"></c:if>	  
     <hr color="#DFD8CA" size="2"  align="center" />
     <br/>

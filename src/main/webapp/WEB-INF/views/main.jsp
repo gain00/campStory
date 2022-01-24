@@ -23,7 +23,7 @@
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
 	</form>
 	<div id="kwordList">
-		<c:forEach var="keywordlist" items="${keywordlist }">
+		<c:forEach var="keywordlist" items="${keywordlist }" begin="0" end="4" step="1">
 		<a href = "/camp/klist?keyword=${keywordlist.keyword}" class="mainkeyword"># ${keywordlist.keyword}</a>
 		</c:forEach>
 	

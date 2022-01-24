@@ -176,7 +176,7 @@
 
 <select id="getKeywordList" resultType="com.campstory.bean.KeywordDTO" >
 		<![CDATA[
-	select keyword  from (select keyword, rownum r from keyword order by s_count desc)where r >=1 and r <= 5
+	select keyword  from  keyword order by s_count desc
 	]]> 
 </select>
 </mapper>
