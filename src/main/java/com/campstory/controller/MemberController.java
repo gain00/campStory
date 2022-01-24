@@ -1,6 +1,7 @@
 package com.campstory.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.campstory.bean.CampDTO;
 import com.campstory.bean.MemberDTO;
+import com.campstory.service.CampService;
 import com.campstory.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -30,6 +33,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDTO memDTO;
+	
+	@Autowired
+	private CampDTO camDTO;
 
 	@RequestMapping("input")
 	public String list() {
@@ -172,6 +178,42 @@ public class MemberController {
 		service.memberUpdate(dto);
 		
 		return "member/updatePro";
+	}
+	
+	@RequestMapping("favorite")
+	public String memCheck_favorite(String pageNum, HttpSession session, Model model) {
+		if (pageNum == null) {
+	        pageNum = "1";
+	    }
+	    model.addAttribute("pageNum", pageNum);
+		
+		String id = null;
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		
+		List<CampDTO> like_contentid = service.memberLikeList(id);
+		List<CampDTO> list_like = new ArrayList<CampDTO>();
+		for(int i=0; i < like_contentid.size(); i++) {
+			String contentid_like = like_contentid.get(i).getContentid();
+			
+			list_like.add(service.memberLikeInfo(contentid_like));
+		}
+		model.addAttribute("list_like", list_like);
+		
+		List<MemberDTO> fav_contentid = service.memberFavList(id);
+		List<CampDTO> list_fav = new ArrayList<CampDTO>();
+		for(int i=0; i < fav_contentid.size(); i++) {
+			String contentid_fav = fav_contentid.get(i).getCamp();
+			
+			list_fav.add(service.memberFavInfo(contentid_fav));
+		}
+		model.addAttribute("list_fav", list_fav);
+		
+		
+		return "member/favorite";
 	}
 
 }

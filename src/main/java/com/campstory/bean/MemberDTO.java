@@ -19,4 +19,8 @@ public class MemberDTO {
 	private String location;
 	private Date reg_date;
 	private String status;
+	
+	private int num_favorite;
+	private String camp;
+	private String link;
 }
