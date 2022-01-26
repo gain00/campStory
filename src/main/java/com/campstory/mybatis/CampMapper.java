@@ -12,7 +12,7 @@ import com.campstory.bean.KeywordDTO;
 
 public interface CampMapper {
 	
-	public List<CampDTO> getList(@Param("startRow") int startRow, @Param("endRow")int endRow);
+	public List<CampDTO> getList(@Param("startRow") int startRow, @Param("endRow")int endRow , @Param("sorter") String sorter);
 	
 	public CampDTO getContent(@Param("contentid") String contentid);
 	

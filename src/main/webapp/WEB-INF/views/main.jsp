@@ -34,6 +34,58 @@
        </div>
 
     </div>
+    
+    <div class="camp_rank">
+    	<div class="goodcamp">
+    		<div class="rank_text">
+    		<p class ="rank_p">좋아요가 많은 캠핑장</p>
+    		<p class ="rankmore"><a href="/camp/list?sorter=good">더보기 ></a> </p>
+    		</div>
+    		<c:forEach items="${goodlist}" var="campDTO">
+				<div class="main_listinfo">
+					<c:if test="${campDTO.firstimageurl == '0'}">
+				        <img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="100px" height="100px"/>
+				     </c:if>
+				            
+				     <c:if test="${campDTO.firstimageurl != '0' }">
+				        <img src= "${campDTO.firstimageurl }" width="100px" height="100px" /><br/>
+				     </c:if>
+				     
+				 <div class="main_infocard">
+					<a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}" class="main_camp_name">
+				       ${campDTO.facltnm }</a>
+				            
+				            </div>
+				            </div>
+						</c:forEach>
+		        
+    	</div>
+    	<div class="rcountcamp">
+    		<div class="rank_text">
+    		<p class ="rank_p">조회수가 높은 캠핑장</p>
+    		<p class ="rankmore"> <a href="/camp/list?sorter=readcount">더보기 ></a></p>
+    		</div>
+    		<c:forEach items="${rcountlist}" var="campDTO">
+				<div class="main_listinfo">
+					<c:if test="${campDTO.firstimageurl == '0'}">
+				        <img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="100px" height="100px"/>
+				     </c:if>
+				            
+				     <c:if test="${campDTO.firstimageurl != '0' }">
+				        <img src= "${campDTO.firstimageurl }" width="100px" height="100px" /><br/>
+				     </c:if>
+				     
+				 <div class="main_infocard">
+					<a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}" class="main_camp_name">
+				       ${campDTO.facltnm }</a>
+				            
+				            </div>
+				            </div>
+						</c:forEach>
+		        </div>
+    	</div>
+    	
+    
 	
 
 </body>

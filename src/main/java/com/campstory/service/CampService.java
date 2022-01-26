@@ -12,7 +12,7 @@ public interface CampService {
 	
 	public int getCount();
 	
-	public List<CampDTO> getList(int startRow, int endRow);
+	public List<CampDTO> getList(int startRow, int endRow , String sorter);
 	
 	public CampDTO getContent(String contentid);
 	

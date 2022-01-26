@@ -41,10 +41,14 @@ public class CampController {
 	private CampService service;
 	
 	@RequestMapping("list")
-	public String list(String pageNum, Model model, HttpServletRequest req) {
+	public String list(String pageNum, String sorter ,Model model, HttpServletRequest req) {
 		pageNum = req.getParameter("pageNum");
 		if(pageNum == null ) {
 			pageNum = "1";
+		}
+		sorter = req.getParameter("sorter");
+		if(sorter == null) {
+			sorter = "name";
 		}
 		
 		int pageSize=10;		
@@ -59,7 +63,7 @@ public class CampController {
 		log.info("====end==="+endRow);
 		
 		
-		List<CampDTO> list = service.getList (startRow, endRow);
+		List<CampDTO> list = service.getList (startRow, endRow, sorter);
 		
 		List<KeywordDTO> mainkeywordlist = service.getKeywordList();
 		
@@ -69,6 +73,7 @@ public class CampController {
 		model.addAttribute("count", service.getCount());
 		model.addAttribute("number",count-(currentPage-1)*pageSize);
 		model.addAttribute("pageNum",pageNum);
+		model.addAttribute("sorter",sorter);
 		model.addAttribute("pageSize",pageSize);
 		model.addAttribute("currentPage",pageNum);
 		model.addAttribute("pageCount", count / pageSize + ( count % pageSize == 0 ? 0 : 1));

@@ -112,8 +112,23 @@
     
  <br/>
 <hr color="#DFD8CA" size="2"  align="center" />
-<br/>    
-<b>캠핑장 리스트 (전체 캠핑장:${count })</b>
+<br/>
+	<div class="sortbox">
+		<b>캠핑장 리스트 (전체 캠핑장:${count })</b>
+		<section class="sortsection"> 
+			<form action ="/camp/list" method="get">
+			<select name="sorter">
+				<option value="name">이름순
+				<option value="good">좋아요순
+				<option value="readcount">조회수순
+			</select>
+			<input type="submit"  value="정렬"> 
+			</form>
+			
+			
+		</section>   
+		
+	</div>
 <hr color="#DFD8CA" size="2"  align="center" />
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
     
@@ -210,15 +225,15 @@
    </c:if> 
           
    <c:if test="${startPage > 10}">
-        <a href="/camp/list?pageNum=${startPage - 10 }">[이전]</a>
+        <a href="/camp/list?pageNum=${startPage - 10 }&sorter=${sorter}">[이전]</a>
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="/camp/list?pageNum=${i}">[${i}]</a>
+       <a href="/camp/list?pageNum=${i}&sorter=${sorter}">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="/camp/list?pageNum=${startPage + 10}">[다음]</a>
+        <a href="/camp/list?pageNum=${startPage + 10}&sorter=${sorter}">[다음]</a>
    </c:if>
 </c:if>
 </div>
