@@ -24,9 +24,9 @@ public class CampServiceImpl implements CampService {
 	}
 
 	@Override
-	public List<CampDTO> getList(int startRow, int endRow) {
+	public List<CampDTO> getList(int startRow, int endRow, String sorter) {
 		// TODO Auto-generated method stub
-		return mapper.getList(startRow, endRow);
+		return mapper.getList(startRow, endRow, sorter);
 	}
 
 	@Override

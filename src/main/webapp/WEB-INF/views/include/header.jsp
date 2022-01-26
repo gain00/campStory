@@ -63,5 +63,5 @@ function kakaoLogout() {
 	</div>
 </nav>
 
-<hr color="#DFD8CA" size="2" align="center" />
-<br/>
+<hr color="#DFD8CA" size="2" align="center" style="margin-bottom: 0px";/>
+

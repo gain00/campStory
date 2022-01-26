@@ -1,4 +1,56 @@
 @charset "UTF-8";
+	body {
+		padding : 0;
+		margin : 0;
+	}
+	
+	
+	.camp_rank  {
+		display : flex;
+		margin :auto;
+		width : 100vw;
+		
+	}
+	.goodcamp , .rcountcamp {
+		display : flex;
+		margin : auto;
+		
+		
+		padding: 5px;
+	}
+	.rank_text {
+		margin-top: 5px;
+		
+	
+	}
+	
+	.rank_p {
+		font-family:sans-serif;
+		font-size: 22px;
+    	font-weight: bold;
+    	text-decoration : none;
+    	color: black !important;
+    	padding-right: 20px;
+    	width : 140px;
+	}
+	
+	.main_listinfo {
+		width : 170px;
+		height : 160px;
+		margin : 2px;
+		padding: 5px;
+		text-align: center;
+	}
+	.sortbox {
+		margin: auto;
+		padding-left: 50px;
+		display : flex;
+	}
+	.sortsection {
+		margin-left: auto;
+		width : 200px;
+	}
+	
 	
 	.listinfo {
 		margin: auto;
@@ -41,6 +93,7 @@
 	}
 	.viewcount , .goodcount{
 		vertical-align : bottom;
+		
 	}
 	
 	.sbrscl  {
@@ -61,10 +114,11 @@
 	}
 	.camp_info1 {
 	margin : auto;
+	padding-left: 40px;
 	
 	}
-	.info_intro.{
-	width : 1100px;
+	.info_intro{
+	width : 900px;
 	margin : auto;
 	padding: 20px;
 	
@@ -74,10 +128,56 @@
     font-weight: bold;
     text-decoration : none;
 	}
+	#movie_h2 {
+		margin: auto;
+		padding-bottom: 10px;
+		padding-top: 20px;
+		padding-left: 200px;
+	}
+	.camp_mov {
+		margin : auto;
+		padding: 20px;
+		display : flex;
+		text-align: center;
+		align-items: center;
+		
+	}
+	
+	.movie{
+		width: 400px;
+		padding: 10px;
+		margin : auto;
+		text-align: center;
+		align-content: center;
+	}
+	.movie_thumb{
+		padding: 10px;
+		width: 200px;
+		height: 180px;
+		position: relative;
+		margin: auto;
+		
+		
+	}
+	.playbtn {
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		bottom: 30px;
+		right: 20px;
+	}
+	.movie_title {
+		text-align: center;
+		font-size: 15px;
+		font-weight: bold;
+    	text-decoration : none;
+    	text-overflow: ellipsis;
+    	color: black;
+	}
 	
 	.weather {
 	margin : auto;
-	width : 1500px;
+	width : 90%;
 	}
 	
 	.weather_day {
@@ -136,8 +236,9 @@
 	    .navbar {
         display: flex;
         margin: auto;
-        padding: auto;
-        height: 80px;
+        padding-top : 20px;
+        padding-bottom: 10px;
+        height: 90px;
         text-align: center;
         vertical-align : bottom;
     }
@@ -199,8 +300,8 @@
         .main_intro{
     	
     	margin :auto;
-    	width : 1300px;
-    	height : 800px;
+    	width : auto;
+    	height: 90vh;
     	position: relative;
     	
     }
@@ -246,10 +347,12 @@
     }
     
     .usr_button {
+    	padding-top: 20px;
+    	margin-left : 0px;
     	
-    	margin : auto;
     	display: flex;
     	vertical-align : bottom;
+    	
     }
     .info_btn {
     	width : 200px;
@@ -283,4 +386,5 @@
 		
 		
 	}
+	
     

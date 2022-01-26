@@ -65,7 +65,7 @@
    	</c:if>
    	</li>
    	<c:if test="${campDTO.homepage != '0'}">
-   	 <li>홈페이지 : <a href="${fn:substring(campDTO.homepage,0,3) eq 'http'? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
+   	 <li>홈페이지 : <a href=" ${fn:substring(campDTO.homepage, 0, 4) eq 'http' ? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
    	</c:if>
    	<c:if test="${campDTO.homepage == '0'}">
    	 <li>홈페이지 : 정보 미제공</li>
@@ -129,15 +129,19 @@
    	</c:if>
    	<c:if test="${campDTO.resveurl == '0'}">
    	</c:if>
+   	
    	<br/><br/>
+   	<img src ="../resources/camp/images/eye.png" width="30px" height="30px"  class="viewcount"> ${campDTO.readcount} &emsp;&emsp;
+	<img src ="../resources/camp/images/heart.png" width="30px" height="30px" class="goodcount"> ${campDTO.good}
+    <br/>
    	<div class ="usr_button">
    		<c:if test="${goodCount == 0 }">
    			<section class="info_btn"><input type="image" src="../resources/camp/images/good_off.png" width="30px" height="30px" onclick="good()">
-   			좋아요  (${campDTO.good } )</section>
+   			좋아요 </section>
    		</c:if>
    		<c:if test="${goodCount == 1 }">
    			<section class="info_btn"><input type="image" src="../resources/camp/images/good_on.png" width="30px" height="30px" onclick="good()">
-   			좋아요취소  ( ${campDTO.good } )</section>
+   			좋아요취소  </section>
    		</c:if>
    		
    		<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="">즐겨찾기 </span>
@@ -201,6 +205,78 @@
    <c:if test="${campDTO.sbrscl =='0' }"></c:if>
    
    <hr color="#DFD8CA" size="2"  align="center" />
+    <br/>
+    <h2 id="movie_h2"> 캠핑장 관련 영상</h2>
+    <div class="camp_mov">
+    	
+    	
+    	
+    	<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	    	
+	    		<script>
+	    		let campname = '${campDTO.facltnm}';
+	    		   $.ajax({
+	    			   
+	    			    async: true, //동기 or 비동기
+	    			    url: "https://dapi.kakao.com/v2/search/vclip",  
+	    			    data: {
+	    			        query: campname 
+	    			       
+	    			        
+	    			    },
+	    			    beforeSend: function (xhr) {
+	    			        xhr.setRequestHeader('Authorization',
+	    			            'KakaoAK 40516903f3ab835c2b8b12e0e572cde7')
+	    			    },
+	    			    type: "GET",
+	    			    timeout: 3000,
+	    			    dataType: "json",
+	    			    success: function (result) {
+	    			    	
+	    			    		for (var i = 0; i<3; i++){
+	    			    		var mov_title = result.documents[i].title;
+	 							var mov_url = result.documents[i].url;
+	    			    		var mov_thumbnail = result.documents[i].thumbnail;
+	    			    		
+	    			    		
+	    			    	
+	    			    		var movHtml = 	'<div class="movie">' +
+	    			    						'<div class="movie_thumb">'+
+	    			    						'<a href="' + mov_url + '"><img src="'+mov_thumbnail+'" width="220px" height="180px"/></a>' +
+	    			    						'<img src="../resources/camp/images/playbtn.png" width= "50px" height="50px" class="playbtn"/>'+
+	    			    						'</div><br/>'+
+	    			    						'<a href="' + mov_url + '" class="movie_title">'+ mov_title +'</a>' +
+	    			    						'</div><br/>';
+	    			    						
+	    			    							
+	    			    						
+					    		$('.camp_mov').append(movHtml);	
+					    		
+					    		
+	    			    		
+	    			    	}
+	    			    		if (result.documents[0] == undefined) {
+		    			    		$('.camp_mov').append('검색 결과가 없습니다.');	
+		    			    	}
+	    			       
+	    			       
+	    			    },
+	    			    error: function (error) {
+	    			        alert("실패")
+	    			        
+	    			    }
+	    			    
+	    			})
+     				
+
+
+	    		
+        
+        </script>
+        
+        	
+    </div>
+    <hr color="#DFD8CA" size="3"  align="center" id="line"/>
     <br/>
     <div class="weather">
     	<h2> ${campDTO.sigungunm } 날씨 정보</h2>
