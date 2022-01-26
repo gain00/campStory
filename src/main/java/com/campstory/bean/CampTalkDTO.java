@@ -10,7 +10,7 @@ import lombok.Data;
 public class CampTalkDTO {
 	
 	private int num_talk, contentid, good;
-	private String facltnm, donm, firstimageurl, writer, goodcheck;
+	private String facltnm, donm, firstimageurl, writer, goodcheck , ano, sub;
 	private double mapx,mapy;
 	
 	

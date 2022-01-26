@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="/resources/jquery/jquery-3.6.0.min.js"></script>
-campTalk - campSearch
 
 <form action="/campTalk/campSearchList" method="post">
 	
@@ -36,6 +35,7 @@ campTalk - campSearch
 		</tr>
 	</table>
 </form>
+
 <table border=1>
 	<tr><th>캠프명</th><th width="200px">주소</th></tr>
 
@@ -47,9 +47,9 @@ campTalk - campSearch
 		<tr>
 		<td >
 		<input type="hidden" name="contentid" id="contentid" value="${dto.contentid}"/>
-		<a href='#' class='select' onclick="tt('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.facltnm}</a>
+		<a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.facltnm}</a>
 		</td>
-		<td><a href='#' class='select' onclick="tt('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.addr1}</a></td>
+		<td><a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.addr1}</a></td>
 
 		</tr>
 		</c:forEach>
@@ -73,7 +73,7 @@ campTalk - campSearch
 </table>
 
 <script>
-	function tt(camp,contentid, donm){
+	function result(camp,contentid, donm){
 		opener.document.cs.camp.value=camp;
 		opener.document.cs.contentid.value=contentid;
 		opener.document.cs.area.value=donm;
