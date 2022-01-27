@@ -3,8 +3,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1> userInfo.jsp 입니다. </h1>
+<head>
+<title>회원 정보 확인</title>
 
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
 	id : ${memberDTO.id} <br />
@@ -44,5 +50,4 @@
 	
 </c:if>
 
-<br /><br />
-<a href="/main" >메인화면 돌아가기</a>
+</body>

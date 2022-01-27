@@ -37,8 +37,14 @@ function kakaoLogin() {
   } 
 </script>
 
+<head>
+<title>로그인</title>
 
-<h1> login.jsp 입니다. </h1>
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <form action="/member/loginPro" method="post" >
 
@@ -51,3 +57,5 @@ function kakaoLogin() {
 <br /><br />
 
 <a href="javascript:void(0);" onclick="kakaoLogin();">카카오 로그인</a><br /><br />
+
+</body>

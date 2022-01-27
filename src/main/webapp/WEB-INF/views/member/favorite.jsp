@@ -23,7 +23,14 @@
 	}
 </script>
 
-<h1> favorite.jsp 입니다. </h1>
+<head>
+<title>즐겨찾기</title>
+
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <center>
 <a href="JavaScript:;" onclick="JavaScript: open_like();">[좋아요 리스트]</a> 
@@ -196,3 +203,5 @@
 </td>
 </tr>	
 </table>
+
+</body>

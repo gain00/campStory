@@ -222,15 +222,22 @@ public class CampController {
 			pageNum = "1";
 		}
 		keyword = req.getParameter("keyword");
-		if (keyword == null) {
-			keyword = "%%";
+		
+		log.info("======keyword===="+keyword);
+		
+		String[] arrayKey = keyword.split(" ");
+		log.info("======arrayKey===="+arrayKey);
+		
+		String keySql = null;
+		if(arrayKey.length > 1) {
+			keySql = keyword.replace(" ", "%");
+			log.info("======keySql===="+keySql);
+		}else {
+			keySql = keyword;
 		}
 		
-		log.info("======kw===="+keyword);
-		
-		
 		int pageSize=10;		
-		int count = service.getKSearchCount(keyword);
+		int count = service.getKSearchCount(keySql);
 		int currentPage = Integer.parseInt(pageNum);
 		int startPage=(int)(currentPage/10)*10+1;
 		int pageBlock = 10;
@@ -241,22 +248,25 @@ public class CampController {
 		log.info("====end==="+endRow);
 		
 		
-		List<CampDTO> searchlist = service.getKSearchList(keyword, startRow, endRow);
-		int keyCount = service.keywordCount(keyword);
-		if(keyword !=null) {
-			if (keyCount == 0) {
-				service.keywordInsert(keyword);
-			}else {
-				service.keywordUp(keyword);
+		List<CampDTO> searchlist = service.getKSearchList(keySql, startRow, endRow);
+		
+		for(int i=0 ; i < arrayKey.length; i++) {
+			int keyCount = service.keywordCount(arrayKey[i]);
+			log.info("======arrayKey[i]===="+arrayKey[i]);
+			if(keyword !=null) {
+				if (keyCount == 0) {
+					service.keywordInsert(arrayKey[i]);
+				}else {
+					service.keywordUp(arrayKey[i]);
+				}
 			}
 		}
-		
 		
 		List<KeywordDTO> keywordlist = service.getKeywordList();
 		
 		log.info(" ===========list" +searchlist);
 		 // View 데이터 전달.
-		model.addAttribute("searchcount", service.getKSearchCount(keyword));
+		model.addAttribute("searchcount", service.getKSearchCount(keySql));
 		model.addAttribute("number",count-(currentPage-1)*pageSize);
 		model.addAttribute("pageNum",pageNum);
 		model.addAttribute("pageSize",pageSize);
@@ -272,6 +282,7 @@ public class CampController {
 		
 		return "camp/klist";
 	}
+	
 	@RequestMapping("readcount")
 	public String readcount(String contentid,String pageNum, RedirectAttributes rttr,HttpServletRequest req) {
 		pageNum = req.getParameter("pageNum");

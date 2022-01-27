@@ -21,7 +21,14 @@
 	});
 </script>
 
-<h1> input.jsp 입니다. </h1>
+<head>
+<title>회원가입</title>
+
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <form action="/member/inputPro" method="post" >
 	id : <input type="text"		name="id" 		id="id"	/> &nbsp;
@@ -47,3 +54,5 @@
 	<br /><br />
 	<input type="submit" 	value="가입하기" 	/>
 </form>
+
+</body>

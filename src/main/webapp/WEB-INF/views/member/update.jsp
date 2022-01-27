@@ -10,7 +10,14 @@
 	</script>
 </c:if>
 
-<h1> update.jsp 입니다. </h1>
+<head>
+<title>회원정보 수정</title>
+
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <form action="/member/updatePro" method="post" >
 
@@ -38,3 +45,5 @@
 	<input type="submit" value="회원정보 수정" />
 	
 </form>
+
+</body>
