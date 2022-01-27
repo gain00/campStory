@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1> delete.jsp 입니다. . . !</h1>
+<head>
+<title>회원 탈퇴</title>
+
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <c:if test="${kakao != 1}">
 	<h1> ${sessionScope.memId}님 정말 탈퇴하시겠습니까? </h1> 
@@ -33,3 +40,5 @@
 
 <br /><br />
 <a href="/main" >메인화면 돌아가기</a>
+
+</body>

@@ -42,6 +42,21 @@ public class MemberController {
 		return "member/input";
 	}
 	
+	@RequestMapping("mypage")
+	public String main(HttpSession session, MemberDTO dto, Model model) {
+		String id = null;
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		
+		if(id != null) {
+			model.addAttribute("memberDTO", service.memberUserInfo(id));
+		}
+		return "member/mypage";
+	}
+	
 	@RequestMapping("idCheck")
 	public @ResponseBody int idCheck(String id) {
 		log.info("==========="+id+"===========");

@@ -33,7 +33,7 @@ function kakaoLogout() {
     <a href="/camp/list" class="navbtn"><h3>캠핑장 정보</h3></a>
     <a href="" class="navbtn"><h3>캠핑 관련 정보</h3></a>
     <a href="" class="navbtn"><h3>캠프톡</h3></a>
-    <a href="" class="navbtn"><h3>고객센터</h3></a>
+    <a href="/cs/qna" class="navbtn"><h3>고객센터</h3></a>
     <div class="navbtn">
 	<c:if test="${sessionScope.memId != null}">
 		<h5 class="navbtn" id="userid"> ${sessionScope.memId} 님</h5> 
@@ -45,14 +45,14 @@ function kakaoLogout() {
 	<c:if test="${sessionScope.memId != null}">
 	<c:if test="${sessionScope.status eq '회원'}">
 		<a href="/member/logout" class="navbtn"><input type="button" value="로그아웃" class="navbtn" id="logoutbtn"></a>
-		<a href="/member/userInfo" class="navbtn"><h4 id="userinfochk">회원정보 확인</h4></a>
+		<a href="/member/mypage" class="navbtn"><h4 id="mypage">mypage</h4></a>
 		
 	</c:if>
 	
 	<c:if test="${sessionScope.status eq '회원_kakao'}">
 		<a href="/member/logout" onclick="kakaoLogout();" class="navbtn"><input type="button" value="로그아웃" class="navbtn" id="logoutbtn"></a>
 		
-		<a href="/member/userInfo" class="navbtn"><h4 id="userinfochk">회원정보 확인</h4></a>
+		<a href="/member/mypage" class="navbtn"><h4 id="mypage">mypage</h4></a>
 		<!--<c:if test="${memberDTO.location eq '대한민국'}">
 			더 나은 서비스를 위해서 추가정보를 등록 바랍니다.<br />
 		</c:if><br />-->

@@ -2,7 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<h1> update_kakao.jsp 입니다. </h1>
+<head>
+<title>회원정보 수정_카카오</title>
+
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <form action="/member/updatePro" method="post" >
 
@@ -30,3 +37,5 @@
 	<input type="submit" value="회원정보 수정" />
 	
 </form>
+
+</body>
