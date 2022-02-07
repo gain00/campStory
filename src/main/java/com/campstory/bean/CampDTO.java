@@ -89,4 +89,5 @@ public class CampDTO {
     String mangedivnm;
     String mgcdiv;
     String managesttus;
+    String readdate;
 }

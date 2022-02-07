@@ -386,5 +386,94 @@
 		
 		
 	}
+	.keyword_stats , .readcount_stats {
+		margin: auto;
+		display: flex;
+		padding: 10px;
+	}
+	
+	.stat_table {
+		width : 500px;
+		margin : auto;
+	}
+	
+	.keyword_stats_all, .readcount_stats_all {
+		margin: auto;
+		padding: 10px;
+		width:600px;
+	}
+	
+	.keyword_stats_daily, .readcount_stats_daily {
+		margin-right:50px;
+		padding: 20px;
+	}
+	.admin_stats_hl {
+		width : 200px;
+		padding-left: 100px;
+	}
+	
+	.th_head {
+	background-color: silver;
+	}
+	
+	.good_stats{
+		margin-right: 600px;
+		padding-top: 20px;
+	}
+	
+	 .ad_navbar {
+        display: flex;
+        margin: auto;
+    	padding-top : 10px;
+        padding-bottom: 10px;
+        height: 30px;
+        text-align: center;
+      	vertical-align:top;
+        background-color: silver;
+    }
+    
+
+    .ad_navbtn {
+        width: auto;
+        margin: 3px;
+        padding: auto;
+        display :flex;
+        text-align: center;
+        
+    }
+  
+    a.ad_navbtn{
+    	
+    	margin: auto;
+    	text-align: center;
+    	text-decoration-line : none;
+    	color: black;
+    }
+    .h3_adnav {
+    	
+    	margin-top: 3px;
+    }
+    
+    .admincampdiv {
+    	margin: auto;
+		display: flex;
+		padding: 10px;
+    }
+	
+	.newcamp , .updatecamp ,.delcamp{
+		margin-left : auto;
+		margin-right : auto;
+		padding: 10px;
+		width:400px;
+	
+	}
+	
+	.del_Camp_table , .updateCamp_table, .newCamp_table {
+		margin : auto;
+		width : 350px;
+	
+	}
+	
+	
 	
     

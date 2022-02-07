@@ -252,12 +252,18 @@ public class CampController {
 		
 		for(int i=0 ; i < arrayKey.length; i++) {
 			int keyCount = service.keywordCount(arrayKey[i]);
+			int keyDateCount = service.keywordDateCount(arrayKey[i]);
 			log.info("======arrayKey[i]===="+arrayKey[i]);
 			if(keyword !=null) {
 				if (keyCount == 0) {
 					service.keywordInsert(arrayKey[i]);
 				}else {
 					service.keywordUp(arrayKey[i]);
+				}
+				if (keyDateCount ==0) {
+					service.keywordDateInsert(arrayKey[i]);
+				}else {
+					service.keywordDateUp(arrayKey[i]);
 				}
 			}
 		}
@@ -290,6 +296,12 @@ public class CampController {
 			pageNum = "1";
 		}
 		service.readcountUp(contentid);
+		int datecount = service.readDateCount(contentid);
+		if(datecount == 0) {
+			service.readDateInsert(contentid);
+		}else {
+			service.readDateUp(contentid);
+		}
 		rttr.addAttribute("contentid", contentid);
 		return "redirect:/camp/info";
 	}
@@ -328,5 +340,38 @@ public class CampController {
 		
 		
 		return "camp/good";
+	}
+	@RequestMapping("input")
+	public String input(HttpServletRequest req, Model model) {
+		List<CampDTO> sigungulist = service.getSigungunm();
+		model.addAttribute("sigungulist", sigungulist);
+		return "camp/input";
+	}
+	
+	@RequestMapping("inputPro")
+	public String input(HttpServletRequest req, Model model,CampDTO campDTO) {
+		
+		model.addAttribute("result1" , service.inputCamp_info1(campDTO));
+		model.addAttribute("result2" , service.inputCamp_info2(campDTO));
+		model.addAttribute("result3" , service.inputCamp_info3(campDTO));
+		return "camp/inputPro";
+	}
+	@RequestMapping("update")
+	public String update(HttpServletRequest req, Model model,String contentid, CampDTO campDTO) {
+		model.addAttribute("campDTO", service.getContent(contentid));
+		model.addAttribute("contentid",contentid);
+		
+		List<CampDTO> sigungulist = service.getSigungunm();
+		model.addAttribute("sigungulist", sigungulist);
+		return "camp/update";
+	}
+	
+	@RequestMapping("updatePro")
+	public String updatePro(HttpServletRequest req, Model model,CampDTO campDTO) {
+		
+		model.addAttribute("result1" , service.updateCamp_info1(campDTO));
+		model.addAttribute("result2" , service.updateCamp_info2(campDTO));
+		model.addAttribute("result3" , service.updateCamp_info3(campDTO));
+		return "camp/updatePro";
 	}
 }
