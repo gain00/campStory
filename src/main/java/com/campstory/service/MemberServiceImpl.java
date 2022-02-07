@@ -41,6 +41,16 @@ public class MemberServiceImpl implements MemberService {
 	public int memberIdCheck(String id) {
 		return mapper.idCheck(id);
 	}
+	
+	@Override
+	public int memberWarnCheck(String id) {
+		return mapper.warnCheck(id);
+	}
+	
+	@Override
+	public int memberBandateCheck(String id) {
+		return mapper.bandateCheck(id);
+	}
 
 	@Override
 	public int memberDelCheck(String id) {
@@ -80,6 +90,27 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public CampDTO memberFavInfo(String contentid) {
 		return mapper.getFavInfo(contentid);
+	}
+
+	//관리자 기능
+	@Override
+	public int memberAllCount() {
+		return mapper.getAllCount();
+	}
+
+	@Override
+	public List<MemberDTO> memberAdminList(int start, int end) {
+		return mapper.getAdminList(start, end);
+	}
+
+	@Override
+	public int memberStatus(MemberDTO memberDTO) {
+		return mapper.changeStatus(memberDTO);
+	}
+
+	@Override
+	public int memberBan(MemberDTO memberDTO) {
+		return mapper.updateBandate(memberDTO);
 	}
 
 }

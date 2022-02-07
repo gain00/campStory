@@ -24,7 +24,9 @@
 						a = parseInt(data);
 						if(a==1){
 							$("#result").html("<font color='green'>게시물 업데이트 완료</font>");
-							document.location.reload();
+							setTimeout(function(){
+								document.location.reload();
+							}, 3000);
 						}else{
 							$("#result").html("<font color='red'>게시물 업데이트 에러</font>");
 						}
@@ -67,6 +69,9 @@
 						b = parseInt(data);
 						if(b==1){
 							$("#"+zz).html("<font color='green'>답변 업데이트 완료</font>");
+							setTimeout(function(){
+								document.location.reload();
+							}, 3000);
 						}else{
 							$("#"+zz).html("<font color='red'>답변 업데이트 에러</font>");
 						}
@@ -104,9 +109,15 @@
 	}
 </script>
 
-<h1> qna.jsp 입니다. </h1>
+<head>
+<title>Q&A 게시판</title>
 
-<a href="/main" >메인 돌아가기</a>
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
+
 
 <input type="hidden" id="pageSize" value="${pageSize}" />
 
@@ -134,7 +145,7 @@
 			    </td>
 			</tr>
 			<tr height="30">
-			    <td width="550" align="right" colspan="3" >
+			    <td width="550" align="right" colspan="2" >
 			    	<label><input type="checkbox" value="1" id="secret" />비밀글</label>&nbsp;
 					<input type="button" value="문의하기" id="btn" /> &nbsp; <label id="result"></label>
 			    </td>
@@ -295,3 +306,5 @@
 	<input type="button" id="btn_search" value="검색하기" />
 	
 </center>
+
+</body>
