@@ -29,8 +29,16 @@
 		select count(*) from member where id=#{id}
 	</select>
 	
+	<select id="warnCheck" resultType="int" >
+		select warn from member where id=#{id}
+	</select>
+	
+	<select id="bandateCheck" resultType="int" >
+		select count(*) from member where id=#{id} and TO_CHAR(ban_date,'YYYYMMDD') >= TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
 	<select id="delCheck" resultType="int" >
-		select count(*) from member where id=#{id} and status='탈퇴'
+		select count(*) from member where id=#{id} and (status='탈퇴' or status='탈퇴_kakao')
 	</select>
 	
 	<update id="delete">
@@ -62,4 +70,30 @@
 		select * from (select * from camp_info1 order by modifiedtime desc) where contentid=#{contentid}
 	</select>
 	
+	<!-- 관리자 기능 -->
+	<select id="getAllCount" resultType="int" >
+		select count(*) from member
+	</select>
+	
+	<select id="getAdminList" resultType="com.campstory.bean.MemberDTO">
+		<![CDATA[
+			select id,phone,email,birth,warn,location,reg_date,status,ban_date,r 
+			from (select id,phone,email,birth,warn,location,reg_date,status,ban_date,rownum r from 
+					(select * from member order by id asc)) where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<update id="changeStatus" >
+		update member set 
+			status=#{status} where id=#{id}
+	</update>
+	
+	<update id="updateBandate" >
+		update member set 
+			warn=#{warn}, ban_date=#{ban_date} where id=#{id}
+	</update>
+	
 </mapper>
+
+
+

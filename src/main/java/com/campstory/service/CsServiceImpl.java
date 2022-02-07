@@ -81,4 +81,25 @@ public class CsServiceImpl implements CsService {
 		return mapper.deleteArticle(num);
 	}
 
+	//notice
+	@Override
+	public int noticeInsert(CsDTO csDTO) {
+		return mapper.insertNotice(csDTO);
+	}
+	
+	@Override
+	public int noticeAllCount() {
+		return mapper.getNoticeCount();
+	}
+
+	@Override
+	public List<CsDTO> noticeList(int start, int end) {
+		return mapper.getNotice(start, end);
+	}
+
+	@Override
+	public int noticeDelete(int num) {
+		return mapper.deleteNotice(num);
+	}
+
 }
