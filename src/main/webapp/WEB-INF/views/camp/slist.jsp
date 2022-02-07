@@ -115,8 +115,7 @@
                 ${campDTO.facltnm }</a>  
     <div class="infocard">
         <div class="infocard1">
-            <a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}" class="camp_name">
-                ${campDTO.facltnm }</a>  
+             
 
             <c:if test="${campDTO.firstimageurl == '0'}">
                 <img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="250px"/>

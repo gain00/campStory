@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <script src="/resources/jquery/jquery-3.6.0.min.js"></script>
-<h1> input.jsp 입니다. </h1>
+<h1> update.jsp 입니다. </h1>
 
 <div class="map_wrap">
     <div id="map" style="width:300px;height:300px;position:relative;overflow:hidden;"></div>
@@ -25,35 +25,35 @@
 </div>
                   
 <div class="camp_input_div">
-	<form action="camp/inputPro">
+	<form action="updatePro">
 		<table class="camp_input_table">
 			<tr>
 			<th>캠핑장 이름</th>
-			<td><input type="text" name="facltnm" placeholder="위 검색내용 참고"/></td>
+			<td><input type="text" name="facltnm" value="${campDTO.facltnm }"/></td>
 			</tr>
 			<tr>
 			<th>한줄 소개</th>
-			<td><input type="text" name="lineintro" /></td>
+			<td><input type="text" name="lineintro" value="${campDTO.lineintro }"/></td>
 			</tr>
 			<tr>
 			<th>캠핑장 소개</th>
-			<td><input type="text" name="intro" /></td>
+			<td><input type="text" name="intro" value="${campDTO.intro }"/></td>
 			</tr>
 			<tr>
 			<th>전체 면적</th>
-			<td><input type="text" name="allar" placeholder="면적의 숫자만 기입"/> m²</td>
+			<td><input type="text" name="allar" value="${campDTO.allar }"/> m²</td>
 			</tr>
 			<tr>
 			<th>휴장 시작일</th>
-			<td><input type="text" name="hvofbgnde" placeholder="YYYY-MM-DD / 없으면 0"/></td>
+			<td><input type="text" name="hvofbgnde" value="${campDTO.hvofbgnde }"/></td>
 			</tr>
 			<tr>
 			<th>휴장 종료일</th>
-			<td><input type="text" name="hvofenddle" placeholder="YYYY-MM-DD / 없으면 0"/></td>
+			<td><input type="text" name="hvofenddle" value="${campDTO.hvofenddle}"/></td>
 			</tr>
 			<tr>
 			<th>캠핑장 특징</th>
-			<td><input type="text" name="featurenm" /></td>
+			<td><input type="text" name="featurenm" value="${campDTO.featurenm}"/></td>
 			</tr>
 			<tr>
 			<th>업종</th>
@@ -84,7 +84,7 @@
 			<tr>
 			<th>도</th>
 			<td>
-			<input type="text" name ="donm" list="donm"/>
+			<input type="text" name ="donm" list="donm" value="${campDTO.donm}"/>
 
 			<datalist id="donm">
 			  <option value="강원도">
@@ -112,7 +112,7 @@
 			<tr>
 			<th>시군구</th>
 			<td>
-			<input type="text" name ="sigungunm" list="sigungulist"/>
+			<input type="text" name ="sigungunm" list="sigungulist" value="${campDTO.sigungunm}"/>
 			<datalist id="sigungulist">
 				<c:forEach var="sigungulist" items="${sigungulist }">
 				 <option value="${sigungulist.sigungunm}">
@@ -124,55 +124,55 @@
 			<tr>
 			<th>우편번호</th>
 			<td>
-				<input type="text" name="zipcode" placeholder="숫자만 작성"/>
+				<input type="text" name="zipcode" value="${campDTO.zipcode}"/>
 			</td>
 			</tr>
 			<tr>
 			<th>주소</th>
 			<td>
-				<input type="text" name="addr1" placeholder="위 검색내용 참고" />
+				<input type="text" name="addr1" value="${campDTO.addr1}" />
 			</td>
 			</tr>
 			<tr>
 			<th>상세주소</th>
 			<td>
-				<input type="text" name="addr2" placeholder="위 검색내용 참고" />
+				<input type="text" name="addr2" value="${campDTO.addr2}" />
 			</td>
 			</tr>
 			<tr>
 			<th>X좌표</th>
 			<td>
-				<input type="text" name="mapx" placeholder="위 검색내용 참고" />
+				<input type="text" name="mapx" value="${campDTO.mapx}" />
 			</td>
 			</tr>
 			<tr>
 			<th>Y좌표</th>
 			<td>
-				<input type="text" name="mapy" placeholder="위 검색내용 참고" />
+				<input type="text" name="mapy" value="${campDTO.mapy}" />
 			</td>
 			</tr>
 			<tr>
 			<th>찾아오는길</th>
 			<td>
-				<input type="text" name="direction" placeholder="없으면 0" />
+				<input type="text" name="direction" value="${campDTO.direction}" />
 			</td>
 			</tr>
 			<tr>
 			<th>전화번호</th>
 			<td>
-				<input type="text" name="tel" placeholder="없으면 0" />
+				<input type="text" name="tel" value="${campDTO.tel}" />
 			</td>
 			</tr>
 			<tr>
 			<th>홈페이지주소</th>
 			<td>
-				<input type="text" name="homepage" placeholder="http://주소 , 없으면 0" />
+				<input type="text" name="homepage" value="${campDTO.homepage}" />
 			</td>
 			</tr>
 			<tr>
 			<th>예약주소</th>
 			<td>
-				<input type="text" name="resveurl" placeholder="http://주소  , 없으면 0" />
+				<input type="text" name="resveurl" value="${campDTO.resveurl}" />
 			</td>
 			</tr>
 			<tr>
@@ -207,7 +207,7 @@
 			<tr>
 			<th>부대시설 기타</th>
 			<td>
-				<input type="text" name="sbrsetc" placeholder="없으면 0" />
+				<input type="text" name="sbrsetc" value="${campDTO.sbrsetc}" />
 			</td>
 			</tr>
 			<tr>
@@ -231,7 +231,7 @@
 			<tr>
 			<th>주변이용가능시설 기타</th>
 			<td>
-				<input type="text" name="posblfcltyetc" placeholder="없으면 0" />
+				<input type="text" name="posblfcltyetc" value="${campDTO.posblfcltyetc}" />
 			</td>
 			</tr>
 			<tr>
@@ -246,7 +246,7 @@
 			<tr>
 			<th>자체문화행사명</th>
 			<td>
-				<input type="text" name="clturevent" placeholder="없으면 0" />
+				<input type="text" name="clturevent" value="${campDTO.clturevent}" />
 			</td>
 			</tr>
 			<tr>
@@ -261,7 +261,7 @@
 			<tr>
 			<th>체험프로그램명</th>
 			<td>
-				<input type="text" name="exprnprogrm" placeholder="없으면 0" />
+				<input type="text" name="exprnprogrm" value="${campDTO.exprnprogrm}" />
 			</td>
 			</tr>
 			<tr>
@@ -306,123 +306,123 @@
 			<tr>
 			<th>대표이미지</th>
 			<td>
-				<input type="text" name="firstimageurl" placeholder="http://이미지주소" />
+				<input type="text" name="firstimageurl" value="${campDTO.firstimageurl}" />
 			</td>
 			</tr>
 			<tr>
 			<th>상주관리인원</th>
 			<td>
-				<input type="text" name="managenmpr" placeholder="숫자만 기재" /> 명
+				<input type="text" name="managenmpr" value="${campDTO.managenmpr}" /> 명
 			</td>
 			</tr>
 			<tr>
 			<th>주요시설 일반야영장</th>
 			<td>
-				<input type="text" name="gnrlsiteco" placeholder="해당 야영장의 수  / 숫자만 기재" /> 곳
+				<input type="text" name="gnrlsiteco" value="${campDTO.gnrlsiteco}" /> 곳
 			</td>
 			</tr>
 			<tr>
 			<th>주요시설 자동차야영장</th>
 			<td>
-				<input type="text" name="autositeco" placeholder="해당 야영장의 수  / 숫자만 기재" /> 곳
+				<input type="text" name="autositeco" value="${campDTO.autositeco}" /> 곳
 			</td>
 			</tr>
 			<tr>
 			<th>주요시설 글램핑</th>
 			<td>
-				<input type="text" name="glampsiteco" placeholder="해당 야영장의 수  / 숫자만 기재" /> 곳
+				<input type="text" name="glampsiteco" value="${campDTO.glampsiteco}" /> 곳
 			</td>
 			</tr>
 			<tr>
 			<th>주요시설 카라반</th>
 			<td>
-				<input type="text" name="caravsiteco" placeholder="해당 야영장의 수  / 숫자만 기재" /> 곳
+				<input type="text" name="caravsiteco" value="${campDTO.caravsiteco}" /> 곳
 			</td>
 			</tr><tr>
 			<th>주요시설 개인 카라반</th>
 			<td>
-				<input type="text" name="indvdlcaravSiteco" placeholder="해당 야영장의 수  / 숫자만 기재" /> 곳
+				<input type="text" name="indvdlcaravSiteco" value="${campDTO.indvdlcaravSiteco}" /> 곳
 			</td>
 			</tr>
 			<tr>
 			<th>사이트간 거리</th>
 			<td>
-				<input type="text" name="sitedstnc " placeholder=" 숫자만 기재" /> m
+				<input type="text" name="sitedstnc " value="${campDTO.sitedstnc}" /> m
 			</td>
 			</tr><tr>
 			<th>사이트 크기1 가로</th>
 			<td>
-				<input type="text" name="sitemg1width" placeholder=" 숫자만 기재" /> m
+				<input type="text" name="sitemg1width" value="${campDTO.sitemg1width}" /> m
 			</td>
 			</tr><tr>
 			<th>사이트 크기2 가로</th>
 			<td>
-				<input type="text" name="sitemg2width" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitemg2width" value="${campDTO.sitemg2width}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기3 가로</th>
 			<td>
-				<input type="text" name="sitemg3width" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitemg3width" value="${campDTO.sitemg3width}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기1 세로</th>
 			<td>
-				<input type="text" name="sitemg1vrticl" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitemg1vrticl" value="${campDTO.sitemg1vrticl}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기2 세로</th>
 			<td>
-				<input type="text" name="sitemg2vrticl" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitemg2vrticl" value="${campDTO.sitemg2vrticl}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기3 세로</th>
 			<td>
-				<input type="text" name="sitemg3vrticl" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitemg3vrticl" value="${campDTO.sitemg3vrticl}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기1 수량</th>
 			<td>
-				<input type="text" name="sitemg1co" placeholder="  숫자만 기재" />
+				<input type="text" name="sitemg1co" value="${campDTO.sitemg1co}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기2 수량</th>
 			<td>
-				<input type="text" name="sitemg2co" placeholder="  숫자만 기재" />
+				<input type="text" name="sitemg2co" value="${campDTO.sitemg2co}" />
 			</td>
 			</tr><tr>
 			<th>사이트 크기3 수량</th>
 			<td>
-				<input type="text" name="sitemg3co" placeholder="  숫자만 기재" />
+				<input type="text" name="sitemg3co" value="${campDTO.sitemg3co}" />
 			</td>
 			</tr><tr>
 			<th>잔디 사이트</th>
 			<td>
-				<input type="text" name="sitebottomcl1" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitebottomcl1" value="${campDTO.sitebottomcl1}" />
 			</td>
 			</tr><tr>
 			<th>파쇄석 사이트</th>
 			<td>
-				<input type="text" name="sitebottomcl2" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitebottomcl2" value="${campDTO.sitebottomcl2}" />
 			</td>
 			</tr><tr>
 			<th>데크 사이트</th>
 			<td>
-				<input type="text" name="sitebottomcl3" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitebottomcl3" value="${campDTO.sitebottomcl3}" />
 			</td>
 			</tr><tr>
 			<th>자갈 사이트</th>
 			<td>
-				<input type="text" name="sitebottomcl4" placeholder=" 숫자만 기재" />
+				<input type="text" name="sitebottomcl4" value="${campDTO.sitebottomcl4}" />
 			</td>
 			</tr><tr>
 			<th>맨흙 사이트</th>
 			<td>
-				<input type="text" name="sitebottomcl5" placeholder="숫자만 기재" />
+				<input type="text" name="sitebottomcl5" value="${campDTO.sitebottomcl5}" />
 			</td>
 			</tr><tr>
 			<th>툴팁</th>
 			<td>
-				<input type="text" name="tooltip" placeholder=" 캠핑장을 즐길만한 팁 /  없으면 0 " />
+				<input type="text" name="tooltip" value="${campDTO.tooltip}" />
 			</td>
 			</tr><tr>
 			<th>글램핑 - 내부시설</th>
@@ -457,7 +457,7 @@
 			</tr><tr>
 			<th>인허가일자</th>
 			<td>
-				<input type="date" name="prmisnde"/>
+				<input type="date" name="prmisnde" value="${campDTO.prmisnde}"/>
 			</td>
 			</tr>
 			<tr>
@@ -499,17 +499,17 @@
 			</tr><tr>
 			<th>화장실 개수</th>
 			<td>
-				<input type="text" name="toiletco" placeholder="숫자만 기재" /> 개
+				<input type="text" name="toiletco" value="${campDTO.toiletco}" /> 개
 			</td>
 			</tr><tr>
 			<th>샤워실 개수</th>
 			<td>
-				<input type="text" name="swrmco" placeholder="숫자만 기재" /> 개
+				<input type="text" name="swrmco" value="${campDTO.swrmco}" /> 개
 			</td>
 			</tr><tr>
 			<th>개수대 개수</th>
 			<td>
-				<input type="text" name="wtrplco" placeholder=" 숫자만 기재" />
+				<input type="text" name="wtrplco" value="${campDTO.wtrplco}" />
 			</td>
 			</tr><tr>
 			<th>화로대</th>
@@ -524,22 +524,22 @@
 			</tr><tr>
 			<th>소화기 개수</th>
 			<td>
-				<input type="text" name="extshrco" placeholder="숫자만 기재" /> 개
+				<input type="text" name="extshrco" value="${campDTO.extshrco}" /> 개
 			</td>
 			</tr><tr>
 			<th>방화수 개수</th>
 			<td>
-				<input type="text" name="frprvtwrppco " placeholder="숫자만 기재" /> 개
+				<input type="text" name="frprvtwrppco" value="${campDTO.frprvtwrppco}" /> 개
 			</td>
 			</tr><tr>
 			<th>방화사 개수</th>
 			<td>
-				<input type="text" name="frprvtsandco" placeholder="숫자만 기재" /> 개
+				<input type="text" name="frprvtsandco" value="${campDTO.frprvtsandco}" /> 개
 			</td>
 			</tr><tr>
 			<th>화재감지기 개수</th>
 			<td>
-				<input type="text" name="firesensorco" placeholder="숫자만 기재" /> 개
+				<input type="text" name="firesensorco" value="${campDTO.firesensorco}" /> 개
 			</td>
 			</tr>
 			<tr>
@@ -567,13 +567,13 @@
 			<tr>
 			<th>관광사업자번호</th>
 			<td>
-				<input type="text" name="trsagntno"  />
+				<input type="text" name="trsagntno" value="${campDTO.trsagntno}" />
 			</td>
 			</tr>
 			<tr>
 			<th>사업자번호</th>
 			<td>
-				<input type="text" name="bizrno"  />
+				<input type="text" name="bizrno" value="${campDTO.bizrno}" />
 			</td>
 			</tr>
 			<tr>
@@ -601,7 +601,7 @@
 			<tr>
 			<th>운영기관.관리기관</th>
 			<td>
-				<input type="text" name="mgcdiv" placeholder="관리 기관 명 / 없으면  0" />
+				<input type="text" name="mgcdiv" value="${campDTO.mgcdiv}" />
 			</td>
 			</tr>
 			<tr>
@@ -618,7 +618,9 @@
 		
 		
 		</table>
-		<input type="submit" value="캠핑장 등록" />
+		<input type="hidden" name="contentid" value="${campDTO.contentid}" />
+		<input type="hidden" name="createdtime" value="${campDTO.createdtime}" />
+		<input type="submit" value="정보 수정 등록" />
 	</form>
 
 
@@ -820,4 +822,3 @@ function removeAllChildNods(el) {
 }
 </script>
 
-        
