@@ -51,11 +51,13 @@ function kakaoLogout() {
 	
 	<c:if test="${sessionScope.status eq '회원_kakao'}">
 		<a href="/member/logout" onclick="kakaoLogout();" class="navbtn"><input type="button" value="로그아웃" class="navbtn" id="logoutbtn"></a>
-		
 		<a href="/member/mypage" class="navbtn"><h4 id="mypage">mypage</h4></a>
-		<!--<c:if test="${memberDTO.location eq '대한민국'}">
-			더 나은 서비스를 위해서 추가정보를 등록 바랍니다.<br />
-		</c:if><br />-->
+		
+	</c:if>
+	
+	<c:if test="${sessionScope.status eq '관리자'}">
+		<a href="/member/logout" class="navbtn"><input type="button" value="로그아웃" class="navbtn" id="logoutbtn"></a>
+		<a href="/admin/main" class="navbtn"><h4 id="mypage">관리자 메인가기</h4></a>
 		
 	</c:if>
 </c:if>

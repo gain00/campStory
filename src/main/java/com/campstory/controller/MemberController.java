@@ -1,6 +1,8 @@
 package com.campstory.controller;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,12 +82,31 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(MemberDTO dto, HttpSession session, Model model) {
 		if(service.memberLoginCheck(dto) == 1) {
-           if(service.memberAdminCheck(dto) == 1) {
-				session.setAttribute("adminId", dto.getId());
+			int ban_check = service.memberWarnCheck(dto.getId());
+			
+			if(ban_check > 2) {
+				model.addAttribute("result", 4);
+				service.memberDelete(dto.getId());
+			}else if(ban_check > 0) {
+				if(service.memberBandateCheck(dto.getId()) > 0) {
+					model.addAttribute("result", 3);
+					model.addAttribute("bandate", service.memberUserInfo(dto.getId()).getBan_date());
+				}else {
+					if(service.memberAdminCheck(dto) == 1) {
+						session.setAttribute("adminId", dto.getId());
+					}
+					session.setAttribute("memId", dto.getId());
+					model.addAttribute("result", 1);
+					session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
+				}
+			}else {
+				if(service.memberAdminCheck(dto) == 1) {
+					session.setAttribute("adminId", dto.getId());
+				}
+				session.setAttribute("memId", dto.getId());
+				model.addAttribute("result", 1);
+				session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
 			}
-			session.setAttribute("memId", dto.getId());
-			model.addAttribute("result", 1);
-			session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
 		}else {
 			if(service.memberDelCheck(dto.getId()) == 1) {
 				model.addAttribute("result", 2);

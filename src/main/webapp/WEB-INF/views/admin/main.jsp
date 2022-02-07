@@ -7,6 +7,7 @@
 <%@ include file = "../include/adminheader.jsp" %>
 
 
+
 <div class="admin_stats">
 <h2>CampStory 통계</h2>
 <h3 class="admin_stats_hl">키워드 검색 통계</h3>
@@ -138,3 +139,4 @@
 			</table>
 		</div>
 </div>
+

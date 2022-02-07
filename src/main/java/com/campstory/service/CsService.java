@@ -31,4 +31,14 @@ public interface CsService {
 	public int csUpdateAdmin(CsDTO csDTO);
 	
 	public int csDelete(int num);
+	
+	// notice
+	public int noticeInsert(CsDTO csDTO);
+	
+	public int noticeAllCount();
+	
+	public List<CsDTO> noticeList(int start, int end);
+	
+	public int noticeDelete(int num);
+	
 }
