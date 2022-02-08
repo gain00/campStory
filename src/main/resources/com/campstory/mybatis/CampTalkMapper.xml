@@ -87,7 +87,7 @@
 	</update>
 	<!-- 톡 굿 UP -->
 	<insert id="goodListInput">
-		insert into talkgoodlist values(0,#{id},#{num_talk})
+		insert into talkgoodlist values(#{id},#{num_talk})
 	</insert>
 
 	<!-- 톡 굿 DOWN -->
@@ -106,9 +106,9 @@
 		select * from talkgoodlist
 	</select>
 	
-	<!-- 톡 작성 => id값 추가해야함 -->
+	<!-- 톡 작성  -->
 	<insert id="talkWrite">
-		insert into camptalk(num_talk, area, camp, content, reg_time,writer, contentid, ano, sub) values(0,#{area},#{camp},#{content},'2020-10-10',#{writer},#{contentid},#{ano},#{sub})
+		insert into camptalk(num_talk, area, camp, content, reg_time, writer, contentid, ano, sub) values(seq_camptalk.nextval,#{area},#{camp},#{content},sysdate,#{writer},#{contentid},#{ano},#{sub})
 	</insert>
 	
 	<!-- talk update -->
@@ -126,11 +126,35 @@
 	
 	<!-- talk qna -->
 	<insert id="talkWriteQnA" >
-	 	insert into talkqna(num_talk,content,writer,ano) values(#{num_talk},#{content},#{writer},#{ano})
+	 	insert into talkqna(num_talkqna, num_talk, content, writer, ano) values(talk_qna.nextval,#{num_talk},#{content},#{writer},#{ano})
 	</insert>
 	
 	<select id="getTalkQnA" resultType="com.campstory.bean.CampTalkDTO">
-		select * from talkqna
+		select * from talkqna where num_talk = #{num_talk}
 	</select>
-		
+	
+	<!-- qnaDelete -->
+	<delete id="qnaDel">
+		delete talkqna where num_talkqna = #{num_talkqna}
+	</delete>
+	
+	<!-- notify input -->
+	<insert id="inputNotify">
+		insert into talknotify(num_talk, notifyid) values(#{num_talk},#{sid})
+	</insert>
+	
+	<select id="getNotify" resultType="int">
+		select count(*) from talknotify where num_talk = #{num_talk} and notifyid = #{sid}
+	</select>
+	
+	
+	<select id="getNotifyList" resultType="com.campstory.bean.CampTalkDTO">
+		select a.num_talk, a.area, a.camp, a.content, a.reg_time, a.writer, a.ano, a.sub,a.notifycheck, count(*) cnt 
+		from camptalk a join talknotify on a.num_talk = talknotify.num_talk 
+		where a.notifycheck like '%'||#{check}||'%' group by a.num_talk, a.area, a.camp, a.content, a.reg_time, a.writer, a.ano, a.sub, a.notifycheck having count(*) >= #{count} order by reg_time desc
+	</select>
+	
+	<update id="setNotify">
+		update camptalk set notifycheck = 'hold' where num_talk = #{num_talk}
+	</update>
 </mapper>

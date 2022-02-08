@@ -5,7 +5,7 @@
 
 <form action="/campTalk/campSearchList" method="post">
 	
-	<table border="1" class="ta">
+	<table border="1">
 		<tr>
 			<td> 
 				<select name="areaEng" id="areaEng">
@@ -29,9 +29,9 @@
 					<option value="Jeju" <c:if test="${area == 'Jeju'}"> selected="selected"</c:if>>제주</option>
 				</select>
 			</td>
-		<td><input type="text" name="camp" id="camp" value="${camp }"/></td>
-		<td><input type="submit" value="검색" id="btn_campS"/></td>
-		<td><input type="button" value="닫기" onclick="window.self.close()"/></td>
+		<td><input type="text" name="camp" id="camp"/></td>
+		<td><input type="submit" value="검색" /></td>
+		<td><input type="button" value="닫기" onclick="window.self.close()" /></td>
 		</tr>
 	</table>
 </form>
@@ -45,38 +45,38 @@
 	<c:if test="${not empty list}">
 		<c:forEach items="${list}" var="dto">
 		<tr>
-		<td >
-		<input type="hidden" name="contentid" id="contentid" value="${dto.contentid}"/>
-		<a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.facltnm}</a>
-		</td>
-		<td><a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.addr1}</a></td>
-
+			<td>
+			<input type="hidden" name="contentid" id="contentid" value="${dto.contentid}"/>
+			<a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.facltnm}</a>
+			</td>
+			<td><a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.addr1}</a></td>
 		</tr>
+	</c:forEach>
+		
+	<tr><td align="center" colspan="2">
+		<c:if test="${page.pageStart > 10}">
+			<a href="/campTalk/campSearchList?pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
+		</c:if>	
+		
+		<c:forEach var="i" begin="${page.pageStart}" end="${page.pageEnd}">
+			<a href="/campTalk/campSearchList?pageNum=${i}&areaEng=${areaEng}">${i}</a>
 		</c:forEach>
 		
-		<tr><td align="center" colspan="2">
-			<c:if test="${page.pageStart > 10}">
-				<a href="/campTalk/campSearchList?pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
-			</c:if>	
-			
-			<c:forEach var="i" begin="${page.pageStart}" end="${page.pageEnd}">
-				<a href="/campTalk/campSearchList?pageNum=${i}&areaEng=${areaEng}">${i}</a>
-			</c:forEach>
-		
 						
-			<c:if test="${page.pageEnd < page.pageCount}">
-				<a href="/campTalk/campSearchList?pageNum=${page.pageStart + 10}&areaEng=${areaEng}">[다음]</a>
-			</c:if>	
+		<c:if test="${page.pageEnd < page.pageCount}">
+			<a href="/campTalk/campSearchList?pageNum=${page.pageStart + 10}&areaEng=${areaEng}">[다음]</a>
+		</c:if>	
 	
-		</td></tr>		
+	</td></tr>		
 	</c:if>
 </table>
 
 <script>
-	function result(camp,contentid, donm){
-		opener.document.cs.camp.value=camp;
-		opener.document.cs.contentid.value=contentid;
-		opener.document.cs.area.value=donm;
+	function result(camp, contentid, donm){
+		opener.document.cs.camp.value = camp;
+		opener.document.cs.contentid.value = contentid;
+		opener.document.cs.area.value = donm;
+		opener.document.cs.qeArea.value = donm;
 		self.close();
 	}
 </script>

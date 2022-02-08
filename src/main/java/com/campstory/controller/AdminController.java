@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.campstory.bean.CampDTO;
+import com.campstory.bean.CampTalkDTO;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -275,4 +277,38 @@ public class AdminController {
 		return memberservice.memberBan(memDTO);
 	}
 
+	@RequestMapping("talkNotifyList")
+	public String talkNotifyList(String check, Integer count, Model model) {
+		log.info("ccccccccccc" + check);
+		if(check == null) { check="";}
+		if(count == null) { count=3;}
+		List<CampTalkDTO> list = campservicetalk.getNotifyList(check, count);
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		return "campTalk/talkNotifyList";
+	}
+	
+	@RequestMapping("notifyDel")
+	public @ResponseBody String notifyDel(int num_talk) {
+		if(campservicetalk.talkDelete(num_talk)==1) {
+			return "del";
+		} else {
+			return "error";
+		}
+	}
+	
+	@RequestMapping("notifyHold")
+	public @ResponseBody String notifyHold(int num_talk) {
+		
+		if(campservicetalk.setNotify(num_talk)==1) {
+			return "hold";
+		} else {
+			return "error";
+		}
+	}
+	
+	
+	
+	
+	
 }

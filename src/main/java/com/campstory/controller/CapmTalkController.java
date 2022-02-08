@@ -1,6 +1,10 @@
 package com.campstory.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,12 +35,13 @@ public class CapmTalkController {
 	@Autowired
 	private Page pageInfo;
 	
-	String id = "testid";
+	String id = null;
 	@RequestMapping("talkList")
-	public String list(Integer listType, String areaEng, String campS, Model model, Integer pageNum) {
-		log.info("List--------------camp =========111111111" + campS);
+	public String list(Integer listType, String areaEng, String campS, Model model, Integer pageNum, HttpSession session) {
 		if(listType==null) { listType=0; }
 		if(pageNum==null) { pageNum=1; }
+		
+		id = (String)session.getAttribute("memId");
 		pageDTO page = null;
 		List<CampTalkDTO> list = null; 
 		String areaChageKor = areaKor.change(areaEng);
@@ -56,8 +61,13 @@ public class CapmTalkController {
 			list = service.getMyGoodList(areaChageKor, id, page.getRowStart(), page.getRowEnd());
 		}
 		
+		Map<Long,List<CampTalkDTO>> map = new HashMap<Long,List<CampTalkDTO>>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			map.put(Long.valueOf(list.get(i).getNum_talk()), service.getTalkQnA(list.get(i).getNum_talk()));
+		}
+		
 		List<CampTalkDTO> goodList = service.goodListAll();
-		List<CampTalkDTO> qnaList = service.getTalkQnA();
 		model.addAttribute("list", list);
 		model.addAttribute("goodList", goodList);
 		model.addAttribute("areaKor", areaChageKor);
@@ -65,9 +75,7 @@ public class CapmTalkController {
 		model.addAttribute("page", page);
 		model.addAttribute("listType", listType);
 		model.addAttribute("campS", campS);
-		model.addAttribute("qnaList", qnaList);
-		
-		model.addAttribute("id", id);
+		model.addAttribute("map", map);
 		
 		return "campTalk/talkList";
 	}
@@ -81,20 +89,18 @@ public class CapmTalkController {
 	}
 	
 	@RequestMapping("talkWrite")
-	public String write(Model model) {
-		model.addAttribute("id", id);
-		log.info("wwwwwwwwwwwwwwwwwwwwwwwwwwww");
+	public String write(Model model, String areaEng) {
+		model.addAttribute("areaEng", areaEng);
 		return "/campTalk/talkWrite";
 	}
 	
 	@RequestMapping("talkWritePro")
-	public String writePro(CampTalkDTO dto, String ano, String sub) {
+	public String writePro(CampTalkDTO dto, String ano, String sub, String qeArea, HttpSession session) {
 		if(ano == null || !ano.equals("ano")) {
 			dto.setAno("id");
 		} else if(ano.equals("ano")) {
 			dto.setAno("anonymity");
 		} 
-		
 		
 		if(sub.equals("talk")){
 			service.talkWrite(dto);
@@ -106,18 +112,16 @@ public class CapmTalkController {
 	}
 	
 	@RequestMapping("campSearch")
-	public String search() {
+	public String search(String areaEng, Model model) {
+		model.addAttribute("area", areaEng);
 		return "/campTalk/campSearch";
 	}
 	
 	@RequestMapping("campSearchList")
 	public String searchList(String camp, String areaEng, Integer pageNum, Model model) {
-		if(pageNum==null) {
-			pageNum=1;
-		}
-		if(camp==null) {
-			camp="";
-		}
+		if(pageNum==null) {	pageNum=1; }
+		if(camp==null) { camp=""; }
+		
 		String areaChageKor = areaKor.change(areaEng);
 		pageDTO page = pageInfo.talkWriteCampSearchPage(pageNum, 10, areaChageKor, camp);
 		List<CampTalkDTO> list = service.campInfoSearch(camp, areaChageKor, page.getRowStart(), page.getRowEnd());
@@ -130,34 +134,29 @@ public class CapmTalkController {
 	}
 	
 	@RequestMapping("goodUp")
-	public String goodUp(int num_talk){
+	public void goodUp(int num_talk){
 		service.talkGoodUp(id, num_talk);
-		return "redirect:/campTalk/talkList";
 	}
 	
 	@RequestMapping("goodDown")
-	public String goodDown(int num_talk){
+	public void goodDown(int num_talk){
 		service.talkGoodDown(id, num_talk);
-		return "redirect:/campTalk/talkList";
 	}
 	
 	@RequestMapping("talkUpdate")
 	public String talkUpdate(int num_talk, Model model) {
 		CampTalkDTO dto = service.getTalk(num_talk);
 		model.addAttribute("dto", dto);
-		log.info("-----------------------------"+dto.getAno());
 		return "/campTalk/talkUpdate";
 	}
 	
 	@RequestMapping("talkUpdatePro")
 	public String talkUpdatePro(CampTalkDTO dto, Model model) {
-		log.info("sadgsagdsagdsagsdg    " +dto.getAno() );
-		if(dto.getAno().equals("ano")) {
-			dto.setAno("anonymity");
-		} else {
+		if(dto.getAno()==null || !dto.getAno().equals("ano")) {
 			dto.setAno("id");
+		} else {
+			dto.setAno("anonymity");
 		}
-		log.info("=========================    " +dto.getAno() );
 		service.talkUpdate(dto);
 		return "redirect:/campTalk/talkList";
 	}
@@ -168,11 +167,8 @@ public class CapmTalkController {
 		return "redirect:/campTalk/talkList";
 	}
 	
-	@RequestMapping("qna")
-	public @ResponseBody String qna(CampTalkDTO dto) {
-		log.info("zzzzzzzzzzzzzzzzzzzz" + dto.getNum_talk());
-		log.info("zzzzzzzzzzzzzzzzzzzz" + dto.getContent());
-		log.info("zzzzzzzzzzzzzzzzzzzz" + dto.getAno());
+	@RequestMapping("qnaInput")
+	public @ResponseBody String qnaInput(CampTalkDTO dto) {
 		if(dto.getAno()==null) {
 			dto.setAno("id");
 		} else {
@@ -180,10 +176,25 @@ public class CapmTalkController {
 		}
 		
 		service.talkWriteQnA(dto);
-		
 		return "1";
 	}
 	
+	@RequestMapping("qnaDel")
+	public @ResponseBody String qnaDel(int num_talkqna) {
+		service.qnaDel(num_talkqna);
+		return "1";
+	}
+	
+	@RequestMapping("notify")
+	public @ResponseBody String notify(CampTalkDTO dto, int num_talk, String sid) {
+		if (service.getNotify(num_talk, sid) == 0) {
+			service.inputNotify(num_talk, sid);
+			return "notify";
+		} else {
+			return "already";
+		}
+		
+	}
 	
 	
 }
