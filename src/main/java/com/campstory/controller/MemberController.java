@@ -157,8 +157,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("delete")
-	public String memCheck_delete(int kakao, Model model) {
-		model.addAttribute("kakao", kakao);
+	public String memCheck_delete() {
+		
 		return "member/delete";
 	}
 	
