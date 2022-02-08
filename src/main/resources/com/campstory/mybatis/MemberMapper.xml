@@ -77,8 +77,8 @@
 	
 	<select id="getAdminList" resultType="com.campstory.bean.MemberDTO">
 		<![CDATA[
-			select id,phone,email,birth,warn,location,reg_date,status,ban_date,r 
-			from (select id,phone,email,birth,warn,location,reg_date,status,ban_date,rownum r from 
+			select id,phone,email,birth,warn,location,reg_date,status,ban_date,reason,r 
+			from (select id,phone,email,birth,warn,location,reg_date,status,ban_date,reason,rownum r from 
 					(select * from member order by id asc)) where r >= #{start} and r <= #{end}
 		]]>
 	</select>
@@ -90,7 +90,7 @@
 	
 	<update id="updateBandate" >
 		update member set 
-			warn=#{warn}, ban_date=#{ban_date} where id=#{id}
+			warn=#{warn}, ban_date=#{ban_date}, reason=#{reason} where id=#{id}
 	</update>
 	
 </mapper>

@@ -45,4 +45,5 @@ public interface MemberService {
 	public int memberStatus(MemberDTO memberDTO);
 	
 	public int memberBan(MemberDTO memberDTO);
+	
 }

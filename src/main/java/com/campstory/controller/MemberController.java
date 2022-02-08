@@ -91,6 +91,7 @@ public class MemberController {
 				if(service.memberBandateCheck(dto.getId()) > 0) {
 					model.addAttribute("result", 3);
 					model.addAttribute("bandate", service.memberUserInfo(dto.getId()).getBan_date());
+					model.addAttribute("reason", service.memberUserInfo(dto.getId()).getReason());
 				}else {
 					if(service.memberAdminCheck(dto) == 1) {
 						session.setAttribute("adminId", dto.getId());

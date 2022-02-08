@@ -37,7 +37,8 @@
 <c:if test="${result == 3}">
 	<script>
 		var bDate = '<fmt:formatDate value="${bandate}" pattern="yyyy-MM-dd" />';
-		alert("정지된 ID입니다. \n \n로그인은 "+bDate+"에 가능합니다.");
+		var bReason = '${reason}'
+		alert("정지된 ID입니다. \n \n로그인은 "+bDate+"에 가능합니다. \n \n정지 사유는 ["+bReason+"] 입니다.");
 		history.go(-1);
 	</script>
 </c:if>

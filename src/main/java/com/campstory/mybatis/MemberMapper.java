@@ -47,4 +47,5 @@ public interface MemberMapper {
 	public int changeStatus(MemberDTO memberDTO);
 	
 	public int updateBandate(MemberDTO memberDTO);
+	
 }
