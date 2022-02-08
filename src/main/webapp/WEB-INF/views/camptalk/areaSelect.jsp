@@ -45,6 +45,8 @@
 
 	</map>
 </section>
+
+<input type="button" value="닫기" onclick="javascript:window.close()">
 <script>
 	function mapimg(img) {
 		$('#map_change').attr('src','<%=map%>' + img);
