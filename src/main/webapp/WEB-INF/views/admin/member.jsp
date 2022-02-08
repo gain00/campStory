@@ -38,14 +38,17 @@
 			xx =  $("#ban_date_"+bb).val();
 			ww =  $("#warn_"+bb).val();
 			yy =  $("#id_"+bb).val();
+			rr =  $("#reason_"+bb).val();
 			zz =  "result_"+bb;
 			console.log("====="+xx);
 			console.log("====="+yy);
+			console.log("====="+ww);
+			console.log("====="+rr);
 			
 			$.ajax({
 				type: "post", 
 				url : "/admin/memberBanPro",
-				data : {ban_date : xx, warn : ww, id : yy},
+				data : {ban_date : xx, warn : ww, id : yy, reason : rr},
 				success : function(data){
 					b = parseInt(data);
 					if(b==1){
@@ -55,6 +58,36 @@
 						}, 3000);
 					}else{
 						$("#"+zz).html("<font color='red'>정지 설정 에러</font>");
+					}
+				}
+			});
+		});
+		
+		$(".cc").click(function(){
+			cc = this.id;
+			xx =  $("#ban_date_b"+cc).val();
+			yy =  $("#id_b"+cc).val();
+			ww =  $("#warn_b"+cc).val();
+			rr =  $("#reason_b"+cc).val();
+			zz =  "result_c"+cc;
+			console.log("====="+xx);
+			console.log("====="+yy);
+			console.log("====="+ww);
+			console.log("====="+rr);
+			
+			$.ajax({
+				type: "post", 
+				url : "/admin/memberChangeBandate",
+				data : {ban_date : xx, warn : ww, id : yy, reason : rr},
+				success : function(data){
+					c = parseInt(data);
+					if(c==1){
+						$("#"+zz).html("<font color='green'>수정 완료</font>");
+						setTimeout(function(){
+							document.location.reload();
+						}, 3000);
+					}else{
+						$("#"+zz).html("<font color='red'>수정 에러</font>");
 					}
 				}
 			});
@@ -94,10 +127,11 @@
 	      <td align="center"  width="50"  >번 호</td>
 	      <td align="center"  width="150" >아이디</td> 
 	      <td align="center"  width="150" >상 태</td> 
-	      <td align="center"  width="300" >상태 변경</td>
+	      <td align="center"  width="150" >상태 변경</td>
 	      <td align="center"  width="150" >정지 횟수</td> 
 	      <td align="center"  width="200" >정지일</td> 
 	      <td align="center"  width="200" >정지일 정하기</td>
+	      <td align="center"  width="150" >수정 하기</td>
 	      <td align="center"  width="300" >정지 하기</td>
 	    </tr>
 		<c:forEach items="${list}" var="memberDTO" varStatus="status" >
@@ -120,11 +154,17 @@
 						</select>
 					</c:if>
 			    </td>
-			    <td  width="300" >
-					<input type="hidden" id="id_a${status.index}" value="${memberDTO.id}" />&nbsp;&nbsp;
+			    <td  width="150" >
+					<input type="hidden" id="id_a${status.index}" value="${memberDTO.id}" />&nbsp;
 			    	<input type="button" value="상태 변경" id="a${status.index}" class="aa" /><label id="result_a${status.index}"></label>
 				</td>
-			    <td align="center" width="150" > ${memberDTO.warn}</td>
+			    <td align="center" width="150" > 
+			    	<select id="warn_b${status.index}" >
+						<option value="0" 	${memberDTO.warn == 0? 	'selected' : ''} >0</option>
+						<option value="1" 	${memberDTO.warn == 1? 	'selected' : ''} >1</option>
+						<option value="2" 	${memberDTO.warn == 2? 	'selected' : ''} >2</option>
+					</select>
+			    </td>
 			    <td align="center"  width="200">
 					<c:if test="${memberDTO.warn == 0}">
 						정지 이력 없음
@@ -136,10 +176,21 @@
 				<td align="center"  width="200" >
 					<input type="date" id="ban_date_b${status.index}" />
 				</td>
+				<td width="150" >
+					&nbsp;
+			    	<input type="button" value="수정 하기" id="${status.index}" class="cc" />
+			    	<label id="result_c${status.index}"></label>
+	      		</td>
 	      		<td width="300" >
-	      			<input type="hidden" id="warn_b${status.index}" value="${memberDTO.warn+1}" />
-	      			<input type="hidden" id="id_b${status.index}" value="${memberDTO.id}" />&nbsp;&nbsp;
-			    	<input type="button" value="정지 하기" id="b${status.index}" class="bb" /><label id="result_b${status.index}"></label>
+	      			<input type="hidden" id="id_b${status.index}" value="${memberDTO.id}" />&nbsp;
+	      			<c:if test="${memberDTO.reason eq null}">
+						<input type="text" id="reason_b${status.index}" class="bb" size="15" value="정지 사유"/>
+					</c:if>
+					<c:if test="${memberDTO.reason ne null}">
+						<input type="text" id="reason_b${status.index}" class="bb" size="15" value="${memberDTO.reason}"/>
+					</c:if>
+			    	<input type="button" value="정지 하기" id="b${status.index}" class="bb" />
+			    	<label id="result_b${status.index}"></label>
 	      		</td>
 			</tr>
 		</c:forEach>

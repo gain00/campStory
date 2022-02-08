@@ -46,8 +46,8 @@ public class AdminController {
 	private CsService csservice;
 	@Autowired
 	private MemberService memberservice;
-  @Autowired
-  private MemberDTO memDTO;
+	@Autowired
+	private MemberDTO memDTO;
 	
 	@RequestMapping("main")
 	public String admin(Model model,HttpServletRequest req,
@@ -251,10 +251,27 @@ public class AdminController {
 	
 	@RequestMapping("memberBanPro")
 	public @ResponseBody int memberBanPro(
-			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date ban_date, int warn, String id) {
+			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date ban_date, 
+				int warn, String id, String reason) {
+		
+		memDTO.setWarn(warn+1);
 		memDTO.setBan_date(ban_date);
-		memDTO.setWarn(warn);
+		memDTO.setReason(reason);
 		memDTO.setId(id);
+		
+		return memberservice.memberBan(memDTO);
+	}
+	
+	@RequestMapping("memberChangeBandate")
+	public @ResponseBody int memberChangeBandate(
+			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date ban_date, 
+				int warn, String id, String reason) {
+		
+		memDTO.setWarn(warn);
+		memDTO.setBan_date(ban_date);
+		memDTO.setReason(reason);
+		memDTO.setId(id);
+		
 		return memberservice.memberBan(memDTO);
 	}
 
