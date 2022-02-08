@@ -45,6 +45,10 @@
 		update member set status='탈퇴' where id=#{id}
 	</update>
 	
+	<update id="delete_kakao">
+		update member set status='탈퇴_kakao' where id=#{id}
+	</update>
+	
 	<select id="userInfo" resultType="com.campstory.bean.MemberDTO">
 		select * from member where id=#{id}
 	</select>
