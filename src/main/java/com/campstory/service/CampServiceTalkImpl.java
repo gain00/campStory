@@ -71,7 +71,7 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 		return mapper.campInfoSearchCount(area, camp);
 	}
 	
-	@Transactional
+	/* @Transactional(transactionManager="transacitonManager") */
 	@Override
 	public int talkGoodUp(String id, int num_talk) {
 		mapper.talkGoodUp(num_talk);
@@ -79,7 +79,7 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 		return 1;
 	}
 	
-	@Transactional
+	/* @Transactional(transactionManager="transacitonManager") */
 	@Override
 	public int talkGoodDown(String id, int num_talk) {
 		mapper.talkGoodDown(num_talk);
@@ -118,8 +118,38 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 	}
 
 	@Override
-	public List<CampTalkDTO> getTalkQnA() {
-		return mapper.getTalkQnA();
+	public List<CampTalkDTO> getTalkQnA(int num_talk) {
+		return mapper.getTalkQnA(num_talk);
+	}
+
+	@Override
+	public int qnaDel(int num_talkqna) {
+		return mapper.qnaDel(num_talkqna);
+	}
+
+	@Override
+	public int inputNotify(int num_tlak, String sid) {
+		return mapper.inputNotify(num_tlak, sid);
+	}
+
+	@Override
+	public int getNotify(int num_tlak, String sid) {
+		return mapper.getNotify(num_tlak, sid);
+	}
+
+	@Override
+	public List<CampTalkDTO> getNotifyList(String check, int count) {
+		return mapper.getNotifyList(check, count);
+	}
+
+	@Override
+	public int aa(String date) {
+		return mapper.aa(date);
+	}
+
+	@Override
+	public int setNotify(int num_talk) {
+		return mapper.setNotify(num_talk);
 	}
 	
 }

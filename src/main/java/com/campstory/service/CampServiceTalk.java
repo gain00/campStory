@@ -39,5 +39,16 @@ public interface CampServiceTalk {
 	public int talkDelete(int num_talk);
 	
 	public int talkWriteQnA(CampTalkDTO dto);
-	public List<CampTalkDTO> getTalkQnA();
+	public List<CampTalkDTO> getTalkQnA(int num_talk);
+	public int qnaDel(int num_talkqna);
+	
+	public int getNotify(int num_tlak, String sid);
+	public int inputNotify(int num_tlak, String sid);
+	
+	public List<CampTalkDTO> getNotifyList(String check, int count);
+	
+	public int setNotify(int num_talk);
+	
+	
+	public int aa(String date);
 }

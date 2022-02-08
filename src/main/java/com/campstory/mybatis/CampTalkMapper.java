@@ -44,6 +44,19 @@ public interface CampTalkMapper {
 	public int talkDelete(int num_talk);
 
 	public int talkWriteQnA(CampTalkDTO dto);
-	public List<CampTalkDTO> getTalkQnA();
+	public List<CampTalkDTO> getTalkQnA(int num_talk);
 	
+	public int qnaDel(int num_talkqna);
+
+	public int getNotify(@Param("num_talk") int num_talk, @Param("sid") String sid);
+	public int inputNotify(@Param("num_talk") int num_talk, @Param("sid") String sid);
+	
+	public List<CampTalkDTO> getNotifyList(@Param ("check")String check, @Param ("count")int count);
+	
+	public int setNotify(int num_talk);
+	
+	
+	
+	
+	public int aa(String date);
 }	
