@@ -77,7 +77,6 @@
 		$(document).on('click','input[name=adBtn]',function(){
 		var divNum = $(this).closest('div').attr('id').substr(10);
  		var adBtnId = $(this).attr('id');
- 		alert(divNum);
 		var delNum = adBtnId.substr(5);
 		
  		$.ajax({
@@ -166,7 +165,6 @@
 				<label >검색수 : ${page.totalCount}</label>
 		</td>
 		<td style="text-align:right;width:30%">
-			<input type="button" value="신고" onclick="window.location='/campTalk/talkNotifyList'"/>
 			<input type="button" value="검색초기화" onclick="window.location='/campTalk/talkList'"/>
 			<c:if test="${sessionScope.memId != null}">
 				<input type="button" value="내글" onclick="window.location='/campTalk/talkList?listType=2'"/>
@@ -194,14 +192,14 @@
 				 
 				<td height="30px" width="500px">
 					<c:if test="${dto.contentid != 7502 }">
-						<<${dto.num_talk}>> [${dto.area}]캠프명 : ${dto.camp} &nbsp;&nbsp;
+						[${dto.area}]캠프명 : 
+						<a href="/camp/info?contentid=${dto.contentid}">${dto.camp}</a> &nbsp;&nbsp;
 						<input type="button" value="위치확인" onclick="map_move(${dto.mapy}, ${dto.mapx })">
 					</c:if>
 					<c:if test="${dto.contentid == 7502 }">
 						[${dto.area}]
 					</c:if>
-				
-					<c:if test="${dto.writer == sessionScope.memId || sessionScope.memId == 'admin'}">
+					<c:if test="${dto.writer eq sessionScope.memId || sessionScope.memId == 'admin'}">
 						<input type="button" value="수정" onclick="talkUpdate(${dto.num_talk})">
 						<input type="button" value="삭제" onclick="talkDelete(${dto.num_talk})">
 					</c:if>
@@ -229,7 +227,7 @@
 						${dto.content}
 					</c:if>
 					<c:if test="${dto.sub == 'qe'}">
-						[질문] ${dto.content} // <<${dto.contentid }>><br/>
+						[질문] ${dto.content} <br/>
 						<fmt:parseNumber value="${dto.num_talk}" var="num" type="number"/>
 						<input type="button" value="답글 ${map[num].size()}" onclick="answer(${dto.num_talk})">
 						<div id="answerForm${dto.num_talk}" class="pkg" style="display:none">
@@ -294,126 +292,127 @@
 	<tr><td align="center">
 		<c:if test="${page.pageStart > 10}">
 			<a href="/campTalk/talkList?pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
-			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
+			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${page.pageStart - 10}">[이전]</a>
 		</c:if>	
 		
 		<c:forEach var="i" begin="${page.pageStart}" end="${page.pageEnd}">
-			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${i}&areaEng=${areaEng}">${i}</a>
+			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${i}">${i}</a>
 		</c:forEach>
 	
 		<c:if test="${page.pageEnd < page.pageCount}">
-			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${page.pageStart + 10}&areaEng=${areaEng}">[다음]</a>
+			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${page.pageStart + 10}">[다음]</a>
 		</c:if>	
 	</td></tr>
 </table>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27b5778788b34c5b2d22e5d6adab50e0"></script>
 <script>
-	var positions = new Array();
-	var axisX = 0;
-	var axisY = 0;
-	var sumCount = 0;
-	<c:forEach items="${list}" var="map">
-		<c:if test="${map.contentid != 7502}">
-			positions.push({
-				title:"${map.camp}",
-				latlng: new kakao.maps.LatLng("${map.mapy}","${map.mapx}")
-			});
-			
-			axisX += ${map.mapx};
-			axisY += ${map.mapy};
-			sumCount += 1;
-		</c:if>
-	</c:forEach>
-	
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(axisY/sumCount, axisX/sumCount), // 지도의 중심좌표
-	        level: 13 // 지도의 확대 레벨
-	    };
-	
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	var markers = [];
-
-	var imageSrc = "/resources/campTalk/locationPoint.png"; 
-
-	for (var i = 0; i < positions.length; i ++) {
-		var imageSize = new kakao.maps.Size(10, 10);
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-	    // 마커를 생성합니다
-	    var marker = new kakao.maps.Marker({
-	    	map: map,
-	        position: positions[i].latlng, // 마커를 표시할 위치
-	        image : markerImage // 마커 이미지
-	    });
-	    markers.push(marker);
-	    
-	    var infowindow = new kakao.maps.InfoWindow({
-	        content: positions[i].title // 인포윈도우에 표시할 내용
-	    });
-	    
-	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-	}
-	
-	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-	function makeOverListener(map, marker, infowindow) {
-	    return function() {
-	        infowindow.open(map, marker);
-	    };
-	}
-
-	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	function makeOutListener(infowindow) {
-	    return function() {
-	        infowindow.close();
-	    };
-	}
-	
-	function map_move(a,b) {
-		//var imageSrc1 = "/resources/campTalk/qqq.png"; 
-		var imageSrc1 = "https://i.ibb.co/G2kJKb2/logo-campstory.png"; 
-		var imageSize1 = new kakao.maps.Size(30, 30);
-		var markerImage1 = new kakao.maps.MarkerImage(imageSrc1, imageSize1);
+	<c:if test="${!empty list}">
+		var positions = new Array();
+		var axisX = 0;
+		var axisY = 0;
+		var sumCount = 0;
+		<c:forEach items="${list}" var="map">
+			<c:if test="${map.contentid != 7502}">
+				positions.push({
+					title:"${map.camp}",
+					latlng: new kakao.maps.LatLng("${map.mapy}","${map.mapx}")
+				});
+				
+				axisX += ${map.mapx};
+				axisY += ${map.mapy};
+				sumCount += 1;
+			</c:if>
+		</c:forEach>
 		
-	    for ( var i = 0; i < markers.length; i++ ) {
-	       	markers[i].setMap(null);
-   		}   
-	    
-	    markers = [];
-	   
-	  
-     	for (var i = 0; i < positions.length; i ++) {
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(axisY/sumCount, axisX/sumCount), // 지도의 중심좌표
+		        level: 13 // 지도의 확대 레벨
+		    };
+		
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var markers = [];
+	
+		var imageSrc = "/resources/campTalk/locationPoint.png"; 
+	
+		for (var i = 0; i < positions.length; i ++) {
+			var imageSize = new kakao.maps.Size(10, 10);
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		    	map: map,
+		        position: positions[i].latlng, // 마커를 표시할 위치
+		        image : markerImage // 마커 이미지
+		    });
+		    markers.push(marker);
 		    
-		    if( "("+a+", "+b+")" == positions[i].latlng  ){
-		    	var marker = new kakao.maps.Marker({
-			    	map: map,
-			        position: new kakao.maps.LatLng(a, b),
-			        image : markerImage1
-			    });
-		    } else {
-		    	 var marker = new kakao.maps.Marker({
-			    	map: map,
-			        position: positions[i].latlng,
-			        image : markerImage
-			    });
-		    }
-		   
-		    infowindow = new kakao.maps.InfoWindow({
-		        content: positions[i].title
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: positions[i].title // 인포윈도우에 표시할 내용
 		    });
 		    
 		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		}
+		
+		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, marker, infowindow) {
+		    return function() {
+		        infowindow.open(map, marker);
+		    };
+		}
+	
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(infowindow) {
+		    return function() {
+		        infowindow.close();
+		    };
+		}
+		
+		function map_move(a,b) {
+			//var imageSrc1 = "/resources/campTalk/qqq.png"; 
+			var imageSrc1 = "https://i.ibb.co/G2kJKb2/logo-campstory.png"; 
+			var imageSize1 = new kakao.maps.Size(30, 30);
+			var markerImage1 = new kakao.maps.MarkerImage(imageSrc1, imageSize1);
+			
+		    for ( var i = 0; i < markers.length; i++ ) {
+		       	markers[i].setMap(null);
+	   		}   
 		    
+		    markers = [];
+		   
+		  
+	     	for (var i = 0; i < positions.length; i ++) {
+			    // 마커를 생성합니다
+			    
+			    if( "("+a+", "+b+")" == positions[i].latlng  ){
+			    	var marker = new kakao.maps.Marker({
+				    	map: map,
+				        position: new kakao.maps.LatLng(a, b),
+				        image : markerImage1
+				    });
+			    } else {
+			    	 var marker = new kakao.maps.Marker({
+				    	map: map,
+				        position: positions[i].latlng,
+				        image : markerImage
+				    });
+			    }
+			   
+			    infowindow = new kakao.maps.InfoWindow({
+			        content: positions[i].title
+			    });
+			    
+			    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+			    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+			    
+			    
+			    markers.push(marker);
+			}  
+	     	 
+		    var moveLatLon = new kakao.maps.LatLng(a, b);
 		    
-		    markers.push(marker);
-		}  
-     	 
-	    var moveLatLon = new kakao.maps.LatLng(a, b);
-	    
-	    map.panTo(moveLatLon);
-	}   
-
+		    map.panTo(moveLatLon);
+		}   
+	</c:if>
 </script>
