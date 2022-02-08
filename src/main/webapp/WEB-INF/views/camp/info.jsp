@@ -147,7 +147,10 @@
    		<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="">즐겨찾기 </span>
    		
    	</div>
-   	
+   	<form action="update">
+   		<input type="hidden" name="contentid" value="${campDTO.contentid }" />
+   		<input type="submit" value="정보 수정 요청"/>
+   	</form>
    	</div>
    	</div>
    	<hr color="#DFD8CA" size="2"  align="center" />

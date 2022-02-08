@@ -11,28 +11,74 @@
 
 <body>
 <%@ include file = "../include/header.jsp" %>
-
+<div class="meminfodiv">
 <c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
-	id : ${memberDTO.id} <br />
-	전화번호 : ${memberDTO.phone} <br />
-	이메일 : ${memberDTO.email} <br />
-	생일 : <fmt:formatDate value="${memberDTO.birth}" type="date" /> <br />
-	지역 : ${memberDTO.location} <br />
-	가입일 : <fmt:formatDate value="${memberDTO.reg_date}" type="date" /> <br />
-	<br />
+	
+	
+	
+	<table class="meminfotbl" >
+		<tr>
+		<th class="meminfoth">ID</th>
+		<td>${memberDTO.id}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">전화번호</th>
+		<td>${memberDTO.phone}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">이메일</th>
+		<td>${memberDTO.email}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">생년월일</th>
+		<td><fmt:formatDate value="${memberDTO.birth}" type="date" /></td>
+		</tr>
+		<tr>
+		<th class="meminfoth">지역</th>
+		<td>${memberDTO.location}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">가입일</th>
+		<td><fmt:formatDate value="${memberDTO.reg_date}" type="date" /></td>
+		</tr>
+	
+	</table>
+	
 </c:if>
 
 <c:if test="${memberDTO.status eq '회원_kakao'}">
-	회원명 : ${sessionScope.memId} <br />
-	전화번호 : ${memberDTO.phone} <br />
-	이메일 : ${memberDTO.email} <br />
-	생일 : <fmt:formatDate value="${memberDTO.birth}" type="date" /> <br />
-	지역 : ${memberDTO.location} <br />
-	가입일 : <fmt:formatDate value="${memberDTO.reg_date}" type="date" /> <br />
-	<br />
+<table class="meminfotbl" >
+		<tr>
+		<th class="meminfoth">회원명</th>
+		<td>${sessionScope.memId}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">전화번호</th>
+		<td>${memberDTO.phone}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">이메일</th>
+		<td>${memberDTO.email}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">생년월일</th>
+		<td><fmt:formatDate value="${memberDTO.birth}" type="date" /></td>
+		</tr>
+		<tr>
+		<th class="meminfoth">지역</th>
+		<td>${memberDTO.location}</td>
+		</tr>
+		<tr>
+		<th class="meminfoth">가입일</th>
+		<td><fmt:formatDate value="${memberDTO.reg_date}" type="date" /></td>
+		</tr>
+	
+	</table>
+
+
 </c:if>
 
-
+<br/>
 <c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
 	<form action="/member/update" method="post" >
 
@@ -45,9 +91,9 @@
 </c:if>
 
 <c:if test="${memberDTO.status eq '회원_kakao'}">
-
+	<br/>
 	<a href="/member/update_kakao" >회원정보 수정</a>
 	
 </c:if>
-
+</div>
 </body>
