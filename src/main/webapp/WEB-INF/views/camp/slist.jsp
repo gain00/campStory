@@ -4,7 +4,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
     
+<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+	$("#searchbtn").click(function(){
 
+        if($("#searchbar").val() == '' ||$("#searchbar").val() == null  ||$("#searchbar").val() == 'undefied' ||$("#searchbar").val() == 'NaN' ||$("#searchbar").val() == ' '){
+            alert("검색어를 입력하십시오.");
+            return false;
+        
+        }else{    
+        	window.location="/camp/klist?keyword="+$("#searchbar").val();
+        	
+        }
+    });
+	});
+	
+	 </script>
 
 <body>
 <%@ include file = "../include/header.jsp" %>

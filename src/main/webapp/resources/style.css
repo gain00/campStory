@@ -474,6 +474,102 @@
 	
 	}
 	
+	.loginform {
+		width : 300px;
+		height : 320px;
+		margin : auto;
+		padding : 20px;
+		background-color: silver;
+		text-align:  center;
+		border-style: solid;
+		margin-top : 50px;
+		
+		
+	}
+	#meminput {
+		color:gray;
+		text-decoration: none;
+	}
 	
+	.idbox , .pwbox {
+		width : 250px;
+		height : 60px;
+		margin : auto;
+		margin-top : 10px;
+		padding : 30px;
+	}
 	
-    
+	.loginbtn {
+		width : 180px;
+		height : 50px;
+		margin-top: 20px;
+		border: none;
+	}
+	
+	.meminputform {
+		width : 500px;
+		height : 400px;
+		margin : auto;
+		padding : 20px;
+		text-align: center;
+		margin-top: 20px;
+		
+	}
+	
+	.meminputtbl {
+		width : 480px;
+		margin : auto;
+		background-color: white;
+		border: 1px solid;
+		border-collapse: collapse;
+		
+	}
+	.meminputtbl tr , .meminputtbl td , .meminputtbl th {
+		border: 1px solid;
+		padding: 10px;
+	}
+	
+	.meminputth {
+		background-color: silver;
+	}
+	
+	.memintputtxt {
+		width : 250px;
+		
+	}
+	.meminputbtn {
+		width : 180px;
+		height : 50px;
+		margin-top: 20px;
+		border: none;
+	}
+	.meminfodiv{
+		width : 510px;
+		height : 400px;
+		margin : auto;
+		text-align: right;
+		padding-top : 40px;
+	}
+	
+	.meminfodiv a {
+		color : black;
+		padding-right : 20px;
+		
+	}
+	
+    .meminfotbl {
+		width : 480px;
+		margin : auto;
+		background-color: white;
+		border: 1px solid;
+		border-collapse: collapse;
+		
+	}
+	.meminfotbl tr , .meminfotbl td , .meminfotbl th {
+		border: 1px solid;
+		padding: 10px;
+	}
+	
+	.meminfoth {
+		background-color: silver;
+	}

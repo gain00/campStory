@@ -16,10 +16,31 @@
 <body>
 <%@ include file = "../include/header.jsp" %>
 
+<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function() {
+	$("#searchbtn").click(function(){
+
+        if($("#searchbar").val() == '' ||$("#searchbar").val() == null  ||$("#searchbar").val() == 'undefied' ||$("#searchbar").val() == 'NaN' ||$("#searchbar").val() == ' '){
+            alert("검색어를 입력하십시오.");
+            return false;
+        
+        }else{    
+        	window.location="/camp/klist?keyword="+$("#searchbar").val();
+        	
+        }
+    });
+	});
+	
+	 </script>
+ 
+ 
 <div class ="search_keyword">
 	<form action="klist" method="get">
 		<input type="text" id="searchbar" name="keyword" placeholder="지역명 / 캠핑장 명을 검색 해 주세요"/>
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
+		
 	</form>
 	<div id="kwordList">
 		<c:forEach var="keywordlist" items="${keywordlist }" begin="0" end="4" step="1">
@@ -115,7 +136,10 @@
 <br/>
 	<div class="sortbox">
 		<b>캠핑장 리스트 (전체 캠핑장:${count })</b>
+		
 		<section class="sortsection"> 
+			<input type="button" value="신규 캠핑장 등록" onclick="window.location='input'" />
+			
 			<form action ="/camp/list" method="get">
 			<select name="sorter">
 				<option value="name">이름순
