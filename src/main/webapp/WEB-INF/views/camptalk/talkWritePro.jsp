@@ -3,5 +3,6 @@
     
 <script>
 	alert("작성완료");
-	window.location="/campTalk/talkList";
+	opener.parent.location.reload(); 
+	window.close();
 </script>

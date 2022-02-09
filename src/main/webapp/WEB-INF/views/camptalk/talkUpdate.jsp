@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    talk - write
+<link rel="stylesheet" type="text/css" href="/resources/style.css">
+    
     
 <form action="/campTalk/talkUpdatePro" method="post" name="cs">
-	<table border="0">
-		<tr><td>캠핑장 : </td><td>
+	<table class="talktable">
+		<tr><th>캠핑장</th><td>
 		
 		<label>${dto.camp }</label> 
 		
@@ -17,9 +18,9 @@
 			익명 <input type="checkbox" name="ano" value="ano" checked="checked">
 		</c:if>
 		
-		<tr><td>내용 : </td><td> <input type="text" name="content" value="${dto.content}"/> </td></tr>
-		<tr><td colspan="2">
-		<input type="submit" value="수정" />	<input type="button" value="취소" onclick="history.go(-1)"/>
+		<tr><th>내용</th><td> <input type="text" name="content" value="${dto.content}"/> </td></tr>
+		<tr><td colspan="2" class="talkwritebtn">
+		<input type="submit" value="수정" onclick="opener.parent.location.reload(); window.close();"/>	<input type="button" value="취소" onclick="history.go(-1)"/>
 		</td></tr>
 	</table>
 </form>

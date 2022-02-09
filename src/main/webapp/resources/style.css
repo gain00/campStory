@@ -483,7 +483,11 @@
 		text-align:  center;
 		border-style: solid;
 		margin-top : 50px;
-		
+		border-radius: 2em;
+		border-top-left-radius: 2em;
+		border-top-right-radius: 2em;
+		border-bottom-left-radius: 2em;
+		border-bottom-right-radius: 2em;
 		
 	}
 	#meminput {
@@ -573,3 +577,221 @@
 	.meminfoth {
 		background-color: silver;
 	}
+	
+	.memdeldiv{
+	
+		width : 500px;
+		height : 300px;
+		margin : auto;
+		text-align: center;
+		margin-top : 40px;
+		padding-top : 40px;
+		background-color: silver;
+		border-radius: 2em;
+		border-top-left-radius: 2em;
+		border-top-right-radius: 2em;
+		border-bottom-left-radius: 2em;
+		border-bottom-right-radius: 2em;
+	
+	}
+	
+	.memdeldiv form {
+		margin : auto;
+		padding : 20px;
+		width : 350px;
+		background-color: white;
+	}
+	.memdeldiv a {
+		color : gray;
+		margin-top : 30px;
+	}
+	
+	.camptalkctler {
+		margin : auto;
+		width : 1100px;
+		height : 40px;
+		margin-top : 30px;
+	}
+	.camptalkctltbl {
+		width : 1000;
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	.camptalkctltbl td {
+		
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.camptalkctltbl input :button {
+		border: 0;
+		background-Color: #D2D6D9;
+	}
+	
+	.camptalklistdiv {
+		width : 720px;
+		margin-top : 20px;
+		font-family: sans-serif;
+		font-style: normal;
+		font: bold;
+	}
+	
+	.camptalklisttbl {
+		margin : auto;
+		border: 1px solid;
+		border-collapse: collapse;
+		border-right: 3px solid;
+		border-bottom: 3px solid;
+	}
+	.camptalklistdiv td {
+		padding : 10px;
+		margin : 10px;
+	}
+	
+	
+	#locationbtn , #commentbtn {
+		vertical-align: bottom;
+		margin-top : 15px;
+	}
+	.camptalklistdiv a {
+		text-decoration: none;
+		text-decoration: underline none;
+	}
+	
+	.talkanswerform {
+		margin-top : 15px;
+		background-color: #d2d6d9;
+		padding-left : 20px;
+	}
+	
+	#answerInput {
+		padding-top : 10px;
+		margin-bottom : 10px;
+	}
+	
+	#ex1 {
+  background-color : #eee; 
+  border-radius: 50%;
+  width: 50px; height: 50px; 
+  display: table-cell; vertical-align: middle; text-align:center;
+}
+	.camptalkpaging {
+		margin-top : 20px;
+		padding-top : 30px;
+		word-spacing: 30px;
+	}
+	.camptalkpaging a{
+		color : black;
+		text-decoration: none;
+		font-size: x-large;
+		
+	}
+	.talktable{
+		
+		border: 1px solid;
+		border-collapse: collapse;
+		padding : 20px;
+		
+	}
+	
+	.talktable th {
+		background-color: #d2d6d9;
+		padding : 10px;
+	}
+	.talktable td {
+		padding : 10px;
+	}
+	
+	.talkwritecontent {
+		height : 70px;
+	}
+	.talkwritebtn {
+		text-align: center;
+	}
+	.campsearchdiv {
+		width : 500px;
+		margin : auto;
+		padding : auto;
+	}
+	.campsearchtbl {
+		margin:auto;
+		margin-top: 30px;
+		width : 360px;
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	.campsearchtbl2 {
+		margin:auto;
+		margin-top: 30px;
+		width : 500px;
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.campsearchtbl2 a{
+		color:black;
+	}
+	
+	.campsearchtbl2 td{
+		margin-top: 30px;
+		padding-top : 30px;
+		padding-left : 20px;
+	}
+	.CSwrite  {
+		width : 650px;
+		margin:auto;
+		margin-top: 30px;
+		text-align: center;
+	}
+	
+	
+	.CS_select {
+		width : 650px;
+		margin:auto;
+		margin-top: 30px;
+		margin-bottom : 10px;
+		display: flex;
+		justify-content :space-between;
+	}
+	
+	.writetblcolor ,.csanswer{
+		background-color: #d2d6d9;
+	}
+	
+	
+	.CSwrite_table {
+		width : 550px;
+		margin:auto;
+		margin-top: 30px;
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	
+	.CSwrite_table tr , .CSwrite_table td{
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.writetbltr td{
+		
+		
+		border-top : 7px inset white;
+		border-collapse: collapse;
+	}
+	
+	.myCs , .cs_search{
+		width : 650px;
+		margin:auto;
+		margin-top: 20px;
+		
+		text-align: center;
+	}
+	
+	.cs_search {
+		margin-bottom : 50px;
+	}
+	
+	 
+	

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="/resources/style.css">
 <script src="/resources/jquery/jquery-3.6.0.min.js"></script>
-
+<div class="campsearchdiv">
 <form action="/campTalk/campSearchList" method="post">
 	
-	<table border="1">
+	<table class="campsearchtbl">
 		<tr>
 			<td> 
 				<select name="areaEng" id="areaEng">
@@ -36,8 +37,8 @@
 	</table>
 </form>
 
-<table border=1>
-	<tr><th>캠프명</th><th width="200px">주소</th></tr>
+<table class="campsearchtbl2">
+	<tr><th width="180px">캠프명</th><th>주소</th></tr>
 
 	<c:if test="${empty list}">
 		<tr><td colspan="2">검색된 캠프가 없습니다</td></tr>
@@ -70,7 +71,7 @@
 	</td></tr>		
 	</c:if>
 </table>
-
+</div>
 <script>
 	function result(camp, contentid, donm){
 		opener.document.cs.camp.value = camp;
