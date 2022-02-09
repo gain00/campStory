@@ -25,6 +25,8 @@ public interface MemberService {
 	
 	public int memberDelete(String id);
 	
+	public int memberDelete_kakao(String id);
+	
 	public MemberDTO memberUserInfo(String id);
 	
 	public int memberUpdate(MemberDTO memberDTO);

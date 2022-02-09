@@ -61,6 +61,11 @@ public class MemberServiceImpl implements MemberService {
 	public int memberDelete(String id) {
 		return mapper.delete(id);
 	}
+	
+	@Override
+	public int memberDelete_kakao(String id) {
+		return mapper.delete_kakao(id);
+	}
 
 	@Override
 	public MemberDTO memberUserInfo(String id) {

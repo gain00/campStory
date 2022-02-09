@@ -27,6 +27,8 @@ public interface MemberMapper {
 	
 	public int delete(String id);
 	
+	public int delete_kakao(String id);
+	
 	public MemberDTO userInfo(String id);
 	
 	public int update(MemberDTO memberDTO);

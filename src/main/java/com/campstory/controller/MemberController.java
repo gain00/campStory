@@ -167,7 +167,7 @@ public class MemberController {
 		if(kakao == 1) {
 			model.addAttribute("result", 1);
 			session.invalidate();
-			service.memberDelete(dto.getId());
+			service.memberDelete_kakao(dto.getId());
 		}else {
 			model.addAttribute("result", service.memberLoginCheck(dto));
 			if(service.memberLoginCheck(dto) == 1) {
