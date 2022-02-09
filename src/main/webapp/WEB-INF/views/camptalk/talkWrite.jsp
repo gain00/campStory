@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="/resources/style.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
     
-    talk - write
+ 
     
 <script>
 	
@@ -60,13 +61,13 @@
 </script>    
 
 <form action="/campTalk/talkWritePro" method="post" name="cs" onsubmit="return campSearchCheck()" >
-	<table border="1">
-		<tr><td colspan="2">
+	<table class="talktable">
+		<tr><th colspan="2">
 			<input type="radio" name="sub" id="radioTalk" value="talk" checked="checked">톡작성
 			<input type="radio" name="sub" id="radioqe" value="qe">질문
-		</td></tr>
+		</th></tr>
 		
-		<tr><td>작성자 : </td>
+		<tr><th>작성자  </th>
 			<td>
 			
 			<input type="text" name="writer" id="writer" readonly="readonly" value="${sessionScope.memId}" />
@@ -74,7 +75,7 @@
 		</td></tr>
 			
 		<tbody id="qeInput" style="display:none;">
-	 		<tr><td>지역</td> 
+	 		<tr><th>지역</th> 
 			<td><select name="qeArea" id="qeArea" style="width:150px">
 				<option value="">지역</option>
 				<option value="서울시">서울</option>
@@ -97,7 +98,7 @@
 			</select></td></tr>
 		</tbody>
 		
-		<tr><td>캠핑장 : </td>
+		<tr><th>캠핑장</th>
 			<td> 
 			<input type="text" name="camp" id="camp" readonly="readonly" onclick="campSearch()" />
 			<input type="hidden" name="contentid" id="contentid" />
@@ -105,9 +106,9 @@
 			<input type="button" value="검색" onclick="campSearch()"/> 
 		</td></tr>
 			
-		<tr><td>내용 : </td>
-			<td> <input type="text" name="content" id="content"/> </td></tr>
-			<tr><td colspan="2">
+		<tr><th>내용</th>
+			<td> <input type="text" name="content" id="content" class="talkwritecontent"/> </td></tr>
+			<tr><td colspan="2" class="talkwritebtn">
 			<input type="submit" value="작성" />	
 			<input type="button" value="취소" onclick="history.go(-1)"/>
 		</td></tr>

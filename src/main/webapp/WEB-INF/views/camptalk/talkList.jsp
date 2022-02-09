@@ -5,15 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>CampStory - 캠프톡 목록</title>
 
-<style>
-#ex1 {
-  background-color : #eee; 
-  border-radius: 50%;
-  width: 50px; height: 50px; 
-  display: table-cell; vertical-align: middle; text-align:center;
-}
-</style>
 
 <script>
 
@@ -55,7 +48,8 @@
 	}
 	
 	function talkUpdate(num_talk){
-		window.location="/campTalk/talkUpdate?num_talk="+num_talk;
+		
+		window.open('/campTalk/talkUpdate?num_talk='+num_talk, 'camptalk 수정', 'width=283, height=133')
 		
 	}
 	
@@ -149,8 +143,10 @@
 </script>
 
 <%@ include file = "../include/header.jsp" %>
+
+<div class="camptalkctler">
 <form action="/campTalk/talkList" method="get" >
-	<table border="1" width="1000"  align="center">
+	<table class="camptalkctltbl">
 		<tr>
 		<td width="10%">${areaKor}
 		<c:if test="${empty areaKor}">
@@ -161,25 +157,26 @@
 		<td width="50%">
 				<input type="text" name="campS" id="campS" size="30" value="${campS}">
 				<input type="hidden" name="listType" value="1">
-				<input type="submit" value="검색">
-				<label >검색수 : ${page.totalCount}</label>
+				<input type="submit" value="검색">&nbsp;
+				<label >캠프톡 수 : ${page.totalCount}</label>
 		</td>
 		<td style="text-align:right;width:30%">
 			<input type="button" value="검색초기화" onclick="window.location='/campTalk/talkList'"/>
 			<c:if test="${sessionScope.memId != null}">
 				<input type="button" value="내글" onclick="window.location='/campTalk/talkList?listType=2'"/>
 				<input type="button" value="내관심" onclick="window.location='/campTalk/talkList?listType=3'"/>
-				<input type="button" value="톡작성" onclick="window.location='/campTalk/talkWrite?areaEng=${areaEng}'"/>	
+				<input type="button" value="톡작성" onclick="window.open('/campTalk/talkWrite?areaEng=${areaEng}', 'camptalk작성', 'width=340, height=260')"/>	
 			</c:if>
 		</td>
 		</tr>
 	</table>
 </form>
-
-<table border="0" width="1000" align="center">
+</div>
+<table border="0" width="1200" align="center" >
 	<tr><td width="70%" valign="top">
 		<c:forEach items="${list}" var="dto">
-			<table style="border: 1px solid #000; margin-top: 20px"   >
+		<div class="camptalklistdiv">
+			<table class="camptalklisttbl">
 			<tr>
 				<td height="100px" rowspan="2">
 				     <c:if test="${dto.firstimageurl == '0' }">
@@ -192,15 +189,17 @@
 				 
 				<td height="30px" width="500px">
 					<c:if test="${dto.contentid != 7502 }">
-						[${dto.area}]캠프명 : 
+						[${dto.area}]&nbsp;&nbsp;&nbsp;&nbsp;캠프명 : 
 						<a href="/camp/info?contentid=${dto.contentid}">${dto.camp}</a> &nbsp;&nbsp;
-						<input type="button" value="위치확인" onclick="map_move(${dto.mapy}, ${dto.mapx })">
+						
+						<input type="image" src = "/resources/campTalk/location.png" width="25px;" height="25px;" id="locationbtn" onclick="map_move(${dto.mapy}, ${dto.mapx })">
 					</c:if>
 					<c:if test="${dto.contentid == 7502 }">
 						[${dto.area}]
 					</c:if>
 					<c:if test="${dto.writer eq sessionScope.memId || sessionScope.memId == 'admin'}">
 						<input type="button" value="수정" onclick="talkUpdate(${dto.num_talk})">
+						
 						<input type="button" value="삭제" onclick="talkDelete(${dto.num_talk})">
 					</c:if>
 				
@@ -211,10 +210,10 @@
 				
 				<td> 
 					<c:if test="${dto.ano == 'id'}">
-						${dto.writer}
+						<strong>${dto.writer}</strong>
 					</c:if> 
 					<c:if test="${dto.ano == 'anonymity'}">
-						익명
+						<strong>익명</strong>
 					</c:if>
 				
 					<br/> <fmt:formatDate value="${dto.reg_time}" pattern="yy-MM-dd" />
@@ -227,10 +226,11 @@
 						${dto.content}
 					</c:if>
 					<c:if test="${dto.sub == 'qe'}">
-						[질문] ${dto.content} <br/>
+						[질문]&nbsp;&nbsp; ${dto.content} <br/>
 						<fmt:parseNumber value="${dto.num_talk}" var="num" type="number"/>
-						<input type="button" value="답글 ${map[num].size()}" onclick="answer(${dto.num_talk})">
-						<div id="answerForm${dto.num_talk}" class="pkg" style="display:none">
+						<input type="image" src = "/resources/campTalk/comment.png" width="25px;" height="25px;" id="commentbtn" onclick="answer(${dto.num_talk})">( ${map[num].size()} )
+						<div class="talkanswerform">
+						<div id="answerForm${dto.num_talk}" class="pkg" style="display:none" >
 							<div id="answerInput">
 							
 								답글쓰기 : <input type="text" name="aw" id="aw${dto.num_talk}"/> 
@@ -242,13 +242,14 @@
 							<div id="answerList${dto.num_talk}">
 							
 							 	<c:forEach items="${map[num]}" var="qnaList">
-									${qnaList.content} &nbsp;&nbsp;&nbsp;&nbsp; 작성자 :
+									 
 										<c:if test="${qnaList.ano == 'id' }">
-											${qnaList.writer}
+											<strong>${qnaList.writer}</strong>
 										</c:if>
 										<c:if test="${qnaList.ano == 'anonymity' }">
-											익명
+											<strong>익명</strong>
 										</c:if>
+										&nbsp;&nbsp;&nbsp;${qnaList.content}
 										<c:if test="${qnaList.writer == sessionScope.memId || sessionScope.memId =='admin'}">
 											<input type="button" value="삭제${qnaList.num_talkqna}" id="adBtn${qnaList.num_talkqna}" name="adBtn"/>
 											<%-- <input type="button" value="삭제" id="adBtn${dto.num_talk}" onclick="qnaDel(${qnaList.num_talkqna})"> --%>
@@ -257,6 +258,7 @@
 								</c:forEach>
 							</div>
 						</div>
+					</div>
 					</c:if>
 				</td>
 				<td>
@@ -281,6 +283,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>
 	</c:forEach>
 	</td>
 	<td>
@@ -289,7 +292,7 @@
 		
 	</td>
 	</tr>
-	<tr><td align="center">
+	<tr><td align="center" class="camptalkpaging">
 		<c:if test="${page.pageStart > 10}">
 			<a href="/campTalk/talkList?pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
 			<a href="/campTalk/talkList?listType=${listType}&campS=${campS}&areaEng=${areaEng}&pageNum=${page.pageStart - 10}">[이전]</a>
