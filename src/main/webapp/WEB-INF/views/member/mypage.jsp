@@ -56,11 +56,11 @@ function kakaoLogout() {
 	<c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
 		<a href="/member/logout" >로그아웃 하기</a><br /><br />
 		
-		<a href="/member/favorite" >즐겨찾기 모음</a><br /><br />
+		<a href="" >즐겨찾기 모음</a><br /><br />
 		
-		<a href="/member/userInfo" >회원정보 확인</a><br /><br />
+		<a href="" >회원정보 확인</a><br /><br />
 		
-		<a href="/member/delete" >탈퇴하기</a>
+		<a href="" >탈퇴하기</a>
 	</c:if>
 	
 	<c:if test="${memberDTO.status eq '회원_kakao'}">

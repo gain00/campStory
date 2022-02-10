@@ -263,7 +263,7 @@ from readdate a,camp_info1 b where a.contentid = b.contentid) WHERE  TO_DATE(rea
 
 <select id="getReadCountList" resultType="com.campstory.bean.CampDTO" >
 		<![CDATA[
-		SELECT CONTENTID, FACLTNM ,READCOUNT FROM camp_info1 order by readcount desc
+		SELECT CONTENTID, FACLTNM ,READCOUNT FROM camp_info1 where readcount > 0 order by readcount desc
 	
 	]]> 
 </select>
@@ -297,7 +297,7 @@ from readdate a,camp_info1 b where a.contentid = b.contentid) WHERE  TO_DATE(rea
 </select>
 <select id="getGoodList" resultType="com.campstory.bean.CampDTO" >
 		<![CDATA[
-		SELECT CONTENTID, FACLTNM ,Good FROM camp_info1 order by good desc
+		SELECT CONTENTID, FACLTNM ,Good FROM camp_info1 where good > 0 order by good desc 
 	
 	]]> 
 </select>

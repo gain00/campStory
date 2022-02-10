@@ -4,6 +4,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <%@ include file = "../include/header.jsp" %>
+<%@ include file = "../include/adminheader.jsp" %>
 talk-notify - list&nbsp;&nbsp;&nbsp;
 <form action="/admin/talkNotifyList" method="post">
 	<input type="radio" name="check" value="" onclick="radio(this.value)"> 전체

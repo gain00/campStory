@@ -285,7 +285,7 @@ public class AdminController {
 		List<CampTalkDTO> list = campservicetalk.getNotifyList(check, count);
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
-		return "campTalk/talkNotifyList";
+		return "admin/talkNotifyList";
 	}
 	
 	@RequestMapping("notifyDel")
