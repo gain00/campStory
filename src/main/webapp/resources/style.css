@@ -105,6 +105,7 @@
 	#camp_name{
 	width : 800px;
 	margin : auto;
+	margin-top : 20px;
 	}
 
 	.camp_info{
@@ -198,6 +199,7 @@
 	width : 900px;
 	height : 70px;
 	margin : auto;
+	margin-top : 20px;
 	
 	text-align : center;
 	}
@@ -282,8 +284,10 @@
     
     #userid {
     	margin : auto;
+    	margin-top : 10px;
     	text-align: right;
-    	width: 60px;
+    	width: 70px;
+    	padding-top: 5px;
     	
     }
     
@@ -768,11 +772,26 @@
 		border-collapse: collapse;
 		text-align: center;
 	}
+	.Noticewrite_table {
+		width : 650px;
+		margin:auto;
+		margin-top: 30px;
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: center;
+	}
 	
-	.CSwrite_table tr , .CSwrite_table td{
+	.Noticetbl td{
+		margin : 10px;
+		padding : 10px;
+	}
+	
+	.CSwrite_table tr , .CSwrite_table td,
+	.Noticewrite_table tr , .Noticewrite_table td{
 		border: 1px solid;
 		border-collapse: collapse;
 	}
+	
 	
 	.writetbltr td{
 		
@@ -792,6 +811,55 @@
 	.cs_search {
 		margin-bottom : 50px;
 	}
+	.membermenu {
+		position: absolute;
+		z-index: 3;
+		background-color: white;
+		text-align: center;
+		
+		margin-left : 40px;
+		
+	}
 	
-	 
-	
+	.membermenu input[type=checkbox]{
+	    display: none;
+	}
+	.membermenu input[type=checkbox]+label{
+	    padding-left: 25px;
+	    background-image: url('/resources/camp/images/menu-open.svg');
+	    background-repeat: no-repeat;
+	}
+	.membermenu input[type=checkbox]+label>span{
+	    font-weight: bold;
+	}
+	.membermenu input[type=checkbox]:checked+label{
+	    background-image: url('/resources/camp/images/menu-close.svg');
+	}
+	/* 메뉴 목록*/
+	.membermenu .menuitems{
+	    display: none;
+	}
+	.membermenu .menuitems{
+	    list-style: none;
+	}
+	.membermenu .menuitems li{
+	    padding: 5px;
+	}
+	.membermenu .menuitems li a{
+	    text-decoration: none;
+	    color: black;
+	    margin: auto;
+	    padding-right : 30px;
+	    
+	}
+	/* 메뉴 펼침 - 체크박스 체크되면 메뉴목록 표시 */
+	.membermenu input[type=checkbox]:checked~.menuitems{
+	    display: block;
+	}
+	.pagesubject {
+		width : 300px;
+		text-align: center;
+		padding : auto;
+		margin: auto;
+		margin-top: 30px;
+	}

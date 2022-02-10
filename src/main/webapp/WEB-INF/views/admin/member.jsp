@@ -105,7 +105,7 @@
 
 <body>
 <%@ include file = "../include/header.jsp" %>
-
+<%@ include file = "../include/adminheader.jsp" %>
 
 <center>
 	<b>회원 목록(전체 회원 수:${count })</b><br />

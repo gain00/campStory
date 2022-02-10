@@ -118,7 +118,7 @@
 <body>
 <%@ include file = "../include/header.jsp" %>
 
-
+<h1 class="pagesubject">Q&A</h1>
 <input type="hidden" id="pageSize" value="${pageSize}" />
 
 <c:if test="${sessionScope.memId != null}">

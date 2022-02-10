@@ -33,7 +33,8 @@ function kakaoLogout() {
     <a href="/camp/list" class="navbtn"><h3>캠핑장 정보</h3></a>
     <a href="" class="navbtn"><h3>캠핑 관련 정보</h3></a>
     <a href="/campTalk/talkList" class="navbtn"><h3>캠프톡</h3></a>
-    <a href="/cs/qna" class="navbtn"><h3>고객센터</h3></a>
+    <a href="/cs/qna" class="navbtn"><h3>QNA</h3></a>
+    <a href="/cs/notice" class="navbtn"><h3>공지사항</h3></a>
     <div class="navbtn">
 	<c:if test="${sessionScope.memId != null}">
 		<h5 class="navbtn" id="userid"> ${sessionScope.memId} 님</h5> 
@@ -44,14 +45,37 @@ function kakaoLogout() {
 	</c:if>
 	<c:if test="${sessionScope.memId != null}">
 	<c:if test="${sessionScope.status eq '회원'}">
-		<a href="/member/logout" class="navbtn"><input type="button" value="로그아웃" class="navbtn" id="logoutbtn"></a>
-		<a href="/member/mypage" class="navbtn"><h4 id="mypage">mypage</h4></a>
+		
+
+
+		<div class="membermenu">
+        <input type="checkbox" class="" id="collapsible">
+        <label for="collapsible"><span>회원메뉴</span></label>
+        <ul id="menuitems" class="menuitems">
+            <li><a href="/member/favorite">즐겨찾기</a></li>
+            <li><a href="/member/userInfo">회원정보</a></li>
+            <li><a href="/member/delete">회원정보탈퇴</a></li>
+           	<li><a href="/member/logout">로그아웃</a></li>
+            
+        </ul>        
+    </div>
+		
 		
 	</c:if>
 	
 	<c:if test="${sessionScope.status eq '회원_kakao'}">
-		<a href="/member/logout" onclick="kakaoLogout();" class="navbtn"><input type="button" value="로그아웃" class="navbtn" id="logoutbtn"></a>
-		<a href="/member/mypage" class="navbtn"><h4 id="mypage">mypage</h4></a>
+		<div class="membermenu">
+        <input type="checkbox" class="" id="collapsible">
+        <label for="collapsible"><span>회원메뉴</span></label>
+        <ul id="menuitems" class="menuitems">
+            <li><a href="/member/favorite">즐겨찾기</a></li>
+            <li><a href="/member/userInfo">회원정보</a></li>
+            <li><a href="/member/delete">회원정보탈퇴</a></li>
+           	<li><a href="/member/logout" onclick="kakaoLogout();">로그아웃</a></li>
+            
+        </ul>        
+    </div>
+	
 		
 	</c:if>
 	

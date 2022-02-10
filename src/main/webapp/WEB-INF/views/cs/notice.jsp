@@ -52,7 +52,7 @@
 </script>
 
 <head>
-<title>Notice 게시판</title>
+<title>CampStory-공지사항</title>
 
 </head>
 
@@ -62,20 +62,21 @@
 
 
 <input type="hidden" id="pageSize" value="${pageSize}" />
-
+<h1 class="pagesubject">공지사항</h1>
 <c:if test="${sessionScope.adminId != null}">
-	<center>
+	<div class="CSwrite">
+	
 		<a href="JavaScript:;" onclick="JavaScript: open_detail();">[공지글쓰기]</a>
 		
-		<table border="1" width="550" cellpadding="0" cellspacing="0" id="write_table" style="display: none;" > 
+		<table  id="write_table" style="display: none;" class="Noticewrite_table" > 
 			<tr height="30">
-				<td align="center"  width="150" >글제목</td>
+				<td align="center"   class="writetblcolor">글제목</td>
 			    <td  width="400" >
 			    	&nbsp;<input type="text" id="title" size="40" />
 				</td>
 			</tr>
 			<tr height="50">
-				<td align="center"  width="150" >글내용</td>
+				<td align="center"   class="writetblcolor">글내용</td>
 			    <td width="400" >
 			    	&nbsp;<textarea id="content" rows="5" cols="50"></textarea>
 			    </td>
@@ -86,14 +87,15 @@
 			    </td>
 			</tr>
 		</table>
-	</center>
+	
+	</div>
 </c:if>
 
 <br />
 
-<center>
+<div class="CS_select">
 	<b>글목록(전체 글:${count })</b><br />
-</center>
+</div>
 
 <c:if test="${count == 0}">
 	<table width="700" border="1" cellpadding="0" cellspacing="0" align="center" >
@@ -106,22 +108,22 @@
 </c:if>
 
 <c:if test="${count != 0}">
-	<table border="1" width="700" cellpadding="0" cellspacing="0" align="center" > 
+	<table border="1" width="700" cellpadding="0" cellspacing="0" align="center" class="Noticetbl" > 
 	    <tr height="30"> 
-	      <td align="center"  width="50"  >번 호</td>
-	      <td align="center"  width="450" >제   목</td> 
-	      <td align="center"  width="200" >작성시간</td> 
+	      <td align="center"  width="50"  class="writetblcolor">번 호</td>
+	      <td align="center"  width="450" class="writetblcolor">제   목</td> 
+	      <td align="center"  width="200" class="writetblcolor">작성시간</td> 
 	    </tr>
 		<c:forEach items="${list}" var="csDTO" varStatus="status" >
-			<tr height="30">
-			    <td align="center"  width="50" >${number - status.index}</td>
+			<tr height="30" class="writetbltr">
+			    <td align="center"  width="50" rowspan="2">${number - status.index}</td>
 			    <td  width="450" > ${csDTO.title}</td>
 			    <td align="center"  width="200">
 					<fmt:formatDate value="${csDTO.reg_time}" pattern="yy-MM-dd HH:mm" />
 				</td>
 			</tr>
 			<tr height="50">
-				<td align="center"  width="50" ></td>
+				
 			    <td colspan="2" width="650" >
 			    	${csDTO.content}
 			    	<c:if test="${sessionScope.adminId != null}">
