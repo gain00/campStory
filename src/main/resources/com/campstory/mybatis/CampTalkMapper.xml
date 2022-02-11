@@ -130,7 +130,7 @@
 	</insert>
 	
 	<select id="getTalkQnA" resultType="com.campstory.bean.CampTalkDTO">
-		select * from talkqna where num_talk = #{num_talk}
+		select * from talkqna where num_talk = #{num_talk} order by num_talkqna
 	</select>
 	
 	<!-- qnaDelete -->

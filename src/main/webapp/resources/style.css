@@ -695,6 +695,7 @@
 	.camptalklistdiv td {
 		padding : 10px;
 		margin : 10px;
+		text-align: left;
 	}
 	
 	
@@ -915,6 +916,7 @@
 		padding: 10px;
 		width : 900px;
 		margin-top: 30px;
+		margin-bottom : 160px;
 	}
 	
 	.admin_talk_div form {
@@ -930,7 +932,7 @@
 		border-collapse: collapse;
 	}
 	
-	.admin_talk_tbl th ,td{
+	.admin_talk_tbl th , .admin_talk_tbl td{
 		padding: 10px;
 		text-align: center;
 		
@@ -952,7 +954,7 @@
 		margin: auto;
 		padding: 10px;
 		text-align: center; 
-		
+		margin-bottom : 80px;
 	}
 	.admin_member_count{
 		width : 300px;
@@ -968,7 +970,7 @@
 		margin-top : 30px;
 	}
 	
-	.admin_member_tbl th ,td{
+	.admin_member_tbl th , .admin_member_tbl td{
 		padding: 10px;
 		text-align: center;
 		
@@ -1086,4 +1088,13 @@
 		 line-height: 50%;
 		
 	}
-	
+	.status_update {
+		width : 150px;
+		margin : auto;
+	}
+	.status_update input[type=submit] {
+		border : 0;
+		width : 150px;
+		height : 50px;
+		
+	}
