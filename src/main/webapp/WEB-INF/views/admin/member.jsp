@@ -107,9 +107,11 @@
 <%@ include file = "../include/header.jsp" %>
 <%@ include file = "../include/adminheader.jsp" %>
 
-<center>
+<h1 class="pagesubject">관리자 멤버 관리</h1>
+<div class="admin_member_div">
+<div class="admin_member_count">
 	<b>회원 목록(전체 회원 수:${count })</b><br />
-</center>
+</div>
 
 <c:if test="${count == 0}">
 	<table width="700" border="1" cellpadding="0" cellspacing="0" align="center" >
@@ -122,23 +124,23 @@
 </c:if>
 
 <c:if test="${count != 0}">
-	<table border="1" width="1500" cellpadding="0" cellspacing="0" align="center" > 
+	<table class="admin_member_tbl" > 
 	    <tr height="30"> 
-	      <td align="center"  width="50"  >번 호</td>
-	      <td align="center"  width="150" >아이디</td> 
-	      <td align="center"  width="150" >상 태</td> 
-	      <td align="center"  width="150" >상태 변경</td>
-	      <td align="center"  width="150" >정지 횟수</td> 
-	      <td align="center"  width="200" >정지일</td> 
-	      <td align="center"  width="200" >정지일 정하기</td>
-	      <td align="center"  width="150" >수정 하기</td>
-	      <td align="center"  width="300" >정지 하기</td>
+	      <th>번 호</th>
+	      <th>아이디</th> 
+	      <th>상 태</th> 
+	      <th>상태 변경</th>
+	      <th>정지 횟수</th> 
+	      <th>정지일</th> 
+	      <th>정지일 정하기</th>
+	      <th>수정 하기</th>
+	      <th>정지 하기</th>
 	    </tr>
 		<c:forEach items="${list}" var="memberDTO" varStatus="status" >
 			<tr height="30">
-			    <td align="center"  width="50" >${number - status.index}</td>
-			    <td align="center" width="150" > ${memberDTO.id}</td>
-			    <td align="center" width="150" > 
+			    <td>${number - status.index}</td>
+			    <td> ${memberDTO.id}</td>
+			    <td> 
 		    		<c:if test="${!fn:contains(memberDTO.status, 'kakao')}">
 				    	<select id="status_a${status.index}" >
 							<option value="관리자" 	${memberDTO.status eq '관리자'? 	'selected' : ''} >관리자</option>
@@ -165,7 +167,7 @@
 						<option value="2" 	${memberDTO.warn == 2? 	'selected' : ''} >2</option>
 					</select>
 			    </td>
-			    <td align="center"  width="200">
+			    <td>
 					<c:if test="${memberDTO.warn == 0}">
 						정지 이력 없음
 					</c:if>
@@ -176,12 +178,12 @@
 				<td align="center"  width="200" >
 					<input type="date" id="ban_date_b${status.index}" />
 				</td>
-				<td width="150" >
+				<td>
 					&nbsp;
 			    	<input type="button" value="수정 하기" id="${status.index}" class="cc" />
 			    	<label id="result_c${status.index}"></label>
 	      		</td>
-	      		<td width="300" >
+	      		<td>
 	      			<input type="hidden" id="id_b${status.index}" value="${memberDTO.id}" />&nbsp;
 	      			<c:if test="${memberDTO.reason eq null}">
 						<input type="text" id="reason_b${status.index}" class="bb" size="15" value="정지 사유"/>
@@ -212,5 +214,6 @@
 	</c:if>
 	</center>
 </c:if>
-
+</div>
+<%@ include file = "../include/footer.jsp" %>
 </body>

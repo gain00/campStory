@@ -4,8 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <script src="/resources/jquery/jquery-3.6.0.min.js"></script>
-<h1> update.jsp 입니다. </h1>
+<%@ include file = "../include/header.jsp" %>
+<title>캠핑장 정보 수정</title>
 
+
+<h1 class="pagesubject">캠핑장 정보 수정</h1>
+<div class="camp_input">
 <div class="map_wrap">
     <div id="map" style="width:300px;height:300px;position:relative;overflow:hidden;"></div>
 
@@ -624,6 +628,7 @@
 	</form>
 
 
+</div>
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=83db66c074a5f9d9786237eec858c915&libraries=services"></script>

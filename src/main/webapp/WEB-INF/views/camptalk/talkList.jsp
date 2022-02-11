@@ -307,6 +307,7 @@
 		</c:if>	
 	</td></tr>
 </table>
+<%@ include file = "../include/footer.jsp" %>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=27b5778788b34c5b2d22e5d6adab50e0"></script>
 <script>

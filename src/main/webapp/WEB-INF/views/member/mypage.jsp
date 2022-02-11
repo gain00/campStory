@@ -78,3 +78,4 @@ function kakaoLogout() {
 </c:if>
 
 </body>
+<%@ include file = "../include/footer.jsp" %>

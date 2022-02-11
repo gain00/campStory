@@ -692,5 +692,6 @@
         <h2>${campDTO.facltnm} 블로그 리뷰</h2>
         </div>
 </body>
+<%@ include file = "../include/footer.jsp" %>
 </html>      
 

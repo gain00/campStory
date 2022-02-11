@@ -684,6 +684,7 @@
         <input type="submit" value="캠핑장 등록">
         </form>
         </div>
+        <%@ include file = "../include/footer.jsp" %>
 </body>
 </html>      
 

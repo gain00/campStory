@@ -133,12 +133,12 @@
     
  <br/>
 <hr color="#DFD8CA" size="2"  align="center" />
-<br/>
+
 	<div class="sortbox">
 		<b>캠핑장 리스트 (전체 캠핑장:${count })</b>
 		
 		<section class="sortsection"> 
-			<input type="button" value="신규 캠핑장 등록" onclick="window.location='input'" />
+			<input type="button" value="신규 캠핑장 등록" onclick="window.location='input'" id="newcampbtn"/>
 			
 			<form action ="/camp/list" method="get">
 			<select name="sorter">
@@ -261,8 +261,10 @@
    </c:if>
 </c:if>
 </div>
+<br/>
 </center>
 </body>
+<%@ include file = "../include/footer.jsp" %>
 
 <script type="text/javascript">
 	var bDisplay = true;

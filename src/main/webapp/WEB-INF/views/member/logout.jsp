@@ -10,7 +10,12 @@
 <body>
 <%@ include file = "../include/header.jsp" %>
 
-<h1>로그아웃 창 입니다. 자동으로 메인화면으로 돌아갑니다.</h1>
+<div class="logout">
+<img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="300px"/>
+<h1>로그아웃 되었습니다. </h1>
+<h1>이용해주셔서 감사합니다.</h1>
+</div>
 <meta http-equiv="Refresh" content="2;url=/main">
 
 </body>
+<%@ include file = "../include/footer.jsp" %>

@@ -10,7 +10,6 @@
     <a href="camp" class="ad_navbtn"><h3 class="h3_adnav">캠핑장 관리</h3></a>
     <a href="" class="ad_navbtn"><h3 class="h3_adnav">캠핑 정보 관리</h3></a>
     <a href="/admin/talkNotifyList" class="ad_navbtn"><h3 class="h3_adnav">캠프톡 관리</h3></a>
-    <a href="" class="ad_navbtn"><h3 class="h3_adnav">고객센터 관리</h3></a>
     <a href="member" class="ad_navbtn"><h3 class="h3_adnav">멤버 관리</h3></a>
     
 </nav>

@@ -6,7 +6,10 @@
 <%@ include file = "../include/header.jsp" %>
 <%@ include file = "../include/adminheader.jsp" %>
 
+<title>관리자 메인</title>
 
+
+<h1 class="pagesubject">관리자 페이지</h1>
 
 <div class="admin_stats">
 <h2>CampStory 통계</h2>
@@ -139,4 +142,4 @@
 			</table>
 		</div>
 </div>
-
+<%@ include file = "../include/footer.jsp" %>

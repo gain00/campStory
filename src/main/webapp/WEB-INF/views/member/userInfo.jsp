@@ -11,6 +11,7 @@
 
 <body>
 <%@ include file = "../include/header.jsp" %>
+<h1 class="pagesubject">회원정보</h1>
 <div class="meminfodiv">
 <c:if test="${memberDTO.status eq '회원' || memberDTO.status eq '관리자'}">
 	
@@ -83,8 +84,8 @@
 	<form action="/member/update" method="post" >
 
 		<input type="hidden" name="id" value="${sessionScope.memId}" />
-		${sessionScope.memId}님 회원정보를 수정을 원하시면 비밀번호를 입력바랍니다.<br /><br />
-		pw : <input type="password" name="pw" /> <br /><br />
+		<p id="rq_pw">${sessionScope.memId}님 회원정보를 수정을 원하시면 비밀번호를 입력바랍니다.</p><br />
+		비밀번호 : <input type="password" name="pw" /> <br /><br />
 			 <input type="submit" value="수정하기" />
 			
 	</form>
@@ -97,3 +98,4 @@
 </c:if>
 </div>
 </body>
+<%@ include file = "../include/footer.jsp" %>

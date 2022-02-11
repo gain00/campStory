@@ -8,9 +8,11 @@
 
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지 - 캠핑장</title>
+<title>관리자 캠핑장 관리</title>
 </head>
 <body>
+
+<h1 class="pagesubject">관리자 캠핑장 관리</h1>
 <div class="admincampdiv">
 
 	<div class="newcamp">
@@ -74,7 +76,7 @@
 
 	<div class="delcamp">
 	<h3>캠핑장 정보 삭제</h3>
-		<form action="camp" method="get">
+		<form action="camp" method="get" class="delcamp_form">
 		<input type="text" id="searchbar" name="keyword" list="facltnmData"/>
 		<datalist id="facltnmData">
 				<c:forEach var="facltnmData" items="${facltnmData }">
@@ -118,3 +120,4 @@
 </div>	
 
 </body>
+<%@ include file = "../include/footer.jsp" %>
