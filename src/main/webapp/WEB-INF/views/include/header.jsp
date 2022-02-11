@@ -70,7 +70,7 @@ function kakaoLogout() {
         <ul id="menuitems" class="menuitems">
             <li><a href="/member/favorite">즐겨찾기</a></li>
             <li><a href="/member/userInfo">회원정보</a></li>
-            <li><a href="/member/delete">회원정보탈퇴</a></li>
+            <li><a href="/member/delete">회원탈퇴</a></li>
            	<li><a href="/member/logout" onclick="kakaoLogout();">로그아웃</a></li>
             
         </ul>        
