@@ -93,6 +93,11 @@
 		var inputNum = btnId.substr(5);
 		var contentCheck = $("#aw"+inputNum).val();
 		
+		<c:if test="${sessionScope.memId == null}">
+        alert("로그인 후 사용");
+        return false;
+   		 </c:if>
+   		 
 		if(contentCheck == ""){
 			alert("답글 내용 입력");
 			return false;
@@ -165,7 +170,7 @@
 			<c:if test="${sessionScope.memId != null}">
 				<input type="button" value="내글" onclick="window.location='/campTalk/talkList?listType=2'"/>
 				<input type="button" value="내관심" onclick="window.location='/campTalk/talkList?listType=3'"/>
-				<input type="button" value="톡작성" onclick="window.open('/campTalk/talkWrite?areaEng=${areaEng}', 'camptalk작성', 'width=340, height=260')"/>	
+				<input type="button" value="톡작성" onclick="window.open('/campTalk/talkWrite?areaEng=${areaEng}', 'camptalk작성', 'width=360, height=280')"/>	
 			</c:if>
 		</td>
 		</tr>
@@ -251,7 +256,7 @@
 										</c:if>
 										&nbsp;&nbsp;&nbsp;${qnaList.content}
 										<c:if test="${qnaList.writer == sessionScope.memId || sessionScope.memId =='admin'}">
-											<input type="button" value="삭제${qnaList.num_talkqna}" id="adBtn${qnaList.num_talkqna}" name="adBtn"/>
+											<input type="button" value="삭제" id="adBtn${qnaList.num_talkqna}" name="adBtn"/>
 											<%-- <input type="button" value="삭제" id="adBtn${dto.num_talk}" onclick="qnaDel(${qnaList.num_talkqna})"> --%>
 										</c:if>
 									<br/>

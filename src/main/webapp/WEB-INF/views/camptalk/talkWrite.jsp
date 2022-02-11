@@ -8,10 +8,11 @@
     
 <script>
 	
-	var popupX = (document.body.offsetWidth / 2) - (500/2);
-	var popupY = (window.screen.height /2) - (500/2);
+	
 	
 	function campSearch(){
+		var popupX = (document.body.offsetWidth / 2) - (500/2);
+		var popupY = (window.screen.height /2) - (500/2);
 		url = "/campTalk/campSearch?areaEng=${areaEng}"
 		open(url,"캠핑장 검색","width=600,height=400,left="+popupX+",top="+popupY+",scrollbars=yes");
 	}
@@ -110,7 +111,7 @@
 			<td> <input type="text" name="content" id="content" class="talkwritecontent"/> </td></tr>
 			<tr><td colspan="2" class="talkwritebtn">
 			<input type="submit" value="작성" />	
-			<input type="button" value="취소" onclick="history.go(-1)"/>
+			<input type="button" value="취소" onclick="self.close()"/>
 		</td></tr>
 	</table>
 </form>
