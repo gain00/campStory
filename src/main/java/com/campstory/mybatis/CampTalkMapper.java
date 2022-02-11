@@ -55,8 +55,4 @@ public interface CampTalkMapper {
 	
 	public int setNotify(int num_talk);
 	
-	
-	
-	
-	public int aa(String date);
 }	

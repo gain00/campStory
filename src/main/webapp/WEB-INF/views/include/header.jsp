@@ -91,3 +91,6 @@ function kakaoLogout() {
 
 <hr color="#DFD8CA" size="2" align="center" style="margin-bottom: 0px";/>
 
+<c:if test="${sessionScope.memId != null}">
+	<%@ include file = "sideChat.jsp" %>
+</c:if>

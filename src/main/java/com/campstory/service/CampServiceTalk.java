@@ -49,6 +49,4 @@ public interface CampServiceTalk {
 	
 	public int setNotify(int num_talk);
 	
-	
-	public int aa(String date);
 }
