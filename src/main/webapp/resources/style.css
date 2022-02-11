@@ -1098,3 +1098,56 @@
 		height : 50px;
 		
 	}
+	
+	
+	
+	input[id="menuicon"] {
+	display: none
+	}
+	
+	input[id="menuicon"]+label {
+		display: block;
+		margin: 10px;
+		width: 30px;
+		height: 30px;
+		position: fixed;
+		right: 20px;
+		top: 140px;
+		transition: all .35s;
+		cursor: pointer;
+		z-index:2;
+	}
+	
+	input[id="menuicon"]:checked+label {
+		z-index: 2;
+		margin: 10px;
+		width: 24px;
+		height: 24px;
+		position: fixed;
+		right: 330px;
+	}
+	
+	div[class="sidebar"] {
+		width: 300px;
+		height: 70%;
+		background: #fff;
+		position: fixed;
+		top: 150px;
+		right: -300px;
+		z-index: 1;
+		transition: all .53s;
+	}
+	
+	input[id="menuicon"]:checked+label+div {
+		right: 0px;
+	}
+	
+	form[class="chat_form"]{
+		margin-top: 20px;	
+		margin-left: 20px;	
+		
+	}
+	
+	.chat_textArea{
+	margin-left: 20px;	
+	}

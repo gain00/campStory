@@ -143,11 +143,6 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 	}
 
 	@Override
-	public int aa(String date) {
-		return mapper.aa(date);
-	}
-
-	@Override
 	public int setNotify(int num_talk) {
 		return mapper.setNotify(num_talk);
 	}
