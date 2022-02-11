@@ -63,3 +63,4 @@ function kakaoLogin() {
 <a href="/member/input" id="meminput">회원가입</a>
 </div>
 </body>
+<%@ include file = "../include/footer.jsp" %>

@@ -4,8 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <script src="/resources/jquery/jquery-3.6.0.min.js"></script>
-<h1> input.jsp 입니다. </h1>
+<%@ include file = "../include/header.jsp" %>
 
+<title>신규 캠핑장 등록</title>
+
+
+<h1 class="pagesubject">신규 캠핑장 등록</h1>
+
+<div class="camp_input">
 <div class="map_wrap">
     <div id="map" style="width:300px;height:300px;position:relative;overflow:hidden;"></div>
 
@@ -271,7 +277,7 @@
 				<input type="checkbox" name="themaenvrncl" value="봄꽃" id="themaenvrncl_check">봄 꽃여행
                 <input type="checkbox" name="themaenvrncl" value="물놀이" id="themaenvrncl_check">여름 물놀이
                 <input type="checkbox" name="themaenvrncl" value="단풍" id="themaenvrncl_check">가을 단풍명소
-                <input type="checkbox" name="themaenvrncl" value="눈꽃" id="themaenvrncl_check">겨울 눈꽃명소
+                <input type="checkbox" name="themaenvrncl" value="눈꽃" id="themaenvrncl_check">겨울 눈꽃명소 <br/>
                 <input type="checkbox" name="themaenvrncl" value="낚시" id="themaenvrncl_check">낚시
                 <input type="checkbox" name="themaenvrncl" value="걷기" id="themaenvrncl_check">걷기길
                 <input type="checkbox" name="themaenvrncl" value="일출" id="themaenvrncl_check">일출명소
@@ -623,7 +629,8 @@
 
 
 </div>
-
+</div>
+<%@ include file = "../include/footer.jsp" %>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=83db66c074a5f9d9786237eec858c915&libraries=services"></script>
         
 	

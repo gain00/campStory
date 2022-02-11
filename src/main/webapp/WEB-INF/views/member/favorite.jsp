@@ -32,9 +32,10 @@
 <body>
 <%@ include file = "../include/header.jsp" %>
 
-<center>
+<h1 class="pagesubject">좋아요 / 즐겨찾기</h1>
+<div class="favorite_div">
 <a href="JavaScript:;" onclick="JavaScript: open_like();">[좋아요 리스트]</a> 
-</center>
+<br/>
 
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center" id="like_table" style="display: none;" > 
 <tr>
@@ -119,9 +120,9 @@
 
 <br />
 
-<center>
+
 <a href="JavaScript:;" onclick="JavaScript: open_fav();">[즐겨찾기 리스트]</a> 
-</center>
+<br/>
 
 
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center" id="fav_table" style="display: none;" > 
@@ -203,5 +204,6 @@
 </td>
 </tr>	
 </table>
-
+</div>
 </body>
+<%@ include file = "../include/footer.jsp" %>

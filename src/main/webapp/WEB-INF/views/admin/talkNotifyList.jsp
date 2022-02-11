@@ -5,57 +5,64 @@
 
 <%@ include file = "../include/header.jsp" %>
 <%@ include file = "../include/adminheader.jsp" %>
-talk-notify - list&nbsp;&nbsp;&nbsp;
-<form action="/admin/talkNotifyList" method="post">
-	<input type="radio" name="check" value="" onclick="radio(this.value)"> 전체
-	<input type="radio" name="check" value="check" onclick="radio(this.value)"> 대기
-	<input type="radio" name="check" value="hold" onclick="radio(this.value)"> 보류
-	<br/>
+<title>관리자 캠프톡 관리</title>
 
-	<label>신고 수 : </label>
-	<input type="number" id="count" name="count" size="10" value="${count}" style="width:50px"/>
-	<input type="submit" value="검색"/>
-
-</form>
-
-<table border="1">
-	<tr>
-		<th>지역</th>
-		<th>캠프명</th>
-		<th>종류</th>
-		<th>내용</th>
-		<th>작성자</th>
-		<th>익명여부</th>
-		<th>신고수</th>
-		<th>삭제여부</th>
-		<th>변경</th>
-	</tr>
-	<c:forEach items="${list}" var="dto">
+<h1 class="pagesubject">관리자 캠프톡 관리</h1>
+<div class="admin_talk_div">
+	<div>
+		<form action="/admin/talkNotifyList" method="post">
+			<input type="radio" name="check" value="" onclick="radio(this.value)"> 전체
+			<input type="radio" name="check" value="check" onclick="radio(this.value)"> 대기
+			<input type="radio" name="check" value="hold" onclick="radio(this.value)"> 보류
+			<br/>
+		
+			<label>신고 수 : </label>
+			<input type="number" id="count" name="count" size="10" value="${count}" style="width:50px"/>
+			<input type="submit" value="검색"/>
+		
+		</form>
+	</div>
+	<div>
+	<table class="admin_talk_tbl">
 		<tr>
-			<td>${dto.area }</td>
-			<td>${dto.camp }</td>
-			<td>${dto.sub }</td>
-			<td>${dto.content }</td>
-			<td>${dto.writer }</td>
-			<td>
-				<c:if test="${dto.ano == 'id'}">공개</c:if> 
-				<c:if test="${dto.ano == 'ano'}">익명</c:if>
-			</td>
-			<td>${dto.cnt}</td>
-			<td>
-				<c:if test="${dto.notifycheck == 'check'}">대기</c:if> 
-				<c:if test="${dto.notifycheck == 'hold'}">보류</c:if>
-			</td>
-			<td>
-				<c:if test="${dto.notifycheck != 'hold'}">
-				<input type="button" value="보류" onclick="hold(${dto.num_talk})" /></c:if> 
-				<input type="button" value="삭제" onclick="del(${dto.num_talk})" />
-			</td>
+			<th>지역</th>
+			<th>캠프명</th>
+			<th>종류</th>
+			<th>내용</th>
+			<th>작성자</th>
+			<th>익명여부</th>
+			<th>신고수</th>
+			<th>삭제여부</th>
+			<th>변경</th>
 		</tr>
-	</c:forEach>
-
-</table>
-
+		<c:forEach items="${list}" var="dto">
+			<tr>
+				<td class="tbl_firstLine">${dto.area }</td>
+				<td>${dto.camp }</td>
+				<td>${dto.sub }</td>
+				<td>${dto.content }</td>
+				<td>${dto.writer }</td>
+				<td>
+					<c:if test="${dto.ano == 'id'}">공개</c:if> 
+					<c:if test="${dto.ano == 'ano'}">익명</c:if>
+				</td>
+				<td>${dto.cnt}</td>
+				<td>
+					<c:if test="${dto.notifycheck == 'check'}">대기</c:if> 
+					<c:if test="${dto.notifycheck == 'hold'}">보류</c:if>
+				</td>
+				<td>
+					<c:if test="${dto.notifycheck != 'hold'}">
+					<input type="button" value="보류" onclick="hold(${dto.num_talk})" /></c:if> 
+					<input type="button" value="삭제" onclick="del(${dto.num_talk})" />
+				</td>
+			</tr>
+		</c:forEach>
+	
+	</table>
+	</div>
+</div>
+<%@ include file = "../include/footer.jsp" %>
 
 <script>
 	function del(num){

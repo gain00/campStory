@@ -137,7 +137,7 @@
 	</table>
 </c:if>
 
-<br />
+<br /><br /><br />
 
 <c:if test="${count > 0}">
 	<center>
@@ -152,4 +152,6 @@
 	</c:if>
 	</center>
 </c:if>
+<br /><br />
 
+<%@ include file = "../include/footer.jsp" %>

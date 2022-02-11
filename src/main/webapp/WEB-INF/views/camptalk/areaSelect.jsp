@@ -44,9 +44,11 @@
 		href="javascript:void(0)" alt="제주도" onmouseover="return mapimg('map17.png');" onmouseout="return mapimg('map00.png');" onfocus="areaS('Jeju');"/>
 
 	</map>
+	
 </section>
+	<input type="button" value="닫기" onclick="javascript:window.close()" >
 
-<input type="button" value="닫기" onclick="javascript:window.close()">
+
 <script>
 	function mapimg(img) {
 		$('#map_change').attr('src','<%=map%>' + img);

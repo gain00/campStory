@@ -123,8 +123,14 @@
     
  <br/>
 <hr color="#DFD8CA" size="2"  align="center" />
-<br/>    
-<b>캠핑장 리스트 (전체 캠핑장:${searchcount })</b>
+
+<div class="sortbox">
+	<b>캠핑장 리스트 (전체 캠핑장:${searchcount })</b>
+		<section class="sortsection"> 
+			<input type="button" value="신규 캠핑장 등록" onclick="window.location='input'" class="newcampbtn" id="notlist_newcampbtn"/>
+		</section>
+</div>
+
 <hr color="#DFD8CA" size="2"  align="center" />
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
     
@@ -231,8 +237,10 @@
    </c:if>
 </c:if>
 </div>
+<br/>
 </center>
 </body>
+<%@ include file = "../include/footer.jsp" %>
 
 <script type="text/javascript">
 	var bDisplay = true;
