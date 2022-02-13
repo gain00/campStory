@@ -198,4 +198,56 @@ public class CsController {
 		return "redirect:/cs/qna";
 	}
 
+	//notice Code
+	
+	@RequestMapping("notice")
+	public String notice(String pageNum, Model model) {
+		
+		if (pageNum == null) {
+	        pageNum = "1";
+	    }
+	    model.addAttribute("pageNum", pageNum);
+	    
+	    int pageSize = 5;
+	    model.addAttribute("pageSize", pageSize);
+	    int currentPage = Integer.parseInt(pageNum);
+	    int startRow = (currentPage - 1) * pageSize + 1;
+	    int endRow = currentPage * pageSize;
+	    int count = 0;
+	    int number=0;
+	    
+	    count = service.noticeAllCount();
+	    model.addAttribute("count", count);
+		if (count > 0) {
+			List<CsDTO> list = service.noticeList(startRow, endRow);
+		    model.addAttribute("list", list);
+			number=count-(currentPage-1)*pageSize;
+			model.addAttribute("number", number);
+			
+	        int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
+	        int pageBlock= 3;
+	        int startPage = (int)((currentPage-1)/pageBlock)*pageBlock+1;
+	        int endPage = startPage + pageBlock-1;
+	        if (endPage > pageCount) endPage = pageCount;
+	        model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("pageCount", pageCount);
+			model.addAttribute("pageBlock", pageBlock);
+		}
+	    
+		return "cs/notice";
+	}
+	
+	@RequestMapping("noticeWritePro")
+	public @ResponseBody int noticeWritePro(String title, String content) {
+		autoDTO.setTitle(title);
+		autoDTO.setContent(content);
+		return service.noticeInsert(autoDTO);
+	}
+	
+	@RequestMapping("noticeDeletePro")
+	public String noticeDeletePro(int num) {
+		service.noticeDelete(num);
+		return "redirect:/cs/notice";
+	}
 }

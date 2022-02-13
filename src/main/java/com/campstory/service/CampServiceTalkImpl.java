@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.campstory.bean.CampTalkDTO;
 import com.campstory.mybatis.CampTalkMapper;
@@ -26,48 +27,124 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 	}
 
 	@Override
-	public int talkWrite(CampTalkDTO dto) {
-		return mapper.talkWrite(dto);
-	}
-
-	@Override
-	public List<CampTalkDTO> getCampSearchList(String camp, String area, int rowStart, int rowEnd) {
-		return mapper.getCampSearchList(camp, area, rowStart, rowEnd);
-	}
-
-	@Override
 	public int getTotalCount(String area) {
 		return mapper.getTotalCount(area);
 	}
 
 	@Override
-	public int goodListInput(String id, int num_talk) {
-		return mapper.goodListInput(id, num_talk);
+	public List<CampTalkDTO> getMyTalkList(String area, String id, int rowStart, int rowEnd) {
+		return mapper.getMyTalkList(area, id, rowStart, rowEnd);
 	}
 
 	@Override
-	public int talkGoodUp(int num_talk) {
-		return mapper.talkGoodUp(num_talk);
+	public int getMyTalkCount(String id) {
+		return mapper.getMyTalkCount(id);
+	}
+	
+	@Override
+	public List<CampTalkDTO> getMyGoodList(String area, String id, int rowStart, int rowEnd) {
+		return mapper.getMyGoodList(area, id, rowStart, rowEnd);
+	}
+	
+	@Override
+	public int getMyGoodCount(String id) {
+		return mapper.getMyGoodCount(id);
+	}
+	
+	@Override
+	public List<CampTalkDTO> getCampSearch(String camp, String area, int rowStart, int rowEnd) {
+		return mapper.getCampSearch(area, camp, rowStart, rowEnd);
+	}
+	
+	@Override
+	public int getCampSearchCount(String area, String camp) {
+		return mapper.getCampSearchCount(area, camp);
 	}
 
 	@Override
-	public int talkGoodDown(int num_talk) {
-		return mapper.talkGoodDown(num_talk);
+	public List<CampTalkDTO> campInfoSearch(String camp, String area, int rowStart, int rowEnd) {
+		return mapper.campInfoSearch(camp, area, rowStart, rowEnd);
 	}
-
+	
 	@Override
-	public int goodListDel(String id, int num_talk) {
-		return mapper.goodListDel(id, num_talk);
+	public int campInfoSearchCount(String area, String camp) {
+		return mapper.campInfoSearchCount(area, camp);
 	}
-
+	
+	/* @Transactional(transactionManager="transacitonManager") */
+	@Override
+	public int talkGoodUp(String id, int num_talk) {
+		mapper.talkGoodUp(num_talk);
+		mapper.goodListInput(id, num_talk);
+		return 1;
+	}
+	
+	/* @Transactional(transactionManager="transacitonManager") */
+	@Override
+	public int talkGoodDown(String id, int num_talk) {
+		mapper.talkGoodDown(num_talk);
+		mapper.goodListDel(id, num_talk);
+		return 1;
+	}
+	
 	@Override
 	public List<CampTalkDTO> goodListAll() {
 		return mapper.goodListAll();
 	}
+	
+	@Override
+	public int talkWrite(CampTalkDTO dto) {
+		return mapper.talkWrite(dto);
+	}
 
 	@Override
-	public int getTotalCampCount(String area, String camp) {
-		return mapper.getTotalCampCount(area, camp);
+	public CampTalkDTO getTalk(int num_talk) {
+		return mapper.getTalk(num_talk);
+	}
+
+	@Override
+	public int talkUpdate(CampTalkDTO dto) {
+		return mapper.talkUpdate(dto);
+	}
+
+	@Override
+	public int talkDelete(int num_talk) {
+		return mapper.talkDelete(num_talk);
+	}
+
+	@Override
+	public int talkWriteQnA(CampTalkDTO dto) {
+		return mapper.talkWriteQnA(dto);
+	}
+
+	@Override
+	public List<CampTalkDTO> getTalkQnA(int num_talk) {
+		return mapper.getTalkQnA(num_talk);
+	}
+
+	@Override
+	public int qnaDel(int num_talkqna) {
+		return mapper.qnaDel(num_talkqna);
+	}
+
+	@Override
+	public int inputNotify(int num_tlak, String sid) {
+		return mapper.inputNotify(num_tlak, sid);
+	}
+
+	@Override
+	public int getNotify(int num_tlak, String sid) {
+		return mapper.getNotify(num_tlak, sid);
+	}
+
+	@Override
+	public List<CampTalkDTO> getNotifyList(String check, int count) {
+		return mapper.getNotifyList(check, count);
+	}
+
+	@Override
+	public int setNotify(int num_talk) {
+		return mapper.setNotify(num_talk);
 	}
 	
 }

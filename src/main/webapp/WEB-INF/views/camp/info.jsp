@@ -10,7 +10,9 @@
 </head>
 
 <script type="text/javascript">
-	function good() { window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=50px; ,height=50px;'); }
+	function good() { 
+		window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=50px; ,height=50px;');
+		}
 
 </script>
 
@@ -62,7 +64,13 @@
    	 전화번호 : 없음	
    	</c:if>
    	</li>
-   	<li>홈페이지 : <a href="${fn:substring(campDTO.homepage,0,3) eq 'http'? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
+   	<c:if test="${campDTO.homepage != '0'}">
+   	 <li>홈페이지 : <a href=" ${fn:substring(campDTO.homepage, 0, 4) eq 'http' ? campDTO.homepage : 'http://' += campDTO.homepage}" target="_blank">홈페이지 바로가기</a></li>
+   	</c:if>
+   	<c:if test="${campDTO.homepage == '0'}">
+   	 <li>홈페이지 : 정보 미제공</li>
+   	</c:if>
+   	
    	
    	<li> 
    	<c:if test="${campDTO.hvofbgnde != '0'}">
@@ -79,12 +87,41 @@
    		
    	</c:if>
    	</li>
+   	<c:if test="${campDTO.lctcl == '0'}">
+   		<li>캠핑장 환경 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.lctcl != '0'}">
+   		<li>캠핑장 환경 : ${campDTO.lctcl }</li>
+   	</c:if>
+   		<c:if test="${campDTO.induty  == '0'}">
+   		<li>캠핑장 유형 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.induty  != '0'}">
+   		<li>캠핑장 유형 : ${campDTO.induty  }</li>
+   	</c:if>
+   	<c:if test="${campDTO.operpdcl  == '0'}">
+   		<li>운영기간 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.operpdcl  != '0'}">
+   		<li>운영기간 : ${campDTO.operpdcl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.operdecl  == '0'}">
+   		<li>운영일  : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.operdecl  != '0'}">
+   		<li>운영일 : ${campDTO.operdecl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.resvecl  == '0'}">
+   		<li>예약방법 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.resvecl  != '0'}">
+   		<li>예약방법 : ${campDTO.resvecl }</li>
+   	</c:if>
    	
-   	<li>캠핑장 환경 : ${campDTO.lctcl }</li>
-   	<li>캠핑장 유형 : ${campDTO.induty }</li>
-   	<li>운영기간 : ${campDTO.operpdcl }</li>
-   	<li>운영일 : ${campDTO.operdecl }</li>
-   	<li>예약방법 : ${campDTO.resvecl }</li>
+   	
+   	
+   	
+   	
    	
    	
    	<c:if test="${campDTO.resveurl != '0'}">
@@ -92,21 +129,28 @@
    	</c:if>
    	<c:if test="${campDTO.resveurl == '0'}">
    	</c:if>
+   	
    	<br/><br/>
+   	<img src ="../resources/camp/images/eye.png" width="30px" height="30px"  class="viewcount"> ${campDTO.readcount} &emsp;&emsp;
+	<img src ="../resources/camp/images/heart.png" width="30px" height="30px" class="goodcount"> ${campDTO.good}
+    <br/>
    	<div class ="usr_button">
    		<c:if test="${goodCount == 0 }">
    			<section class="info_btn"><input type="image" src="../resources/camp/images/good_off.png" width="30px" height="30px" onclick="good()">
-   			좋아요  (${campDTO.good } )</section>
+   			좋아요 </section>
    		</c:if>
    		<c:if test="${goodCount == 1 }">
    			<section class="info_btn"><input type="image" src="../resources/camp/images/good_on.png" width="30px" height="30px" onclick="good()">
-   			좋아요취소  ( ${campDTO.good } )</section>
+   			좋아요취소  </section>
    		</c:if>
    		
    		<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="">즐겨찾기 </span>
    		
    	</div>
-   	
+   	<form action="update">
+   		<input type="hidden" name="contentid" value="${campDTO.contentid }" />
+   		<input type="submit" value="정보 수정 요청"/>
+   	</form>
    	</div>
    	</div>
    	<hr color="#DFD8CA" size="2"  align="center" />
@@ -164,6 +208,78 @@
    <c:if test="${campDTO.sbrscl =='0' }"></c:if>
    
    <hr color="#DFD8CA" size="2"  align="center" />
+    <br/>
+    <h2 id="movie_h2"> 캠핑장 관련 영상</h2>
+    <div class="camp_mov">
+    	
+    	
+    	
+    	<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	    	
+	    		<script>
+	    		let campname = '${campDTO.facltnm}';
+	    		   $.ajax({
+	    			   
+	    			    async: true, //동기 or 비동기
+	    			    url: "https://dapi.kakao.com/v2/search/vclip",  
+	    			    data: {
+	    			        query: campname 
+	    			       
+	    			        
+	    			    },
+	    			    beforeSend: function (xhr) {
+	    			        xhr.setRequestHeader('Authorization',
+	    			            'KakaoAK 40516903f3ab835c2b8b12e0e572cde7')
+	    			    },
+	    			    type: "GET",
+	    			    timeout: 3000,
+	    			    dataType: "json",
+	    			    success: function (result) {
+	    			    	
+	    			    		for (var i = 0; i<3; i++){
+	    			    		var mov_title = result.documents[i].title;
+	 							var mov_url = result.documents[i].url;
+	    			    		var mov_thumbnail = result.documents[i].thumbnail;
+	    			    		
+	    			    		
+	    			    	
+	    			    		var movHtml = 	'<div class="movie">' +
+	    			    						'<div class="movie_thumb">'+
+	    			    						'<a href="' + mov_url + '"><img src="'+mov_thumbnail+'" width="220px" height="180px"/></a>' +
+	    			    						'<img src="../resources/camp/images/playbtn.png" width= "50px" height="50px" class="playbtn"/>'+
+	    			    						'</div><br/>'+
+	    			    						'<a href="' + mov_url + '" class="movie_title">'+ mov_title +'</a>' +
+	    			    						'</div><br/>';
+	    			    						
+	    			    							
+	    			    						
+					    		$('.camp_mov').append(movHtml);	
+					    		
+					    		
+	    			    		
+	    			    	}
+	    			    		if (result.documents[0] == undefined) {
+		    			    		$('.camp_mov').append('검색 결과가 없습니다.');	
+		    			    	}
+	    			       
+	    			       
+	    			    },
+	    			    error: function (error) {
+	    			        alert("실패")
+	    			        
+	    			    }
+	    			    
+	    			})
+     				
+
+
+	    		
+        
+        </script>
+        
+        	
+    </div>
+    <hr color="#DFD8CA" size="3"  align="center" id="line"/>
     <br/>
     <div class="weather">
     	<h2> ${campDTO.sigungunm } 날씨 정보</h2>
@@ -435,11 +551,17 @@
     <br/>
     <div class="info_intro" width= "300px">
     	<h3>캠핑장 소개</h3>
-    	<c:set var="dtointro" value="${campDTO.intro }"></c:set>
+    	<c:if test="${campDTO.intro  == '0'}">
+   		<h4> 등록된 소개 정보 없음</h4> 
+   	</c:if>
+   	<c:if test="${campDTO.intro  != '0'}">
+   		<c:set var="dtointro" value="${campDTO.intro }"></c:set>
     	<c:set var="introArr" value="${fn:split(dtointro,'.')}"></c:set>
 		<c:forEach var="intro" items="${introArr}">
     		<h4>${intro}</h4>
 		</c:forEach>
+   	</c:if>
+    	
 
 
     </div>	
@@ -447,12 +569,50 @@
     <hr color="#DFD8CA" size="2"  align="center" />
     <br/>
      <div class="info_detail">
-     	<li>주변 이용가능 시설 : ${campDTO.posblfcltycl }</li>
-     	<li>주변 이용 가능시설 기타 : ${campDTO.posblfcltyetc }</li>
-     	<li>자체문화 행사명 : ${campDTO.clturevent }</li>
-     	<li>체험프로그램명 : ${campDTO.exprnprogrm }</li>
-     	<li>테마환경 : ${campDTO.themaenvrncl }</li>
-     	<li>애완동물 출입 : ${campDTO.animalcmgcl }</li>
+    <p class="unknowninfo">주의 :  정보가 0일 경우 제공 되지 않는 정보 일 수 있습니다.</p>
+    <c:if test="${campDTO.posblfcltycl  == '0'}">
+   		<li>주변 이용가능 시설 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.posblfcltycl  != '0'}">
+   		<li>주변 이용가능 시설 : ${campDTO.posblfcltycl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.posblfcltyetc  == '0'}">
+   		<li>주변 이용 가능시설 기타 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.posblfcltyetc  != '0'}">
+   		<li>주변 이용 가능시설 기타 : ${campDTO.posblfcltyetc }</li>
+   	</c:if>
+   	<c:if test="${campDTO.clturevent  == '0'}">
+   		<li>자체문화 행사명 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.clturevent  != '0'}">
+   		<li>자체문화 행사명 : ${campDTO.clturevent }</li>
+   	</c:if>
+   	<c:if test="${campDTO.exprnprogrm  == '0'}">
+   		<li>체험프로그램명 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.exprnprogrm  != '0'}">
+   		<li>체험프로그램명 : ${campDTO.exprnprogrm }</li>
+   	</c:if>
+   	<c:if test="${campDTO.themaenvrncl  == '0'}">
+   		<li>테마환경 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.themaenvrncl  != '0'}">
+   		<li>테마환경 : ${campDTO.themaenvrncl }</li>
+   	</c:if>
+   	<c:if test="${campDTO.animalcmgcl  == '0'}">
+   		<li>애완동물 출입 : 등록 정보 없음</li> 
+   	</c:if>
+   	<c:if test="${campDTO.animalcmgcl  != '0'}">
+   		<li>애완동물 출입 : ${campDTO.animalcmgcl }</li>
+   	</c:if>
+   	
+     	
+     	
+     	
+     	
+     	
+     	
      	<br/><br/>
      	
      	
@@ -467,7 +627,8 @@
 	     	<li>개인 카라반 야영장 : ${campDTO.indvdlcaravSiteco } 석 </li>
      	</ul>
      	
-        <li>사이트 상세정보</li> 			
+        <li>사이트 상세정보  </li>
+        	 			
          	<ul>
          		<li>사이트간 거리 : ${campDTO.sitedstnc } m </li>
          		<br/><br/>
@@ -531,5 +692,6 @@
         <h2>${campDTO.facltnm} 블로그 리뷰</h2>
         </div>
 </body>
+<%@ include file = "../include/footer.jsp" %>
 </html>      
 

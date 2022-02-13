@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="/resources/style.css">
 <script src="/resources/jquery/jquery-3.6.0.min.js"></script>
-campTalk - campSearch
-
+<div class="campsearchdiv">
 <form action="/campTalk/campSearchList" method="post">
 	
-	<table border="1" class="ta">
+	<table class="campsearchtbl">
 		<tr>
 			<td> 
 				<select name="areaEng" id="areaEng">
@@ -30,14 +30,15 @@ campTalk - campSearch
 					<option value="Jeju" <c:if test="${area == 'Jeju'}"> selected="selected"</c:if>>제주</option>
 				</select>
 			</td>
-		<td><input type="text" name="camp" id="camp" value="${camp }"/></td>
-		<td><input type="submit" value="검색" id="btn_campS"/></td>
-		<td><input type="button" value="닫기" onclick="window.self.close()"/></td>
+		<td><input type="text" name="camp" id="camp"/></td>
+		<td><input type="submit" value="검색" /></td>
+		<td><input type="button" value="닫기" onclick="window.self.close()" /></td>
 		</tr>
 	</table>
 </form>
-<table border=1>
-	<tr><th>캠프명</th><th width="200px">주소</th></tr>
+
+<table class="campsearchtbl2">
+	<tr><th width="180px">캠프명</th><th>주소</th></tr>
 
 	<c:if test="${empty list}">
 		<tr><td colspan="2">검색된 캠프가 없습니다</td></tr>
@@ -45,38 +46,38 @@ campTalk - campSearch
 	<c:if test="${not empty list}">
 		<c:forEach items="${list}" var="dto">
 		<tr>
-		<td >
-		<input type="hidden" name="contentid" id="contentid" value="${dto.contentid}"/>
-		<a href='#' class='select' onclick="tt('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.facltnm}</a>
-		</td>
-		<td><a href='#' class='select' onclick="tt('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.addr1}</a></td>
-
+			<td>
+			<input type="hidden" name="contentid" id="contentid" value="${dto.contentid}"/>
+			<a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.facltnm}</a>
+			</td>
+			<td><a href='#' class='select' onclick="result('${dto.facltnm}','${dto.contentid}','${dto.donm}')">${dto.addr1}</a></td>
 		</tr>
+	</c:forEach>
+		
+	<tr><td align="center" colspan="2">
+		<c:if test="${page.pageStart > 10}">
+			<a href="/campTalk/campSearchList?pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
+		</c:if>	
+		
+		<c:forEach var="i" begin="${page.pageStart}" end="${page.pageEnd}">
+			<a href="/campTalk/campSearchList?pageNum=${i}&areaEng=${areaEng}">${i}</a>
 		</c:forEach>
 		
-		<tr><td align="center" colspan="2">
-			<c:if test="${page.pageStart > 10}">
-				<a href="/campTalk/campSearchList?pageNum=${page.pageStart - 10}&areaEng=${areaEng}">[이전]</a>
-			</c:if>	
-			
-			<c:forEach var="i" begin="${page.pageStart}" end="${page.pageEnd}">
-				<a href="/campTalk/campSearchList?pageNum=${i}&areaEng=${areaEng}">${i}</a>
-			</c:forEach>
-		
 						
-			<c:if test="${page.pageEnd < page.pageCount}">
-				<a href="/campTalk/campSearchList?pageNum=${page.pageStart + 10}&areaEng=${areaEng}">[다음]</a>
-			</c:if>	
+		<c:if test="${page.pageEnd < page.pageCount}">
+			<a href="/campTalk/campSearchList?pageNum=${page.pageStart + 10}&areaEng=${areaEng}">[다음]</a>
+		</c:if>	
 	
-		</td></tr>		
+	</td></tr>		
 	</c:if>
 </table>
-
+</div>
 <script>
-	function tt(camp,contentid, donm){
-		opener.document.cs.camp.value=camp;
-		opener.document.cs.contentid.value=contentid;
-		opener.document.cs.area.value=donm;
+	function result(camp, contentid, donm){
+		opener.document.cs.camp.value = camp;
+		opener.document.cs.contentid.value = contentid;
+		opener.document.cs.area.value = donm;
+		opener.document.cs.qeArea.value = donm;
 		self.close();
 	}
 </script>

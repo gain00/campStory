@@ -1,6 +1,9 @@
 package com.campstory.controller;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.campstory.bean.CampDTO;
 import com.campstory.bean.MemberDTO;
+import com.campstory.service.CampService;
 import com.campstory.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -30,10 +35,28 @@ public class MemberController {
 	
 	@Autowired
 	private MemberDTO memDTO;
+	
+	@Autowired
+	private CampDTO camDTO;
 
 	@RequestMapping("input")
 	public String list() {
 		return "member/input";
+	}
+	
+	@RequestMapping("mypage")
+	public String main(HttpSession session, MemberDTO dto, Model model) {
+		String id = null;
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		
+		if(id != null) {
+			model.addAttribute("memberDTO", service.memberUserInfo(id));
+		}
+		return "member/mypage";
 	}
 	
 	@RequestMapping("idCheck")
@@ -59,12 +82,32 @@ public class MemberController {
 	@RequestMapping("loginPro")
 	public String loginPro(MemberDTO dto, HttpSession session, Model model) {
 		if(service.memberLoginCheck(dto) == 1) {
-           if(service.memberAdminCheck(dto) == 1) {
-				session.setAttribute("adminId", dto.getId());
+			int ban_check = service.memberWarnCheck(dto.getId());
+			
+			if(ban_check > 2) {
+				model.addAttribute("result", 4);
+				service.memberDelete(dto.getId());
+			}else if(ban_check > 0) {
+				if(service.memberBandateCheck(dto.getId()) > 0) {
+					model.addAttribute("result", 3);
+					model.addAttribute("bandate", service.memberUserInfo(dto.getId()).getBan_date());
+					model.addAttribute("reason", service.memberUserInfo(dto.getId()).getReason());
+				}else {
+					if(service.memberAdminCheck(dto) == 1) {
+						session.setAttribute("adminId", dto.getId());
+					}
+					session.setAttribute("memId", dto.getId());
+					model.addAttribute("result", 1);
+					session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
+				}
+			}else {
+				if(service.memberAdminCheck(dto) == 1) {
+					session.setAttribute("adminId", dto.getId());
+				}
+				session.setAttribute("memId", dto.getId());
+				model.addAttribute("result", 1);
+				session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
 			}
-			session.setAttribute("memId", dto.getId());
-			model.addAttribute("result", 1);
-			session.setAttribute("status", service.memberUserInfo(dto.getId()).getStatus());
 		}else {
 			if(service.memberDelCheck(dto.getId()) == 1) {
 				model.addAttribute("result", 2);
@@ -114,8 +157,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("delete")
-	public String memCheck_delete(int kakao, Model model) {
-		model.addAttribute("kakao", kakao);
+	public String memCheck_delete() {
+		
 		return "member/delete";
 	}
 	
@@ -124,7 +167,7 @@ public class MemberController {
 		if(kakao == 1) {
 			model.addAttribute("result", 1);
 			session.invalidate();
-			service.memberDelete(dto.getId());
+			service.memberDelete_kakao(dto.getId());
 		}else {
 			model.addAttribute("result", service.memberLoginCheck(dto));
 			if(service.memberLoginCheck(dto) == 1) {
@@ -172,6 +215,42 @@ public class MemberController {
 		service.memberUpdate(dto);
 		
 		return "member/updatePro";
+	}
+	
+	@RequestMapping("favorite")
+	public String memCheck_favorite(String pageNum, HttpSession session, Model model) {
+		if (pageNum == null) {
+	        pageNum = "1";
+	    }
+	    model.addAttribute("pageNum", pageNum);
+		
+		String id = null;
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		
+		List<CampDTO> like_contentid = service.memberLikeList(id);
+		List<CampDTO> list_like = new ArrayList<CampDTO>();
+		for(int i=0; i < like_contentid.size(); i++) {
+			String contentid_like = like_contentid.get(i).getContentid();
+			
+			list_like.add(service.memberLikeInfo(contentid_like));
+		}
+		model.addAttribute("list_like", list_like);
+		
+		List<MemberDTO> fav_contentid = service.memberFavList(id);
+		List<CampDTO> list_fav = new ArrayList<CampDTO>();
+		for(int i=0; i < fav_contentid.size(); i++) {
+			String contentid_fav = fav_contentid.get(i).getCamp();
+			
+			list_fav.add(service.memberFavInfo(contentid_fav));
+		}
+		model.addAttribute("list_fav", list_fav);
+		
+		
+		return "member/favorite";
 	}
 
 }

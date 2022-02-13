@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<h1>loginPro.jsp 페이지 입니다 ... ! </h1>
+<head>
+<title>로그인 프로</title>
+
+</head>
+
+
+<body>
+<%@ include file = "../include/header.jsp" %>
 
 <c:if test="${result == 0}">
 	<script>
@@ -24,3 +33,21 @@
 		history.go(-1);
 	</script>
 </c:if>
+
+<c:if test="${result == 3}">
+	<script>
+		var bDate = '<fmt:formatDate value="${bandate}" pattern="yyyy-MM-dd" />';
+		var bReason = '${reason}'
+		alert("정지된 ID입니다. \n \n로그인은 "+bDate+"에 가능합니다. \n \n정지 사유는 ["+bReason+"] 입니다.");
+		history.go(-1);
+	</script>
+</c:if>
+
+<c:if test="${result == 4}">
+	<script>
+		alert("정지된 ID입니다. \n \n정지 횟수가 3회 도달하여 탈퇴처리 되었습니다.");
+		history.go(-1);
+	</script>
+</c:if>
+
+</body>

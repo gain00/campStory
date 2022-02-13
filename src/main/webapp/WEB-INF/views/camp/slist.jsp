@@ -4,47 +4,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
     
-
-
-<style>
-	.search_keyword{ 
-	width : 900px;
-	height : 70px;
-	margin : auto;
+<script src="/resources/jquery/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
 	
-	text-align : center;
-	}
-	.search_detail{ 
-	width : 1000px;
-	margin : auto;
-	text-align : center;
-	}
-	.search-disply{
-	width : 800px;
-	margin : auto;
-	text-align : right;
-	}
-	#searchbar {
-	width : 300px;
-	height : 70px;
-	}
-	#searchbtn {
-	width : 60px;
-	height : 60px;
-	vertical-align : bottom;
-	}
-	#searchbtn2 {
-	width : 150px;
-	height : 150px;
-	vertical-align : bottom;
-	}
-	#dt_th {
-	width : 70px;
-	}
-	#dt_td {
-	width : 600px;
-	}
-</style>
+	$(document).ready(function() {
+	$("#searchbtn").click(function(){
+
+        if($("#searchbar").val() == '' ||$("#searchbar").val() == null  ||$("#searchbar").val() == 'undefied' ||$("#searchbar").val() == 'NaN' ||$("#searchbar").val() == ' '){
+            alert("검색어를 입력하십시오.");
+            return false;
+        
+        }else{    
+        	window.location="/camp/klist?keyword="+$("#searchbar").val();
+        	
+        }
+    });
+	});
+	
+	 </script>
+
 <body>
 <%@ include file = "../include/header.jsp" %>
 <div class ="search_keyword">
@@ -52,8 +30,14 @@
 		<input type="text" id="searchbar" name="keyword" placeholder="지역명 / 캠핑장 명을 검색 해 주세요"/>
 		<input type="image" src="../resources/camp/images/search.png" id = "searchbtn" value="submit" name="submit" />
 	</form>
+	<div id="kwordList">
+		<c:forEach var="keywordlist" items="${keywordlist }"  begin="0" end="4" step="1">
+		<a href = "/camp/klist?keyword=${keywordlist.keyword}" class="mainkeyword"># ${keywordlist.keyword}</a>
+		</c:forEach>
+	
+	</div>
 </div>
-<br/>
+<br/><br/>
 <div class="search-disply">
 	<a href="javascript:doDisplay();">상세검색</a>
 </div>
@@ -137,38 +121,51 @@
     
  <br/>
 <hr color="#DFD8CA" size="2"  align="center" />
-<br/>    
-<b>캠핑장 리스트 (전체 캠핑장:${searchcount })</b>
+<div class="sortbox">
+	<b>캠핑장 리스트 (전체 캠핑장:${searchcount })</b>
+		<section class="sortsection"> 
+			<input type="button" value="신규 캠핑장 등록" onclick="window.location='input'" class="newcampbtn" id="notlist_newcampbtn"/>
+		</section>
+</div>
 <hr color="#DFD8CA" size="2"  align="center" />
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
     
 <c:forEach items="${searchlist}" var="campDTO">
-<div align="center">
-	<br/>
-   <a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}">
-  <h3>${campDTO.facltnm }</h3></a> <br/> 
-    ${campDTO.sigungunm }<br/>
-    ${campDTO.induty } <br/>
+<div class="listinfo">
+<a href="/camp/readcount?contentid=${campDTO.contentid }&pageNum=${pageNum}" class="camp_name">
+                ${campDTO.facltnm }</a>  
+    <div class="infocard">
+        <div class="infocard1">
+             
+
+            <c:if test="${campDTO.firstimageurl == '0'}">
+                <img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="250px"/>
+            </c:if>
+            
+            <c:if test="${campDTO.firstimageurl != '0' }">
+                <img src= "${campDTO.firstimageurl }" width="300px" height="250px" /><br/>
+            </c:if>
+
+        </div>
+        <div class="infocard2">
+        ${campDTO.sigungunm }<br/><br/>
+        ${campDTO.induty } <br/><br/>
 	<c:if test="${campDTO.lineintro == '0'}">
 		
 	</c:if> 
 	<c:if test="${campDTO.lineintro != '0' }">
-		${campDTO.lineintro }<br/>
+		${campDTO.lineintro }<br/><br/>
 	</c:if> 
+	<br/>
+	<img src ="../resources/camp/images/eye.png" width="30px" height="30px"  class="viewcount"> ${campDTO.readcount} &emsp;&emsp;
+	<img src ="../resources/camp/images/heart.png" width="30px" height="30px" class="goodcount"> ${campDTO.good}
     <br/>
-    <c:if test="${campDTO.firstimageurl == '0'}">
-    	<img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="250px"/>
-    </c:if>
+
+        </div>
+    </div>
     
-    <c:if test="${campDTO.firstimageurl != '0' }">
-    	<img src= "${campDTO.firstimageurl }" width="300px" height="250px" /><br/>
-    </c:if>
-    
-    <br/>
-   
-</div>
-   	<c:if test="${campDTO.sbrscl !='0' }">
-   	<div class="sbrscl" display="flex" align="center">
+    <c:if test="${campDTO.sbrscl !='0' }">
+    <div class="sbrscl">
    	<c:if test = "${fn:contains(campDTO.sbrscl, '전기')}">
 	<span><img src="../resources/camp/images/elec.png" width="100px" height="100px"/></span>
 	</c:if>
@@ -205,20 +202,20 @@
 	<c:if test = "${fn:contains(campDTO.sbrscl, '편의점')}">
 	<span><img src="../resources/camp/images/conv.png" width="100px" height="100px"/></span>
 	</c:if>
-   	
-   	
-   
-   </div>
-   </c:if>
+
+    </div>
+    </c:if>
+</div>
    <c:if test="${campDTO.sbrscl =='0' }"></c:if>	  
     <hr color="#DFD8CA" size="2"  align="center" />
     <br/>
 </c:forEach>
 	
 </table>
-
+<br/>
 </center>
 </body>
+<%@ include file = "../include/footer.jsp" %>
 
 <script type="text/javascript">
 	var bDisplay = true;

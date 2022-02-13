@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="http://d3js.org/d3.v3.js"></script>
 
 <% String map = "/resources/campTalk/map/"; %>
 <section id="contents" class="clearfix">
@@ -46,16 +44,20 @@
 		href="javascript:void(0)" alt="제주도" onmouseover="return mapimg('map17.png');" onmouseout="return mapimg('map00.png');" onfocus="areaS('Jeju');"/>
 
 	</map>
+	
 </section>
-<input type="button" value="test" onclick="test()"/>
-<script>	
+	<input type="button" value="닫기" onclick="javascript:window.close()" >
+
+
+<script>
 	function mapimg(img) {
 		$('#map_change').attr('src','<%=map%>' + img);
 	}
 	
 	function areaS(area) {
+		var campS = "${campS}";
 		$("map[name=webtong_Map] area").on("click focus", function() {
-			opener.location.replace("/campTalk/talkList?areaEng="+area);
+			opener.location.replace("/campTalk/talkList?listType="+${listType}+"&campS="+campS+"&areaEng="+area);
 			self.close();
 		});
 	}

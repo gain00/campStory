@@ -37,17 +37,30 @@ function kakaoLogin() {
   } 
 </script>
 
+<head>
+<title>로그인</title>
 
-<h1> login.jsp 입니다. </h1>
+</head>
 
+
+<body>
+<%@ include file = "../include/header.jsp" %>
+
+<div class="loginform">
 <form action="/member/loginPro" method="post" >
 
-	id : <input type="text" name="id" /> <br />
-	pw : <input type="password" name="pw" /> <br />
-		<input type="submit" value="로그인" />
+	<input type="text" name="id" placeholder="ID를 입력하세요" class="idbox"/> 
+	<input type="password" name="pw" placeholder="비밀번호를 입력하세요" class="pwbox"/> 
+		<input type="submit" value="로그인" class="loginbtn" />
 
 </form>
-<a href="/member/input" >회원가입</a>
-<br /><br />
 
-<a href="javascript:void(0);" onclick="kakaoLogin();">카카오 로그인</a><br /><br />
+
+
+<a href="javascript:void(0);" onclick="kakaoLogin();">
+<img src="/resources/member/images/kakao_login.png"/></a><br /><br />
+
+<a href="/member/input" id="meminput">회원가입</a>
+</div>
+</body>
+<%@ include file = "../include/footer.jsp" %>

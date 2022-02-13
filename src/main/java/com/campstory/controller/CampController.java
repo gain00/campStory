@@ -25,6 +25,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.campstory.bean.CampDTO;
+import com.campstory.bean.KeywordDTO;
 import com.campstory.service.CampService;
 
 
@@ -40,10 +41,14 @@ public class CampController {
 	private CampService service;
 	
 	@RequestMapping("list")
-	public String list(String pageNum, Model model, HttpServletRequest req) {
+	public String list(String pageNum, String sorter ,Model model, HttpServletRequest req) {
 		pageNum = req.getParameter("pageNum");
 		if(pageNum == null ) {
 			pageNum = "1";
+		}
+		sorter = req.getParameter("sorter");
+		if(sorter == null) {
+			sorter = "name";
 		}
 		
 		int pageSize=10;		
@@ -58,13 +63,17 @@ public class CampController {
 		log.info("====end==="+endRow);
 		
 		
-		List<CampDTO> list = service.getList (startRow, endRow);
+		List<CampDTO> list = service.getList (startRow, endRow, sorter);
 		
+		List<KeywordDTO> mainkeywordlist = service.getKeywordList();
+		
+		model.addAttribute("keywordlist",mainkeywordlist);	
 		log.info(" ===========list" +list);
 		 // View 데이터 전달.
 		model.addAttribute("count", service.getCount());
 		model.addAttribute("number",count-(currentPage-1)*pageSize);
 		model.addAttribute("pageNum",pageNum);
+		model.addAttribute("sorter",sorter);
 		model.addAttribute("pageSize",pageSize);
 		model.addAttribute("currentPage",pageNum);
 		model.addAttribute("pageCount", count / pageSize + ( count % pageSize == 0 ? 0 : 1));
@@ -181,7 +190,9 @@ public class CampController {
 		
 		
 		int count = service.getDSearchCount(sql);
-
+		List<KeywordDTO> mainkeywordlist = service.getKeywordList();
+		
+		model.addAttribute("keywordlist",mainkeywordlist);	
 		
 		
 		List<CampDTO> searchlist = service.getDSearchList(sql);
@@ -211,15 +222,22 @@ public class CampController {
 			pageNum = "1";
 		}
 		keyword = req.getParameter("keyword");
-		if (keyword == null) {
-			keyword = "%%";
+		
+		log.info("======keyword===="+keyword);
+		
+		String[] arrayKey = keyword.split(" ");
+		log.info("======arrayKey===="+arrayKey);
+		
+		String keySql = null;
+		if(arrayKey.length > 1) {
+			keySql = keyword.replace(" ", "%");
+			log.info("======keySql===="+keySql);
+		}else {
+			keySql = keyword;
 		}
 		
-		log.info("======kw===="+keyword);
-		
-		
 		int pageSize=10;		
-		int count = service.getKSearchCount(keyword);
+		int count = service.getKSearchCount(keySql);
 		int currentPage = Integer.parseInt(pageNum);
 		int startPage=(int)(currentPage/10)*10+1;
 		int pageBlock = 10;
@@ -230,11 +248,31 @@ public class CampController {
 		log.info("====end==="+endRow);
 		
 		
-		List<CampDTO> searchlist = service.getKSearchList(keyword, startRow, endRow);
+		List<CampDTO> searchlist = service.getKSearchList(keySql, startRow, endRow);
+		
+		for(int i=0 ; i < arrayKey.length; i++) {
+			int keyCount = service.keywordCount(arrayKey[i]);
+			int keyDateCount = service.keywordDateCount(arrayKey[i]);
+			log.info("======arrayKey[i]===="+arrayKey[i]);
+			if(keyword !=null) {
+				if (keyCount == 0) {
+					service.keywordInsert(arrayKey[i]);
+				}else {
+					service.keywordUp(arrayKey[i]);
+				}
+				if (keyDateCount ==0) {
+					service.keywordDateInsert(arrayKey[i]);
+				}else {
+					service.keywordDateUp(arrayKey[i]);
+				}
+			}
+		}
+		
+		List<KeywordDTO> keywordlist = service.getKeywordList();
 		
 		log.info(" ===========list" +searchlist);
 		 // View 데이터 전달.
-		model.addAttribute("searchcount", service.getKSearchCount(keyword));
+		model.addAttribute("searchcount", service.getKSearchCount(keySql));
 		model.addAttribute("number",count-(currentPage-1)*pageSize);
 		model.addAttribute("pageNum",pageNum);
 		model.addAttribute("pageSize",pageSize);
@@ -245,11 +283,12 @@ public class CampController {
 		model.addAttribute("endPage",startPage + pageBlock-1);
 		model.addAttribute("searchlist",searchlist);
 		model.addAttribute("keyword", keyword);
-		
+		model.addAttribute("keywordlist",keywordlist);
 
 		
 		return "camp/klist";
 	}
+	
 	@RequestMapping("readcount")
 	public String readcount(String contentid,String pageNum, RedirectAttributes rttr,HttpServletRequest req) {
 		pageNum = req.getParameter("pageNum");
@@ -257,6 +296,12 @@ public class CampController {
 			pageNum = "1";
 		}
 		service.readcountUp(contentid);
+		int datecount = service.readDateCount(contentid);
+		if(datecount == 0) {
+			service.readDateInsert(contentid);
+		}else {
+			service.readDateUp(contentid);
+		}
 		rttr.addAttribute("contentid", contentid);
 		return "redirect:/camp/info";
 	}
@@ -295,5 +340,38 @@ public class CampController {
 		
 		
 		return "camp/good";
+	}
+	@RequestMapping("input")
+	public String input(HttpServletRequest req, Model model) {
+		List<CampDTO> sigungulist = service.getSigungunm();
+		model.addAttribute("sigungulist", sigungulist);
+		return "camp/input";
+	}
+	
+	@RequestMapping("inputPro")
+	public String input(HttpServletRequest req, Model model,CampDTO campDTO) {
+		
+		model.addAttribute("result1" , service.inputCamp_info1(campDTO));
+		model.addAttribute("result2" , service.inputCamp_info2(campDTO));
+		model.addAttribute("result3" , service.inputCamp_info3(campDTO));
+		return "camp/inputPro";
+	}
+	@RequestMapping("update")
+	public String update(HttpServletRequest req, Model model,String contentid, CampDTO campDTO) {
+		model.addAttribute("campDTO", service.getContent(contentid));
+		model.addAttribute("contentid",contentid);
+		
+		List<CampDTO> sigungulist = service.getSigungunm();
+		model.addAttribute("sigungulist", sigungulist);
+		return "camp/update";
+	}
+	
+	@RequestMapping("updatePro")
+	public String updatePro(HttpServletRequest req, Model model,CampDTO campDTO) {
+		
+		model.addAttribute("result1" , service.updateCamp_info1(campDTO));
+		model.addAttribute("result2" , service.updateCamp_info2(campDTO));
+		model.addAttribute("result3" , service.updateCamp_info3(campDTO));
+		return "camp/updatePro";
 	}
 }

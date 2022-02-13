@@ -23,4 +23,6 @@ public class CsDTO {
 	private String writer;
 	private String re_comment;
 	private int secret;
+	
+	private int num_notice;
 }

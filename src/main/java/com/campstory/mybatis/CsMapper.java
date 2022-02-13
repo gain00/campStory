@@ -33,4 +33,13 @@ public interface CsMapper {
 	public int updateArticleAdmin(CsDTO csDTO);
 	
 	public int deleteArticle(int num);
+	
+	//notice
+	public int insertNotice(CsDTO csDTO);
+	
+	public int getNoticeCount();
+	
+	public List<CsDTO> getNotice(@Param("start") int start, @Param("end") int end);
+	
+	public int deleteNotice(int num);
 }

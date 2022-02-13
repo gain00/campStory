@@ -27,6 +27,7 @@
    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
       <constructor-arg ref="hikariConfig" />
    </bean>
+
    
    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="dataSource" />
@@ -36,6 +37,11 @@
    <bean id="transacitonManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
    		<property name="dataSource" ref="dataSource"></property>
    </bean>
+   
+      
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+ <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+ </bean>
    
    <!--  트랜잭션이 필요한 상황에서 어노테이션을 활용하여 추가하는 방식 사용 -->
    <tx:annotation-driven/>
