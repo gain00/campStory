@@ -77,5 +77,28 @@
 	<delete id="deleteArticle" >
 		delete from cs where num_question=#{num_question}
 	</delete>
+	
+	
+	<!-- Notice  -->
+	<insert id="insertNotice" parameterType="com.campstory.bean.CsDTO" >
+		insert into notice(num_notice,title,content,reg_time) 
+			values(seq_notice.nextval,#{title},#{content},sysdate)
+	</insert>
+	
+	<select id="getNoticeCount" resultType="int" >
+		select count(*) from notice
+	</select>
+	
+	<select id="getNotice" parameterType="int" resultType="com.campstory.bean.CsDTO" >
+		<![CDATA[
+			select num_notice,title,content,reg_time,r 
+			from (select num_notice,title,content,reg_time,rownum r from 
+					(select * from notice order by num_notice desc)) where r >= #{start} and r <= #{end}
+		]]>
+	</select>
+	
+	<delete id="deleteNotice" >
+		delete from notice where num_notice=#{num_notice}
+	</delete>
 
 </mapper>

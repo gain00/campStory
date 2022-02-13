@@ -107,8 +107,10 @@ cellspacing="0">
   
  </div>
  <div>
-
-<button id="insert_btn" onclick="insert_btn_click();">작성</button>			
+<c:if test="${sessionScope.memId == 'admin'}">
+	<button id="insert_btn" onclick="insert_btn_click();">작성</button>	
+</c:if>
+		
 </div>
  <script>
  function insert_btn_click() {

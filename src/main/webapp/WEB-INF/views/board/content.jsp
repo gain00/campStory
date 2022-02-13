@@ -78,7 +78,7 @@
 </div>
 <div class ="">
 
-${article.writer},${article.readcount}
+${article.writer},${article.readcount} 
 </div>
 <div class ="content">
 
@@ -95,17 +95,19 @@ ${tip2.content}
 	<input type="hidden" id="num_tip" name="num_tip" value="${article.num_tip}" />
 </form>    
 
-  <div>
-					<button type="submit" class="update_btn">수정</button>
-					<button type="submit" class="delete_btn">삭제</button>
-					<button type="submit" class="list_btn">목록</button>	
+ <div>
+	<c:if test="${sessionScope.memId == 'admin'}">
+		<button type="submit" class="update_btn">수정</button>
+		<button type="submit" class="delete_btn">삭제</button>
+	</c:if>		
+		<button type="submit" class="list_btn">목록</button>	
 </div>
 
 
 <form name="commentForm" method="post">
   <input type="hidden" id="num_tip" name="num_tip" value= "${article.num_tip}" />
   <div>
-    <label for="writer">댓글 작성자</label><input type="text" id="writer" name="writer" />
+    <input type="hidden" id="writer" name="writer" value= "${sessionScope.memId}" />
     <br/>
     <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
   </div>
@@ -127,10 +129,15 @@ ${tip2.content}
         </p>
 
         <p>${commentList.content}</p>
-        <div>
+        
+        <c:if test="${commentList.writer == sessionScope.memId || sessionScope.memId =='admin'}">
+		<div>
 		  <button type="button" class="commentUpdateBtn" data-cno="${commentList.cno}">수정</button>
 		  <button type="button" class="commentDeleteBtn" data-cno="${commentList.cno}">삭제</button>
 		 </div>
+		</c:if>
+        
+        
       </li>
     </c:forEach>   
   </ol>
