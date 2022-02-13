@@ -70,6 +70,7 @@
 	<beans:bean id="campTalkDTO" class="com.campstory.bean.CampTalkDTO" />	
 	<beans:bean id="csDTO" class="com.campstory.bean.CsDTO" />	
 	<beans:bean id="memberDTO" class="com.campstory.bean.MemberDTO" />	
+	
 		
 	<context:component-scan base-package="org.mvc.aop" />
    <!-- AOP Advice 클래스 자동 등록 -->
