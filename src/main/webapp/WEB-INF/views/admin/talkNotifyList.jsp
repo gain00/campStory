@@ -39,7 +39,10 @@
 			<tr>
 				<td class="tbl_firstLine">${dto.area }</td>
 				<td>${dto.camp }</td>
-				<td>${dto.sub }</td>
+				<td>
+					<c:if test="${dto.sub == 'talk'}">톡</c:if>
+					<c:if test="${dto.sub == 'qe'}">질문</c:if>
+				</td>
 				<td>${dto.content }</td>
 				<td>${dto.writer }</td>
 				<td>

@@ -29,6 +29,16 @@ public class ChatServiceImpl implements ChatService {
 		return mapper.getChat();
 	}
 
+	@Override
+	public int delChat() {
+		return mapper.delChat();
+	}
+
+	@Override
+	public int getCountChat() {
+		return mapper.getCountChat();
+	}
+
 
 	
 }

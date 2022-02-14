@@ -134,13 +134,15 @@ public class CapmTalkController {
 	}
 	
 	@RequestMapping("goodUp")
-	public void goodUp(int num_talk){
-		service.talkGoodUp(id, num_talk);
+	public @ResponseBody int goodUp(int num_talk){
+		int resultUp = service.talkGoodUp(id, num_talk);
+		return resultUp;
 	}
 	
 	@RequestMapping("goodDown")
-	public void goodDown(int num_talk){
-		service.talkGoodDown(id, num_talk);
+	public @ResponseBody int goodDown(int num_talk){
+		int resultDonw = service.talkGoodDown(id, num_talk);
+		return resultDonw;
 	}
 	
 	@RequestMapping("talkUpdate")

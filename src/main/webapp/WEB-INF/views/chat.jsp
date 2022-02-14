@@ -6,29 +6,18 @@
 <head><title>Web Socket Example</title></head>
 <body>
   <form class="chat_form">
-    <!-- 유저 명을 입력하는 텍스트 박스(기본 값은 anonymous(익명)) -->
     <input id="user" type="text" value="${sessionScope.memId }" readonly="readonly" style="background: #eee">
-    <!-- 송신 메시지를 작성하는 텍스트 박스 -->
     <input id="textMessage" type="text">
-    <!-- 메세지를 송신하는 버튼 -->
     <input onclick="sendMessage()" value="Send" type="button">
-    <!-- WebSocket 접속 종료하는 버튼 -->
-    <!-- <input onclick="disconnect()" value="Disconnect" type="button"> -->
   </form>
   <br />
   <!-- 콘솔 메시지의 역할을 하는 로그 텍스트 에리어.(수신 메시지도 표시한다.) -->
   <textarea id="messageTextArea" rows="25" cols="30"  class="chat_textArea"></textarea>
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript">
-    // 「WebSocketEx」는 프로젝트 명
-    // 「broadsocket」는 호스트 명
-    // WebSocket 오브젝트 생성 (자동으로 접속 시작한다. - onopen 함수 호출)
     var webSocket = new WebSocket("ws://localhost:8080/broadsocket");
-    // 콘솔 텍스트 에리어 오브젝트
     var messageTextArea = document.getElementById("messageTextArea");
-    // WebSocket 서버와 접속이 되면 호출되는 함수
     webSocket.onopen = function(message) {
-      // 콘솔 텍스트에 메시지를 출력한다.
       messageTextArea.value += "Welcom CampStory...\n";
       webSocket.send("{{" + user.value + "}}welcom");
     };

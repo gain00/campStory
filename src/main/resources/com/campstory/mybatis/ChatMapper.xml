@@ -8,10 +8,20 @@
 <mapper namespace="com.campstory.mybatis.ChatMapper">
 
 	<insert id="insert">
-		insert into chat(username, msg) values(#{username},#{msg})
+		insert into chat(username, msg, seq) values(#{username},#{msg}, seq_chat.nextval)
 	</insert>
 
 	<select id="getChat" resultType="hashmap">
 		select * from chat order by reg
 	</select>
+	
+	<select id="getCountChat" resultType="int">
+		select count(*) from chat
+	</select>
+	
+	<delete id="delChat">
+		<![CDATA[
+		delete from chat where seq in (select seq from (select seq, rownum r from (select * from chat order by reg)) where r <= 10)
+		]]>
+	</delete>
 </mapper>

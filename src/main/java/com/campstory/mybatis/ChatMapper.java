@@ -10,5 +10,8 @@ public interface ChatMapper {
 	
 	public List getChat();
 	
+	public int delChat();
+	
+	public int getCountChat();
 }
 
