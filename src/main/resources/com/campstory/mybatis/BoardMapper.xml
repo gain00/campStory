@@ -4,21 +4,107 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.campstory.mybatis.BoardMapper">
+
+	<select id="getArticles" resultType="com.campstory.bean.BoardDTO">
+			<![CDATA[
+			select num_tip, TITLE, image, CONTENT, reg_time, WRITER, good,readcount, r 
+			from (select num_tip, TITLE, image, CONTENT, reg_time, WRITER, good,readcount,rownum r from 
+					(select * from camp_tip  
+						]]>
+				<if test="searchType == 'title'">
+  				WHERE title LIKE '%' || #{keyword} || '%'
+ 				</if>
+ 				<if test="searchType == 'content'">
+  				WHERE content like '%' || #{keyword} || '%'
+ 				</if>
+ 				<if test="searchType == 'writer'">
+  				WHERE writer LIKE '%' || #{keyword} || '%'
+ 				</if>
+ 				 <if test='searchType.equals("title_content")'>
+ 				 WHERE title LIKE '%' || #{keyword} || '%'
+   				or WHERE content like '%' || #{keyword} || '%'
+ 				</if>
+
+ 
+		<![CDATA[	
+					order by num_tip asc))
+				 where r >= #{startRow} and r <= #{endRow}  
+		]]>
+		
+	</select>
+	
+	
+	
+	<select id="getSearchlist" resultType="com.campstory.bean.BoardDTO">
+			<![CDATA[
+			select num_tip, TITLE, image, CONTENT, reg_time, WRITER, good,readcount, r 
+			from (select num_tip, TITLE, image, CONTENT, reg_time, WRITER, good,readcount,rownum r from 
+					(select * from camp_tip where title like '%' || #{keyword} || '%' order by num_tip asc))
+					 where r >= #{startRow} and r <= #{endRow}
+		]]>
+		
+	</select>
+	
 	<select id="getArticleCount" resultType="int">
 		select count(*) from camp_tip
 	</select>
-<select id="getArticles" resultType="com.campstory.bean.BoardDTO">
-		<![CDATA[
-			select * from camp_tip
-		]]>
+	
+	<select id="getSearchlistCount" resultType="int">
+		select count(*) from camp_tip where title like '%' || #{title} || '%'
 	</select>
+	
+	
 	
 	<select id="maxNum" resultType="int">
 		select max(num_tip) from camp_tip
 	</select>
+	
+	
 	<select id="getArticle" resultType="com.campstory.bean.BoardDTO">
 		select * from camp_tip where num_tip = #{num_tip}
 	</select>
+	
+	<select id="camp_tip2" resultType="com.campstory.bean.BoardpageDTO" >
+		select * from camp_tip2 where num_tip = #{num_tip}
+	</select>
+	
+	<update id="readcountUpdate">
+		update camp_tip set readcount=readcount+1 where num_tip = #{num_tip}
+	</update>
+	<insert id="insert">
+	   INSERT INTO camp_tip(    num_tip 
+	   					      , TITLE 
+	   					      , image
+	   					      , CONTENT
+	   					      ,reg_time 
+	   					      , WRITER
+	   					      , good 
+	   					      , readcount )
+	                 VALUES(   camp_tip_seq.NEXTVAL 
+	                 		  , #{title}
+	                 		  , 'image'
+	                 		  , #{content}
+	                 		  , sysdate
+	                 		  , #{writer}
+	                 		  , 0 
+	                 		  , 0 
+	                 		    )
+   
+   </insert>
+   <update id="update">
+		UPDATE camp_tip
+		   SET TITLE    =   #{title},
+		   	   CONTENT  =   #{content}
+		 WHERE num_tip = #{num_tip} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM camp_tip
+		 WHERE num_tip = #{num_tip}
+	</delete>
+	
+	
 	
 </mapper>
 

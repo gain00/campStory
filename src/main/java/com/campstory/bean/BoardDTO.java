@@ -12,5 +12,7 @@ public class BoardDTO{
     private String content;
     private Date reg_time;
     private String writer;
-    private int good;   
+    private int good;
+    private int readcount;
+    
 }

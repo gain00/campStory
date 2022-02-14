@@ -1,48 +1,147 @@
-<%@ page contentType = "text/html; charset=euc-kr" %>
-
+<%@ page contentType = "text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-<title>°Ô½ÃÆÇ</title>
-<link href="/resources/Board/style.css" rel="stylesheet" type="text/css">
-</head>
+<title>ê²Œì‹œíŒ</title>
 
-<body bgcolor="${bodyback_c}">  
-<center><b>±Û³»¿ë º¸±â</b>
+<link href="/resources/Board/style.css" rel="stylesheet" type="text/css">
+<script src="/resources/Board/jquery/jquery-3.6.0.min.js"></script>   
+</head>
+<script type="text/javascript">
+		$(document).ready(function(){
+			var formObj = $("form[name='readForm']");
+			
+			// ìˆ˜ì • 
+			$(".update_btn").on("click", function(){
+				formObj.attr("action", "/board/updateView");
+				formObj.attr("method", "get");
+				formObj.submit();				
+			});
+			
+			// ì‚­ì œ
+			$(".delete_btn").on("click", function(){
+				formObj.attr("action", "/board/delete");
+				formObj.attr("method", "post");
+				formObj.submit();
+			});
+			
+			// ëª©ë¡
+			$(".list_btn").on("click", function(){
+				
+				location.href = "/board/list?pageNum="+${pageNum};
+			});
+			
+			// ì¶”ê°€
+			$(".insertCommentBtn").on("click", function(){
+				  var formObj = $("form[name='commentForm']");
+				  formObj.attr("action", "/board/commentInsert");
+				  formObj.submit();
+				});
+			
+			//ëŒ“ê¸€ ìˆ˜ì • View
+			$(".commentUpdateBtn").on("click", function(){
+				location.href = "/board/commentUpdateView?num_tip=${article.num_tip}"
+								
+								+ "&cno="+$(this).attr("data-cno");
+			});
+					
+			//ëŒ“ê¸€ ì‚­ì œ View
+			$(".commentDeleteBtn").on("click", function(){
+				location.href = "/board/commentDeleteView?num_tip=${article.num_tip}"
+					
+					+ "&cno="+$(this).attr("data-cno");
+			});
+		})
+		
+</script>
+
+
+
+
+
+<body>  
+<center>
 <br>
+
 <form>
-<table width="500" border="1" cellspacing="0" cellpadding="0"  bgcolor="${bodyback_c}" align="center">  
-  <tr height="30">
-    <td align="center" width="125" bgcolor="${value_c}">±Û¹øÈ£</td>
-    <td align="center" width="125" align="center">
-	     ${article.num_tip}</td>
-    <td align="center" width="125" bgcolor="${value_c}">Á¶È¸¼ö</td>
+
+<div id = "rightview" class="rigth_panel" style="width: 776px; heigth:10964px;">
+<div class ="moviebox" >
+<iframe width="560" height="315" src="${tip2.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+
+<div class ="contentview">
+<div class ="title">
+  ${article.title}
+</div>
+<div class ="">
+
+${article.writer},${article.readcount} 
+</div>
+<div class ="content">
+
+${tip2.content}
+</div>
+
+
+</div>
+</div>
    
-  <tr height="30">
-    <td align="center" width="125" bgcolor="${value_c}">ÀÛ¼ºÀÚ</td>
-    <td align="center" width="125" align="center">
-	     ${article.writer}</td>
-    <td align="center" width="125" bgcolor="${value_c}" >ÀÛ¼ºÀÏ</td>
-    <td align="center" width="125" align="center">
-	     ${sdf.reg_time}</td>
-  </tr>
-  <tr height="30">
-    <td align="center" width="125" bgcolor="${value_c}">±ÛÁ¦¸ñ</td>
-    <td align="center" width="375" align="center" colspan="3">
-	     ${article.title}</td>
-  </tr>
-  <tr>
-    <td align="center" width="125" bgcolor="${value_c}">±Û³»¿ë</td>
-    <td align="left" width="375" colspan="3"><pre>${article.content}</pre></td>
-  </tr> 
-  <tr height="30">      
-    <td colspan="4" bgcolor="${value_c}" align="right" > 
-	  
-      
-       <input type="button" value="±Û¸ñ·Ï" 
-       onclick="document.location.href='/campstoryBoard1/list?pageNum=${pageNum}'">
-    </td>
-  </tr>
-</table>    
-</form>      
+</form>  
+
+<form name="readForm" role="form" method="post">
+	<input type="hidden" id="num_tip" name="num_tip" value="${article.num_tip}" />
+</form>    
+
+ <div>
+	<c:if test="${sessionScope.memId == 'admin'}">
+		<button type="submit" class="update_btn">ìˆ˜ì •</button>
+		<button type="submit" class="delete_btn">ì‚­ì œ</button>
+	</c:if>		
+		<button type="submit" class="list_btn">ëª©ë¡</button>	
+</div>
+
+
+<form name="commentForm" method="post">
+  <input type="hidden" id="num_tip" name="num_tip" value= "${article.num_tip}" />
+  <div>
+    <input type="hidden" id="writer" name="writer" value= "${sessionScope.memId}" />
+    <br/>
+    <label for="content">ëŒ“ê¸€ ë‚´ìš©</label><input type="text" id="content" name="content" />
+  </div>
+  <div>
+ 	 <button type="button" class="insertCommentBtn">ì‘ì„±</button>
+  </div>
+
+  
+</form>
+
+<div id ="comment">
+ <ol class="commentList">
+    <c:forEach items="${commentList}" var="commentList">
+      <li>
+        <p>
+        ì‘ì„±ì : ${commentList.writer}<br />
+        
+        ì‘ì„± ë‚ ì§œ : <fmt:formatDate value="${commentList.regdate}" pattern="yyyy-MM-dd"/>
+        </p>
+
+        <p>${commentList.content}</p>
+        
+        <c:if test="${commentList.writer == sessionScope.memId || sessionScope.memId =='admin'}">
+		<div>
+		  <button type="button" class="commentUpdateBtn" data-cno="${commentList.cno}">ìˆ˜ì •</button>
+		  <button type="button" class="commentDeleteBtn" data-cno="${commentList.cno}">ì‚­ì œ</button>
+		 </div>
+		</c:if>
+        
+        
+      </li>
+    </c:forEach>   
+  </ol>
+ 
+</div>
 </body>
 </html>      

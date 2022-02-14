@@ -31,7 +31,7 @@ function kakaoLogout() {
 
     <a href="/main" class="navbtn"><img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" id="cs_logo" /></a>
     <a href="/camp/list" class="navbtn"><h3>캠핑장 정보</h3></a>
-    <a href="" class="navbtn"><h3>캠핑 관련 정보</h3></a>
+    <a href="/board/list" class="navbtn"><h3>캠핑 관련 정보</h3></a>
     <a href="/campTalk/talkList" class="navbtn"><h3>캠프톡</h3></a>
     <a href="/cs/qna" class="navbtn"><h3>QNA</h3></a>
     <a href="/cs/notice" class="navbtn"><h3>공지사항</h3></a>
