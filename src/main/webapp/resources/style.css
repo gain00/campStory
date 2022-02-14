@@ -722,18 +722,12 @@
 		margin-bottom : 10px;
 	}
 	
- 	#exup {
+	#ex1 {
   background-color : #eee; 
   border-radius: 50%;
   width: 50px; height: 50px; 
   display: table-cell; vertical-align: middle; text-align:center;
 }
-	#exdown {
-  background-color : #eee; 
-  border-radius: 50%;
-  width: 50px; height: 50px; 
-  display: table-cell; vertical-align: middle; text-align:center;
-} 
 	.camptalkpaging {
 		margin-top : 20px;
 		padding-top : 30px;
@@ -1264,6 +1258,7 @@
 	.btn_box {
 		width : 440px;
 		margin : auto;
+		text-align:center;
 	}
 	
 	.update_btn , .delete_btn, .list_btn , .cancel_btn  {
