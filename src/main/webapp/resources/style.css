@@ -1264,6 +1264,7 @@
 	.btn_box {
 		width : 440px;
 		margin : auto;
+		text-align:center;
 	}
 	
 	.update_btn , .delete_btn, .list_btn , .cancel_btn  {
