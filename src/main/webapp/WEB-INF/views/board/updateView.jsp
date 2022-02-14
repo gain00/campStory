@@ -16,54 +16,54 @@
 		})
 	
 	</script>
-	<body>
 	
+	<body>
+	<%@ include file = "../include/header.jsp" %>
+<h1 class="pagesubject">캠핑 정보 글 작성</h1>	
 		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
-			<nav>
-			  홈 - 글 작성
-			</nav>
+	
 			<hr />
 			
-			<section id="container">
-				<form name="updateForm" role="form" method="post" action="/board/update">
-					<input type="hidden" name="num_tip" value="${update.num_tip}" readonly="readonly"/>
-					<table>
+			<section id="container" class="board_insert_section">
+				<form role="form" method="post" action="/board/insert">
+					<table class="board_content_table">
 						<tbody>
 							<tr>
+								<th>제목</th>
 								<td>
-									<label for="title">제목</label><input type="text" id="title" name="title" value="${update.title}"/>
+									<input type="text" id="title" name="title" value="${update.title}"/>
 								</td>
 							</tr>	
 							<tr>
+								<th>내용</th>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="content" rows="4"><c:out value="${update.content}" /></textarea>
+									<textarea id="board_insert_txt" name="content" ><c:out value="${update.content}" /></textarea>
 								</td>
 							</tr>
 							<tr>
+								<th>작성자</th>
 								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="writer" value="${update.writer}" readonly="readonly"/>
+									<input type="text" id="writer" name="writer"  value="${update.writer}" readonly="readonly"/>
 								</td>
-							</tr>
+							</tr>	
 							<tr>
-								<td>
-									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.reg_time}" pattern="yyyy-MM-dd"/>					
+								<th>작성날짜</th>
+								<td id="update_date">
+								<label ><fmt:formatDate value="${update.reg_time}" pattern="yyyy-MM-dd"/></label>
 								</td>
-							</tr>		
+							</tr>	
+							<tr>
+							
+								<td colspan="2">						
+									<button type="submit" class="update_btn">저장</button>
+									<button type="submit" class="cancel_btn">취소</button>
+								</td>
+							</tr>			
 						</tbody>			
 					</table>
-					<div>
-						<button type="submit" class="update_btn">저장</button>
-						<button type="submit" class="cancel_btn">취소</button>
-					</div>
 				</form>
 			</section>
 			<hr />
 		</div>
 	</body>
-</html>
+	<%@ include file = "../include/footer.jsp" %>

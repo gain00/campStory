@@ -2,41 +2,39 @@
     pageEncoding="UTF-8"%>
 <html>
 	<head>
-	 	<title>게시판</title>
+	 	<title>캠핑관련 정보 새글 작성</title>
 	</head>
 	<body>
-	
+<%@ include file = "../include/header.jsp" %>
+<h1 class="pagesubject">캠핑 정보 글 작성</h1>	
 		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
-			<nav>
-			  홈 - 글 작성
-			</nav>
+	
 			<hr />
 			
-			<section id="container">
+			<section id="container" class="board_insert_section">
 				<form role="form" method="post" action="/board/insert">
-					<table>
+					<table class="board_content_table">
 						<tbody>
 							<tr>
+								<th>제목</th>
 								<td>
-									<label for="title">제목</label><input type="text" id="title" name="title" />
+									<input type="text" id="title" name="title" />
 								</td>
 							</tr>	
 							<tr>
+								<th>내용</th>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="content" ></textarea>
+									<textarea id="board_insert_txt" name="content" ></textarea>
 								</td>
 							</tr>
 							<tr>
+								<th>작성자</th>
 								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="writer" />
+									<input type="text" id="writer" name="writer" />
 								</td>
+								</tr>
 							<tr>
-								<td>						
+								<td colspan="2">						
 									<button type="submit">작성</button>
 								</td>
 							</tr>			
@@ -47,4 +45,5 @@
 			<hr />
 		</div>
 	</body>
+	<%@ include file = "../include/footer.jsp" %>
 </html>
