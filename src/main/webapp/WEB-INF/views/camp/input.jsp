@@ -31,7 +31,7 @@
 </div>
                   
 <div class="camp_input_div">
-	<form action="camp/inputPro">
+	<form action="inputPro">
 		<table class="camp_input_table">
 			<tr>
 			<th>캠핑장 이름</th>

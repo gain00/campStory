@@ -30,6 +30,8 @@ public interface CampMapper {
 	
 	public int goodCheck(@Param("contentid") String contentid , @Param("id") String id);
 	
+	public int favCheck(@Param("contentid") String contentid , @Param("id") String id);
+	
 	public int goodUp(@Param("contentid") String contentid);
 	
 	public int goodDown(@Param("contentid") String contentid);
@@ -37,6 +39,10 @@ public interface CampMapper {
 	public int goodInsert(@Param("contentid") String contentid , @Param("id") String id);
 	
 	public int goodDelete(@Param("contentid") String contentid , @Param("id") String id);
+	
+	public int favInsert(@Param("contentid") String contentid , @Param("id") String id);
+	
+	public int favDelete(@Param("contentid") String contentid , @Param("id") String id);
 	
 	public int keywordCount(@Param("keyword") String keyword);
 	

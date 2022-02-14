@@ -368,6 +368,24 @@ public class CampServiceImpl implements CampService {
 		return mapper.delete_update_camp3(contentid);
 	}
 
+	@Override
+	public int favCheck(String contentid, String id) {
+		// TODO Auto-generated method stub
+		return mapper.favCheck(contentid, id);
+	}
+
+	@Override
+	public int favInsert(String contentid, String id) {
+		// TODO Auto-generated method stub
+		return mapper.favInsert(contentid, id);
+	}
+
+	@Override
+	public int favDelete(String contentid, String id) {
+		// TODO Auto-generated method stub
+		return mapper.favDelete(contentid, id);
+	}
+
 	
 
 
