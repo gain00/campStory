@@ -71,7 +71,7 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 		return mapper.campInfoSearchCount(area, camp);
 	}
 	
-	/* @Transactional(transactionManager="transacitonManager") */
+	@Transactional(transactionManager="transacitonManager")
 	@Override
 	public int talkGoodUp(String id, int num_talk) {
 		mapper.talkGoodUp(num_talk);
@@ -79,7 +79,7 @@ public class CampServiceTalkImpl implements CampServiceTalk {
 		return 1;
 	}
 	
-	/* @Transactional(transactionManager="transacitonManager") */
+	@Transactional(transactionManager="transacitonManager")
 	@Override
 	public int talkGoodDown(String id, int num_talk) {
 		mapper.talkGoodDown(num_talk);

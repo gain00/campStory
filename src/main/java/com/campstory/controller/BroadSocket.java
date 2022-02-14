@@ -47,13 +47,11 @@ public class BroadSocket {
 		// 콘솔에 접속 로그를 출력한다.
 		System.out.println("client is now connected...");
 		List list = service.getChat();
-		log.info("zzzzzzzzzzzzzz                    "+list);
 		for(int i = 0 ;i<list.size();i++) {
 			Map m = (Map)list.get(i);
 			try {
 				userSession.getBasicRemote().sendText(m.get("USERNAME") + " => " + m.get("MSG"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -76,11 +74,13 @@ public class BroadSocket {
 		final String msg = message.replaceAll(pattern.pattern(), "");
 		final String username = name.replaceFirst("^\\{\\{", "").replaceFirst("\\}\\}$", "");
 		if(!msg.equals("welcom")) {
+			if(service.getCountChat() >= 20) {
+				service.delChat();
+			}
 			service.insert(username, msg);
 		}
 		// session관리 리스트에서 Session을 취득한다.
 		sessionUsers.forEach(session -> {
-			// 리스트에 있는 세션과 메시지를 보낸 세션이 같으면 메시지 송신할 필요없다.
 			if (session == userSession) {
 				return;
 			}
@@ -90,8 +90,6 @@ public class BroadSocket {
 					// 리스트에 있는 모든 세션(메시지 보낸 유저 제외)에 메시지를 보낸다. (형식: 유저명 => 메시지)
 					session.getBasicRemote().sendText(username + " => " + msg);
 				}else {
-					//session.getBasicRemote().sendText(username + "님 입장 ");
-					
 				}
 			} catch (IOException e) {
 				// 에러가 발생하면 콘솔에 표시한다.

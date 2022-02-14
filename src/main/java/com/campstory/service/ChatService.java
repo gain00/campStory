@@ -11,4 +11,8 @@ public interface ChatService {
 	public int insert(String username, String msg);
 	
 	public List getChat();
+	
+	public int delChat();
+	
+	public int getCountChat();
 }

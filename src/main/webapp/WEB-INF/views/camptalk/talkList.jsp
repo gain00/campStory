@@ -7,7 +7,6 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>CampStory - 캠프톡 목록</title>
 
-
 <script>
 
 	function openSelect(){
@@ -28,24 +27,45 @@
 	}
 	
 	function good_click_up(num_talk){
-		if(${sessionScope.memId != null}){
-			window.location="/campTalk/goodUp?num_talk="+num_talk;
-			history.go(0);
-		} else {
-			alert("로그인 후 사용");
-		}
-	}
-	
+ 	    if(${sessionScope.memId != null}){
+			$.ajax({
+				 type: "post",
+				 url: "/campTalk/goodUp",
+				 data: { num_talk: num_talk },
+				 success: function(data){
+					 if(data=="1"){
+						 history.go(0);
+					 } else{
+						 alert("fail");
+					 }
+				 }
+			  });
+ 	    } else {
+ 	    	alert("로그인 후 사용");
+ 	    }
+	} 
+	 
 	function good_click_down(num_talk){
-		if(${sessionScope.memId != null}){
-			window.location="/campTalk/goodDown?num_talk="+num_talk;
-			history.go(0);
-		} else {
-			alert("로그인 후 사용");
-		}
-		
-		
-	}
+		  if(${sessionScope.memId != null}){
+	 	    $.ajax({
+				 type: "post",
+				 url: "/campTalk/goodDown",
+				 data: { num_talk: num_talk },
+				 success: function(data){
+					 if(data=="1"){
+						 history.go(0);
+					 } else{
+						 alert("fail");
+					 }
+				 }
+			  });
+		  } else {
+			  alert("로그인 후 사용");
+		  }
+	} 
+	
+
+	
 	
 	function talkUpdate(num_talk){
 		
@@ -109,7 +129,6 @@
 			data: { num_talk: $("#qna"+inputNum).val(), content: $("#aw"+inputNum).val(), ano:$('input[name="ano'+inputNum+'"]:checked').val(), writer:$("#qnaID").val() },
 			success: function(data){
 				if(data==1){
-					/* $("#answerForm"+inputNum).show(); */
 					$("#answerList"+inputNum).load(location.href + " #answerList"+inputNum);
 				 }
 			 }
@@ -274,13 +293,13 @@
 						</c:if>
 					</c:forEach>
 					<c:if test="${check==1}">
-						<div id='ex1' style="background-color: red" onclick="good_click_down(${dto.num_talk})">
+						<div id='exup' style="background-color: red" onclick="good_click_down(${dto.num_talk})">
 					    ${dto.good} <br/>
 						<img src = "/resources/campTalk/good.png" style="width: 30px;background-color: red" id="good_change" >
 						</div>
 				 	</c:if>
 				 	<c:if test="${check==0}">
-						<div id='ex1'  onmouseover="good_on(this)" onmouseout="good_out(this)" onclick="good_click_up(${dto.num_talk})">
+						<div id='exdown'  onmouseover="good_on(this)" onmouseout="good_out(this)" onclick="good_click_up(${dto.num_talk})">
 						${dto.good} <br/>
 						<img src = "/resources/campTalk/good.png" style="width: 30px;" id="good_change" >
 						</div>
