@@ -28,6 +28,8 @@ public interface CampService {
 	
 	public int goodCheck(String contentid , String id);
 	
+	public int favCheck(String contentid , String id);
+	
 	public int goodUp(String contentid);
 	
 	public int goodDown(String contentid);
@@ -35,6 +37,10 @@ public interface CampService {
 	public int goodInsert(String contentid , String id);
 	
 	public int goodDelete(String contentid , String id);
+	
+	public int favInsert(String contentid , String id);
+	
+	public int favDelete(String contentid , String id);
 	
 	public int keywordCount(String keyword);
 	

@@ -112,6 +112,7 @@ public class CampController {
 		String day6 = sdf.format(cal.getTime());
 		
 		int count = 0;
+		int fcount = 0;
 		if(session.getAttribute("kakaoId") == null) {
 			id = (String)session.getAttribute("memId");
 		}else {
@@ -119,6 +120,7 @@ public class CampController {
 		}
 		if (id != null) {
 			count = service.goodCheck(contentid, id);
+			fcount = service.favCheck(contentid, id);
 		}
 		 
 		model.addAttribute("day0" ,today1);
@@ -133,6 +135,7 @@ public class CampController {
 		model.addAttribute("contentid", contentid);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("goodCount", count);
+		model.addAttribute("favCount", fcount);
 			
 			
 			
@@ -341,6 +344,40 @@ public class CampController {
 		
 		return "camp/good";
 	}
+	@RequestMapping("favorite")
+	public String favorite( String id ,HttpServletRequest req, Model model,HttpSession session,
+			@RequestParam(value ="contentid",required=false,defaultValue="") String contentid) {
+	
+		
+		
+		if(session.getAttribute("kakaoId") == null) {
+			id = (String)session.getAttribute("memId");
+		}else {
+			id = (String)session.getAttribute("kakaoId");
+		}
+		log.info(id);
+		log.info(contentid);
+		if (id != null ) {
+			int fcount = service.favCheck(contentid, id);
+			if (fcount == 0){
+				service.favInsert(contentid, id);
+			}else {
+				service.favDelete(contentid, id);
+			}
+			
+			
+			
+			model.addAttribute("favCount", fcount);
+			model.addAttribute("contentid", contentid);
+		}
+		
+		
+		
+		
+		
+		return "camp/favorite";
+	}
+	
 	@RequestMapping("input")
 	public String input(HttpServletRequest req, Model model) {
 		List<CampDTO> sigungulist = service.getSigungunm();

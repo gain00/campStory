@@ -11,17 +11,19 @@
 
 <script type="text/javascript">
 	function good() { 
-		window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=50px; ,height=50px;');
+		window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=200px; ,height=150px;');
 		}
 
+	function favorite() { 
+		window.open('/camp/favorite?contentid=${campDTO.contentid }', '즐겨찾기', 'width=200px; ,height=150px;');
+		}
 </script>
 
 <body>  
 <%@ include file = "../include/header.jsp" %>
 
 	<h2 id="camp_name"> ${campDTO.facltnm}</h2>
-	<hr color="#DFD8CA" size="2"  align="center" />
-    <br/>
+	
    <div class ="camp_info"  >
   <!--   facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
                   sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
@@ -144,7 +146,13 @@
    			좋아요취소  </section>
    		</c:if>
    		
-   		<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="">즐겨찾기 </span>
+   		<c:if test="${favCount == 0 }">
+   			<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_off.png" width="30px" height="30px" onclick="favorite()">즐겨찾기 </span>
+   		</c:if>
+   		<c:if test="${favCount == 1 }">
+   			<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_on.png" width="30px" height="30px" onclick="favorite()">즐겨찾기 해제</span>
+   		</c:if>
+   		
    		
    	</div>
    	<form action="update">
@@ -547,6 +555,7 @@
 		infowindow.open(map, marker);
 
 	</script>
+	<br/>
 	<hr color="#DFD8CA" size="2"  align="center" />
     <br/>
     <div class="info_intro" width= "300px">

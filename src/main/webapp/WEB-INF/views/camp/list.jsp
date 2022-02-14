@@ -235,7 +235,7 @@
 </div>
 
    <c:if test="${campDTO.sbrscl =='0' }"></c:if>	  
-    <hr color="#DFD8CA" size="2"  align="center" />
+  
     <br/>
 </c:forEach>
 	

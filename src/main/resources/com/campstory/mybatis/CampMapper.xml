@@ -121,6 +121,12 @@
 		select count(*) from good where contentid = #{contentid} and id = #{id}
 		]]> 
 </select>
+
+<select id="favCheck" resultType="int">
+		<![CDATA[
+		select count(*) from favorite where camp = #{contentid} and id = #{id}
+		]]> 
+</select>
 <update id="goodUp" parameterType="String"> 
 <![CDATA[
 	update camp_info1 set 
@@ -146,6 +152,19 @@
 <delete id="goodDelete" parameterType="String">
 	<![CDATA[
 		delete good where contentid=#{contentid} and id=#{id} 
+		]]> 
+</delete>
+
+<insert id="favInsert" parameterType="String">
+	<![CDATA[
+		insert into favorite(num_favorite,camp,id)
+		values(seq_favorite.nextval, #{contentid}, #{id})
+		]]> 
+</insert>
+
+<delete id="favDelete" parameterType="String">
+	<![CDATA[
+		delete favorite where camp=#{contentid} and id=#{id} 
 		]]> 
 </delete>
 
