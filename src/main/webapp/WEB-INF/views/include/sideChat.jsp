@@ -6,7 +6,7 @@
 
 <input type="checkbox" id="menuicon">
 <label for="menuicon"> 
-	<img id="my-img" src="/resources/chat.png">
+	<img id="my-img" src="/resources/chat-bubble.png">
 </label>
 <div class="sidebar">
 	<%@ include file="../chat.jsp"%>
