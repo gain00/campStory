@@ -172,7 +172,7 @@ public class BoardController {
 			
 		rttr.addAttribute("num_tip", commentDTO.getNum_tip());
 			
-		return "redirect:/board/content";
+		return "redirect:/board/selfclose";
 	}
 
 	//댓글 삭제 GET
@@ -196,8 +196,12 @@ public class BoardController {
 			
 		rttr.addAttribute("num_tip", commentDTO.getNum_tip());
 			
-		return "redirect:/board/content";
+		return "redirect:/board/selfclose";
 	}
 
-	
+	@RequestMapping(value="/selfclose")
+	public String selfclose() {
+		
+		return "/board/selfclose";
+	}
 }

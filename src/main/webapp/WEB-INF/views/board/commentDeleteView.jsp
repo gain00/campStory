@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
+	<link rel="stylesheet" type="text/css" href="/resources/style.css">
 		<script src="/resources/Board/jquery/jquery-3.6.0.min.js"></script>   
 	 	<title>게시판</title>
 	</head>
@@ -11,7 +12,7 @@
 			var formObj = $("form[name='updateForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/board/content?num_tip=${commentDelete.num_tip}"
+				self.close();
 					
 			})
 			
@@ -19,30 +20,21 @@
 		
 	</script>
 	<body>
-	
-		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
-			<div>
-				
-			</div>
-			<hr />
+	<h1 class="pagesubject">댓글 삭제</h1>
+		<div id="comment_root">
 			
-			<section id="container">
+			
 				<form name="updateForm" role="form" method="post" action="/board/commentDelete">
 					<input type="hidden" name="num_tip" value="${commentDelete.num_tip}" readonly="readonly"/>
 					<input type="hidden" id="cno" name="cno" value="${commentDelete.cno}" />
 						
 					<div>
-						<p>삭제 하시겠습니까?</p>
-						<button type="submit" class="delete_btn">예 삭제합니다.</button>
-						<button type="button" class="cancel_btn">아니오. 삭제하지 않습니다.</button>
+						<p>댓글을 삭제 하시겠습니까?</p>
+						<button type="submit" class="delete_btn">예</button>
+						<button type="button" class="cancel_btn">아니오</button>
 					</div>
 				</form>
-			</section>
+			
 			<hr />
 		</div>
 	</body>

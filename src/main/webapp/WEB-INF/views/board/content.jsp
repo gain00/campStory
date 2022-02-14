@@ -4,10 +4,10 @@
 <html>
 <head>
 <title>게시판</title>
-
-<link href="/resources/Board/style.css" rel="stylesheet" type="text/css">
-<script src="/resources/Board/jquery/jquery-3.6.0.min.js"></script>   
 </head>
+
+<script src="/resources/Board/jquery/jquery-3.6.0.min.js"></script>   
+
 <script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='readForm']");
@@ -29,7 +29,7 @@
 			// 목록
 			$(".list_btn").on("click", function(){
 				
-				location.href = "/board/list?pageNum="+${pageNum};
+				location.href = "/board/list?pageNum="+ ${pageNum};
 			});
 			
 			// 추가
@@ -41,18 +41,16 @@
 			
 			//댓글 수정 View
 			$(".commentUpdateBtn").on("click", function(){
-				location.href = "/board/commentUpdateView?num_tip=${article.num_tip}"
-								
-								+ "&cno="+$(this).attr("data-cno");
+				
+				window.open("/board/commentUpdateView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 수정', 'width=350, height=280');
 			});
 					
 			//댓글 삭제 View
 			$(".commentDeleteBtn").on("click", function(){
-				location.href = "/board/commentDeleteView?num_tip=${article.num_tip}"
-					
-					+ "&cno="+$(this).attr("data-cno");
+				
+				window.open("/board/commentDeleteView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 삭제', 'width=350, height=280');
 			});
-		})
+		});
 		
 </script>
 
@@ -61,33 +59,30 @@
 
 
 <body>  
-<center>
-<br>
+<%@ include file = "../include/header.jsp" %>
+
 
 <form>
 
-<div id = "rightview" class="rigth_panel" style="width: 776px; heigth:10964px;">
-<div class ="moviebox" >
-<iframe width="560" height="315" src="${tip2.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div id = "rightview" class="right_panel" >
+
+	<div class ="moviebox" >
+	<iframe width="560" height="315" src="${tip2.youtube}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
+	</div>
+
+	<div class ="contentview">
+		<p id="content_title"> ${article.title} </p>
+		<p>${article.writer}</p>
+		<p><img src ="../resources/camp/images/eye.png" width="30px" height="30px"  class="viewcount">&emsp;&emsp;${article.readcount}</p> 
+	</div>
+	
+	<div class ="content_content">
+	<p>${tip2.content}</p>
+	</div>
 
 </div>
 
-<div class ="contentview">
-<div class ="title">
-  ${article.title}
-</div>
-<div class ="">
-
-${article.writer},${article.readcount} 
-</div>
-<div class ="content">
-
-${tip2.content}
-</div>
-
-
-</div>
-</div>
    
 </form>  
 
@@ -95,7 +90,7 @@ ${tip2.content}
 	<input type="hidden" id="num_tip" name="num_tip" value="${article.num_tip}" />
 </form>    
 
- <div>
+ <div class="btn_box">
 	<c:if test="${sessionScope.memId == 'admin'}">
 		<button type="submit" class="update_btn">수정</button>
 		<button type="submit" class="delete_btn">삭제</button>
@@ -103,45 +98,50 @@ ${tip2.content}
 		<button type="submit" class="list_btn">목록</button>	
 </div>
 
+<div class="content_comment">
 
 <form name="commentForm" method="post">
   <input type="hidden" id="num_tip" name="num_tip" value= "${article.num_tip}" />
-  <div>
-    <input type="hidden" id="writer" name="writer" value= "${sessionScope.memId}" />
-    <br/>
-    <label for="content">댓글 내용</label><input type="text" id="content" name="content" />
-  </div>
-  <div>
- 	 <button type="button" class="insertCommentBtn">작성</button>
-  </div>
+  <input type="hidden" id="writer" name="writer" value= "${sessionScope.memId}" />
+    
+   <label for="content">댓글 내용 : </label><input type="text" id="content" name="content" placeholder="댓글을 입력해주세요"/>
+  <button type="button" class="insertCommentBtn">작성</button>
+  
 
   
 </form>
 
 <div id ="comment">
- <ol class="commentList">
+ 
     <c:forEach items="${commentList}" var="commentList">
-      <li>
+      <div class="comment_card">
+      	<div class="comment_card_left">
         <p>
-        작성자 : ${commentList.writer}<br />
+        작성자 : <label>${commentList.writer}</label><br />
         
         작성 날짜 : <fmt:formatDate value="${commentList.regdate}" pattern="yyyy-MM-dd"/>
         </p>
 
-        <p>${commentList.content}</p>
+        <h5>${commentList.content}</h5>
+        </div>
+        
+        <div class="comment_card_right">
         
         <c:if test="${commentList.writer == sessionScope.memId || sessionScope.memId =='admin'}">
-		<div>
+		
 		  <button type="button" class="commentUpdateBtn" data-cno="${commentList.cno}">수정</button>
 		  <button type="button" class="commentDeleteBtn" data-cno="${commentList.cno}">삭제</button>
-		 </div>
+		 
 		</c:if>
         
-        
-      </li>
+      </div>  
+      
+      </div>
     </c:forEach>   
-  </ol>
+
  
 </div>
+</div>
+<%@ include file = "../include/footer.jsp" %>
 </body>
 </html>      

@@ -6,69 +6,43 @@
 <html>
 <head>
 <title>게시판</title>
-<link href="/resources/board/style.css" rel="stylesheet" type="text/css">
+<%@ include file = "../include/header.jsp" %>
+
 
 
 </head>
 
-
+<h1 class="pagesubject">캠핑 관련 정보</h1>
 
 <c:if test="${count == 0}">
-<table width="700" border="1" cellpadding="0"  
-cellspacing="0">
-  <tr>
-    <td align="center">
-    	작성된 게시글이 없습니다...!!
-    </td>
-  </tr>
-</table>
+	<div class="boardlists">
+    	<h2>작성된 게시글이 없습니다...!!</h2>
+   </div>
 </c:if>
 
 <c:if test="${count > 0}">
-<table border="1" width="700" cellpadding="0" cellspacing="0" align="center"> 
-    <tr height="30" bgcolor="${value_c}"> 
-      <td align="center"  width="500" colspan="2" >캠핑팁</td>
-      
-    </tr>
 
-   <c:forEach var="article" items="${articleList}">
+
+<c:forEach var="article" items="${articleList}">
+ 
    
-   <tr height="200">
-    	<td align="center"  width="50" colspan="2" >
-	  	<img src="${article.image}" >
-		</td>
-		
-   </tr>
-   <tr height="200">
- 		<td align="center"  width="100" colspan="2"> 
-    	<a href="/board/content?num_tip=${article.num_tip}&pageNum=${currentPage}">
-          ${article.title}</a> 
-    	</td> 
-   </tr>
-   
-   <tr height="200">
-    	<td align="center"  width="100" colspan="2"> 
-     	  ${article.content}
-		</td>
-   </tr>
-    
-   
-   
-    <tr height="200">
-    	<td align="center"  width="50" >
-	 	<fmt:formatDate value="${article.reg_time}" pattern="yyyy-MM-dd"/>
-	  	<c:set var="number" value="${number - 1}"/>
-		</td>
-		<td>
-		 ${article.readcount}
-		</td>
-   </tr>
-    
+<div class="boardContentlists">
+	<div class="list_thumbnail">
+		<img src="${article.image}" >
+	</div>
+	<div class="list_info">
+		<a href="/board/content?num_tip=${article.num_tip}&pageNum=${currentPage}">${article.title}</a>
+		 <p><fmt:formatDate value="${article.reg_time}" pattern="yyyy-MM-dd"/></p>
+		 <p> <img src ="../resources/camp/images/eye.png" width="30px" height="30px"  class="viewcount">&emsp;&emsp;${article.readcount}</p>
+		 
+	</div>
+</div>
+  
  
   </c:forEach>
-</table>
+
 </c:if>
-<div>
+<div class="board_paging">
 <c:if test="${count > 0}">
    <c:set var="pageCount" value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"/>
    <c:set var="pageBlock" value="${10}"/>
@@ -92,7 +66,7 @@ cellspacing="0">
    </c:if>
 </c:if>
 </div>
-<div>
+<div class="board_search">
   <select name="searchType">
       <option value="title">제목</option>
          <option value="content">내용</option>
@@ -102,21 +76,22 @@ cellspacing="0">
   
   <input type="text" name="keyword" />
   
-  <button type="button" id="searchBtn">검색</button>
+  <button type="button" id="searchBtn3">검색</button>
   
   
  </div>
- <div>
+ <div class="board_write">
 <c:if test="${sessionScope.memId == 'admin'}">
-	<button id="insert_btn" onclick="insert_btn_click();">작성</button>	
+	<button id="insert_btn" onclick="insert_btn_click();">새 글 작성</button>	
 </c:if>
 		
 </div>
+<%@ include file = "../include/footer.jsp" %>
  <script>
  function insert_btn_click() {
 	 location.href = "/board/insertView";
 	}
- document.getElementById("searchBtn").onclick = function () {
+ document.getElementById("searchBtn3").onclick = function () {
     
   let searchType = document.getElementsByName("searchType")[0].value;
   let keyword =  document.getElementsByName("keyword")[0].value;
