@@ -355,8 +355,11 @@
     	padding: 40px;
     	text-align: center;
     	position: relative;
+    	top: 80px;
     
     }
+    
+    
     #mainsearch {
     	opacity : 1;
     	margin: auto;
@@ -1419,3 +1422,70 @@
 		
 	} 
 	
+	#kword_live {
+    width : 260px;
+    margin: auto;
+    padding: 10px;
+    background: #696969;
+    z-index: 5;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    
+}
+
+	#rank-list a {
+	    color: #FFF;
+	    text-decoration: none;
+	    z-index: 5;
+	}
+	
+	#rank-list a:hover {
+	    text-decoration: underline;
+	}
+	
+	#rank-list {
+	    overflow: hidden;
+	    width: 220px;
+	    height: 20px;
+	    margin: 0;
+	    z-index: 5;
+	}
+	
+	#rank-list dt {
+	    display: none;
+	}
+	
+	#rank-list dd {
+	    position: relative;
+	    margin: 0;
+	}
+	
+	#rank-list ol {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    margin: 0;
+	    padding: 0;
+	    list-style-type: none;
+	}
+	
+	#rank-list li {
+	    height: 20px;
+	    line-height: 20px;
+	}
+	#rank-list label {
+		font-weight: bold;
+		font-size: large;
+		padding-right: 15px;
+		color: #FFF;
+	}
+	#kword_live label {
+		font-weight: bold;
+		font-size: large;
+		color: #FFF;
+		margin-bottom : 15px;
+		
+	}	
+		

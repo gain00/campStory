@@ -116,7 +116,7 @@
 		 	select * from camptalk where num_talk = #{num_talk}
 	</select>
 	<update id="talkUpdate">
-		update camptalk set content = #{content}, reg_time = sysdate, ano = #{ano} where num_talk = #{num_talk} 
+		update camptalk set content = #{content}, ano = #{ano} where num_talk = #{num_talk} 
 	</update>
 	
 	<!-- talkDelete -->

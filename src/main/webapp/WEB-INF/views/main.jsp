@@ -25,6 +25,21 @@
     });
 	});
 	
+	$(function() {
+	    var count = $('#rank-list li').length;
+	    var height = $('#rank-list li').height();
+
+	    function step(index) {
+	        $('#rank-list ol').delay(2000).animate({
+	            top: -height * index,
+	        }, 500, function() {
+	            step((index + 1) % count);
+	        });
+	    }
+
+	    step(1);
+	});
+	
 	 </script>
 <body>
 <%@ include file = "include/header.jsp" %>
@@ -46,6 +61,20 @@
 		</c:forEach>
 	
 	</div>
+	<div id="kword_live">
+		<label>실시간검색어</label>
+            <dl id="rank-list">
+                <dt>실시간 급상승 검색어</dt>
+                <dd>
+                    <ol>
+                    <c:forEach var="keyworddatelist" items="${keyworddatelist }" begin="0" end="4" step="1">
+                    	<c:set var="rank" value="${rank+1 }"/>
+                        <li><label>${rank}</label> <a href = "/camp/klist?keyword=${keyworddatelist.keyword}" class="mainkeyword"># ${keyworddatelist.keyword}</a></li>
+                        </c:forEach>
+                    </ol>
+                </dd>
+            </dl>
+        </div>
 	</div>
        <div id="mainlogo">
        <img src="https://i.ibb.co/G2kJKb2/logo-campstory.png" width="300px" height="250px" />

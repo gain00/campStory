@@ -1,6 +1,8 @@
 package com.campstory.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +43,11 @@ public class MainController {
 		}else {
 			id = (String)session.getAttribute("kakaoId");
 		}
-		
+		Calendar today = Calendar.getInstance();
+		String format = "yyyy-MM-dd";
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		String todaystr = sdf.format(today.getTime());
+		List<KeywordDTO> keyworddatelist = campservice.getKeywordDateList(todaystr);
 		if(id != null) {
 			model.addAttribute("memberDTO", service.memberUserInfo(id));
 		}
@@ -52,6 +58,7 @@ public class MainController {
 		model.addAttribute("keywordlist",mainkeywordlist);
 		model.addAttribute("goodlist",goodlist);
 		model.addAttribute("rcountlist",rcountlist);
+		model.addAttribute("keyworddatelist", keyworddatelist);
 		log.info(" ===========list" +mainkeywordlist);
 			
 		
