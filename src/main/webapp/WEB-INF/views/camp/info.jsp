@@ -11,11 +11,11 @@
 
 <script type="text/javascript">
 	function good() { 
-		window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=200px; ,height=150px;');
+		window.open('/camp/good?contentid=${campDTO.contentid }', '좋아요', 'width=450px; ,height=130px;');
 		}
 
 	function favorite() { 
-		window.open('/camp/favorite?contentid=${campDTO.contentid }', '즐겨찾기', 'width=200px; ,height=150px;');
+		window.open('/camp/favorite?contentid=${campDTO.contentid }', '즐겨찾기', 'width=450px; ,height=130px;');
 		}
 </script>
 
@@ -143,7 +143,7 @@
    		</c:if>
    		<c:if test="${goodCount == 1 }">
    			<section class="info_btn"><input type="image" src="../resources/camp/images/good_on.png" width="30px" height="30px" onclick="good()">
-   			좋아요취소  </section>
+   			좋아요취소 </section>
    		</c:if>
    		
    		<c:if test="${favCount == 0 }">
@@ -152,9 +152,9 @@
    		<c:if test="${favCount == 1 }">
    			<span class="info_btn"><input type="image" src="../resources/camp/images/favorite_on.png" width="30px" height="30px" onclick="favorite()">즐겨찾기 해제</span>
    		</c:if>
-   		
-   		
+   			
    	</div>
+   	
    	<form action="update">
    		<input type="hidden" name="contentid" value="${campDTO.contentid }" />
    		<input type="submit" value="정보 수정 요청"/>

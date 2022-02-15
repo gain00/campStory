@@ -160,7 +160,11 @@ public class CapmTalkController {
 			dto.setAno("anonymity");
 		}
 		service.talkUpdate(dto);
-		return "redirect:/campTalk/talkList";
+		return "redirect:/campTalk/endpage";
+	}
+	@RequestMapping("endpage")
+	public String endpage() {
+		return "/camptalk/endpage";
 	}
 	
 	@RequestMapping("talkDelete")

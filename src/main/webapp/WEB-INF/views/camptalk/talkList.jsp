@@ -69,7 +69,7 @@
 	
 	function talkUpdate(num_talk){
 		
-		window.open('/campTalk/talkUpdate?num_talk='+num_talk, 'camptalk 수정', 'width=283, height=133')
+		window.open('/campTalk/talkUpdate?num_talk='+num_talk, 'camptalk_update', 'width=283, height=133')
 		
 	}
 	
@@ -211,7 +211,7 @@
     				</c:if>
 				 </td> 
 				 
-				<td height="30px" width="500px">
+				<td height="30px" width="480px">
 					<c:if test="${dto.contentid != 7502 }">
 						[${dto.area}]&nbsp;&nbsp;&nbsp;&nbsp;캠프명 : 
 						<a href="/camp/info?contentid=${dto.contentid}">${dto.camp}</a> &nbsp;&nbsp;

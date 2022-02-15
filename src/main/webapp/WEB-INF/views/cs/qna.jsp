@@ -237,13 +237,7 @@
 					<td align="center"  width="100" class="writetblcolor">글내용</td>
 				    <td colspan="3" width="550" > 비밀글 입니다. </td>
 				</tr>
-				<c:if test="${csDTO.re_comment ne null && sessionScope.adminId == null}">
-					<tr height="30">
-						<td align="center"  width="50" ></td>
-						<td align="center"  width="100" >답  변</td>
-					    <td colspan="3" width="550" >${csDTO.re_comment}</td>
-					</tr>
-				</c:if>
+				
 			</c:if>
 			<c:if test="${sessionScope.adminId != null}">
 				<tr height="30">
