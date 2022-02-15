@@ -42,13 +42,13 @@
 			//댓글 수정 View
 			$(".commentUpdateBtn").on("click", function(){
 				
-				window.open("/board/commentUpdateView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 수정', 'width=350, height=280');
+				window.open("/board/commentUpdateView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 수정', 'width=450px; ,height=250px;');
 			});
 					
 			//댓글 삭제 View
 			$(".commentDeleteBtn").on("click", function(){
 				
-				window.open("/board/commentDeleteView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 삭제', 'width=350, height=280');
+				window.open("/board/commentDeleteView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 삭제', 'width=450px; ,height=250px;');
 			});
 		});
 		
