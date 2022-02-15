@@ -48,22 +48,22 @@
         <tr>
             <th id="dt_th">지역</th>
             <td id="dt_td">
-                <input type="checkbox" name="donm" value="and donm like '%서울%'">서울
-                <input type="checkbox" name="donm" value="and donm like '%경기도%'">경기도
-                <input type="checkbox" name="donm" value="and donm like '%인천%'">인천
-                <input type="checkbox" name="donm" value="and donm like '%강원도%'">강원도
-                <input type="checkbox" name="donm" value="and donm like '%충청북도%'">충청북도
-                <input type="checkbox" name="donm" value="and donm like '%충청남도%'">충청남도
-                <input type="checkbox" name="donm" value="and donm like '%대전%'">대전
-                <input type="checkbox" name="donm" value="and donm like '%세종%'">세종 <br/>
-                <input type="checkbox" name="donm" value="and donm like '%전라북도%'">전라북도
-                <input type="checkbox" name="donm" value="and donm like '%전라남도%'">전라남도
-                <input type="checkbox" name="donm" value="and donm like '%광주%'">광주
-                <input type="checkbox" name="donm" value="and donm like '%경상북도%'">경상북도
-                <input type="checkbox" name="donm" value="and donm like '%경상남도%'">경상남도
-                <input type="checkbox" name="donm" value="and donm like '%부산%'">부산
-                <input type="checkbox" name="donm" value="and donm like '%울산%'">울산
-                <input type="checkbox" name="donm" value="and donm like '%제주도%'">제주도
+                <input type="radio" name="donm" value="and donm like '%서울%'">서울
+                <input type="radio" name="donm" value="and donm like '%경기도%'">경기도
+                <input type="radio" name="donm" value="and donm like '%인천%'">인천
+                <input type="radio" name="donm" value="and donm like '%강원도%'">강원도
+                <input type="radio" name="donm" value="and donm like '%충청북도%'">충청북도
+                <input type="radio" name="donm" value="and donm like '%충청남도%'">충청남도
+                <input type="radio" name="donm" value="and donm like '%대전%'">대전
+                <input type="radio" name="donm" value="and donm like '%세종%'">세종 <br/>
+                <input type="radio" name="donm" value="and donm like '%전라북도%'">전라북도
+                <input type="radio" name="donm" value="and donm like '%전라남도%'">전라남도
+                <input type="radio" name="donm" value="and donm like '%광주%'">광주
+                <input type="radio" name="donm" value="and donm like '%경상북도%'">경상북도
+                <input type="radio" name="donm" value="and donm like '%경상남도%'">경상남도
+                <input type="radio" name="donm" value="and donm like '%부산%'">부산
+                <input type="radio" name="donm" value="and donm like '%울산%'">울산
+                <input type="radio" name="donm" value="and donm like '%제주도%'">제주도
                 <br/>
             </td>
             <td rowspan="3">

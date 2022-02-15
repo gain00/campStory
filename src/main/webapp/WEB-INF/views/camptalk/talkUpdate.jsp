@@ -2,9 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/style.css">
+   
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
     
-    
-<form action="/campTalk/talkUpdatePro" method="post" name="cs">
+
+
+<form action="talkUpdatePro" method="post" name="cs">
 	<table class="talktable">
 		<tr><th>캠핑장</th><td>
 		
@@ -20,7 +23,7 @@
 		
 		<tr><th>내용</th><td> <input type="text" name="content" value="${dto.content}"/> </td></tr>
 		<tr><td colspan="2" class="talkwritebtn">
-		<input type="submit" value="수정" onclick="opener.parent.location.reload(); window.close();"/>	<input type="button" value="취소" onclick="history.go(-1)"/>
+		<input type="submit" value="수정" onsubmit="window.close();"/>	<input type="button" value="취소" onclick="window.close();"/>
 		</td></tr>
 	</table>
 </form>
