@@ -42,13 +42,13 @@
 			//댓글 수정 View
 			$(".commentUpdateBtn").on("click", function(){
 				
-				window.open("/board/commentUpdateView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 수정', 'width=450px; ,height=250px;');
+				window.open("/board/commentUpdateView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 수정', 'width=350, height=280');
 			});
 					
 			//댓글 삭제 View
 			$(".commentDeleteBtn").on("click", function(){
 				
-				window.open("/board/commentDeleteView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 삭제', 'width=450px; ,height=250px;');
+				window.open("/board/commentDeleteView?num_tip=${article.num_tip}"+ "&cno="+$(this).attr("data-cno"), '댓글 삭제', 'width=350, height=280');
 			});
 		});
 		
@@ -100,6 +100,7 @@
 
 <div class="content_comment">
 
+
 <c:if test="${sessionScope.memId != null}">
 <form name="commentForm" method="post">
   <input type="hidden" id="num_tip" name="num_tip" value= "${article.num_tip}" />
@@ -107,11 +108,12 @@
     
    <label for="content">댓글 내용 : </label><input type="text" id="content" name="content" placeholder="댓글을 입력해주세요"/>
   <button type="button" class="insertCommentBtn">작성</button>
+ </form>
   
+</c:if>
 
   
-</form>
-</c:if>
+
 <div id ="comment">
  
     <c:forEach items="${commentList}" var="commentList">
