@@ -61,8 +61,10 @@
 	
 	.listinfo {
 		margin: auto;
+		margin-top : 20px;
 		width:700px;
 		padding: 30px;
+		border : 1px solid;
 	
 	}
 	.infocard {
@@ -113,6 +115,7 @@
 	width : 800px;
 	margin : auto;
 	margin-top : 20px;
+	margin-bottom : 30px;
 	}
 
 	.camp_info{
@@ -197,10 +200,15 @@
 	margin : auto;
 	align : center;
 	}
-	#map ,  .info_detail ,.review{
+	#map , #review_h2 ,.info_detail ,.review{
 	width : 900px;
 	margin : auto;
 	}
+	#review_h2{
+		margin-bottom: 40px;
+		margin-top : 20px;	
+	}
+	
 	
 	.search_keyword{ 
 	width : 900px;

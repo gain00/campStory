@@ -696,9 +696,9 @@
      </div>
      	<hr color="#DFD8CA" size="2"  align="center" />
     <br/>
-    
+    	<h2 id="review_h2">${campDTO.facltnm} 블로그 리뷰</h2>
         <div class = "review">
-        <h2>${campDTO.facltnm} 블로그 리뷰</h2>
+        
         </div>
 </body>
 <%@ include file = "../include/footer.jsp" %>

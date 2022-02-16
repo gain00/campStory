@@ -100,6 +100,7 @@
 
 <div class="content_comment">
 
+<c:if test="${sessionScope.memId != null}">
 <form name="commentForm" method="post">
   <input type="hidden" id="num_tip" name="num_tip" value= "${article.num_tip}" />
   <input type="hidden" id="writer" name="writer" value= "${sessionScope.memId}" />
@@ -110,7 +111,7 @@
 
   
 </form>
-
+</c:if>
 <div id ="comment">
  
     <c:forEach items="${commentList}" var="commentList">
