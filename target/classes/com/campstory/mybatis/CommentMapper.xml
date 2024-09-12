@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.campstory.mybatis.CommentMapper">
+	
+	<select id="getComment" resultType="com.campstory.bean.CommentDTO">
+    	select * from comment_tip where num_tip = #{num_tip}
+	</select>
+	<insert id="insertComment">
+		INSERT INTO comment_tip(
+			num_tip
+			, CNO
+			, CONTENT
+			, WRITER
+		)
+		VALUES(    #{num_tip}
+			, comment_tip_SEQ.NEXTVAL
+			, #{content}
+			, #{writer}	)
+	</insert>
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="com.campstory.bean.CommentDTO">
+		update comment_tip set content = #{content} where cno = #{cno}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="com.campstory.bean.CommentDTO">
+		delete from comment_tip where cno = #{cno}
+	</delete>
+	
+	<!-- 선택된 댓글 조회 -->
+	<select id="selectComment"  resultType="com.campstory.bean.CommentDTO">
+		select
+				num_tip
+			  , cno
+			  , content
+			  , writer
+			  , regdate
+		  from comment_tip
+		 where cno = #{cno}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

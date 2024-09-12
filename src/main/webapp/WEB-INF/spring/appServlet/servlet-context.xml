@@ -12,7 +12,17 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<annotation-driven>
+    <message-converters>
+        <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <beans:property name="supportedMediaTypes">
+                <beans:list>
+                	<beans:value>text/html;charset=UTF-8</beans:value>
+                </beans:list>
+            </beans:property>
+        </beans:bean>
+    </message-converters>
+	</annotation-driven>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -44,6 +54,7 @@
      </beans:bean>
 	
 	<context:component-scan base-package="com.campstory.controller" />
+	<context:component-scan base-package="com.campstory.command" />
 
 	<!-- 	
 	<context:component-scan base-package="org.mvc.exception" />
@@ -54,8 +65,16 @@
 			ref = 참조 (레퍼런스)
 		 -->
 		<!-- <beans:bean id="memberDTO" class="com.campstory.bean" />  -->
+	
+	<beans:bean id="campDTO" class="com.campstory.bean.CampDTO" />	
+	<beans:bean id="campTalkDTO" class="com.campstory.bean.CampTalkDTO" />	
+	<beans:bean id="csDTO" class="com.campstory.bean.CsDTO" />	
+	<beans:bean id="memberDTO" class="com.campstory.bean.MemberDTO" />	
+	<beans:bean id="keywordDTO" class="com.campstory.bean.KeywordDTO" />	
+	
 		
-		
+	
+	<context:component-scan base-package="com.campstory" />
 	<context:component-scan base-package="org.mvc.aop" />
    <!-- AOP Advice 클래스 자동 등록 -->
    <aop:aspectj-autoproxy></aop:aspectj-autoproxy> 

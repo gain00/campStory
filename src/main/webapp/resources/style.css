@@ -1,0 +1,1499 @@
+@charset "UTF-8";
+	body {
+		padding : 0;
+		margin : 0;
+		
+	}
+	
+	
+	.camp_rank  {
+		display : flex;
+		margin :auto;
+		width : 100vw;
+		
+	}
+	.goodcamp , .rcountcamp {
+		display : flex;
+		margin : auto;
+		
+		
+		padding: 5px;
+	}
+	.rank_text {
+		margin-top: 5px;
+		
+	
+	}
+	
+	.rank_p {
+		font-family:sans-serif;
+		font-size: 22px;
+    	font-weight: bold;
+    	text-decoration : none;
+    	color: black !important;
+    	padding-right: 20px;
+    	width : 140px;
+	}
+	
+	.main_listinfo {
+		width : 170px;
+		height : 160px;
+		margin : 2px;
+		padding: 5px;
+		text-align: center;
+	}
+	.sortbox {
+		margin: auto;
+		margin-top: 3px;	
+		padding-left: 50px;
+		display : flex;
+	}
+	.sortsection {
+		margin-left: auto;
+		width : 200px;
+	}
+	.sortsection form {
+		margin-bottom: 0px;
+	}
+	.sortbox b{
+		margin-top: 20px;
+	}
+	
+	.listinfo {
+		margin: auto;
+		margin-top : 20px;
+		width:700px;
+		padding: 30px;
+		border : 1px solid;
+	
+	}
+	.infocard {
+		margin: auto;
+		width:700px;
+		display: flex;
+		padding: 20px;
+	}
+	.infocard1{
+		margin: auto;
+		display:inline; 
+		width: 400px;
+		
+    	
+	}
+	.camp_name {
+		font-size: 30px !important;
+    	font-weight: bold !important;
+    	text-decoration : none !important;
+    	color: blue !important;
+    	padding: 30px;  
+	}
+	
+	.infocard2 {
+		margin: auto;
+		padding : 20px;
+		width: 300px;
+		align-content: center; 
+		font-size: 20px !important;
+    	font-weight: bold !important;
+    	text-decoration : none !important; 
+    	color: black !important; 
+    	text-decoration:  
+    	
+	}
+	.viewcount , .goodcount{
+		vertical-align : bottom;
+		
+	}
+	
+	.sbrscl  {
+		width : 660px;
+		margin : auto;
+		padding: 20px;
+		text-align: center;
+	}
+	#camp_name{
+	width : 800px;
+	margin : auto;
+	margin-top : 20px;
+	margin-bottom : 30px;
+	}
+
+	.camp_info{
+	width : 900px;
+	display:flex;
+	margin : auto;
+	}
+	.camp_info1 {
+	margin : auto;
+	padding-left: 40px;
+	
+	}
+	.info_intro{
+	width : 900px;
+	margin : auto;
+	padding: 20px;
+	
+	}
+	.info_detail {
+	font-size: 15px !important;
+    font-weight: bold;
+    text-decoration : none;
+	}
+	#movie_h2 {
+		margin: auto;
+		padding-bottom: 10px;
+		padding-top: 20px;
+		padding-left: 200px;
+	}
+	.camp_mov {
+		margin : auto;
+		padding: 20px;
+		display : flex;
+		text-align: center;
+		align-items: center;
+		
+	}
+	
+	.movie{
+		width: 400px;
+		padding: 10px;
+		margin : auto;
+		text-align: center;
+		align-content: center;
+	}
+	.movie_thumb{
+		padding: 10px;
+		width: 200px;
+		height: 180px;
+		position: relative;
+		margin: auto;
+		
+		
+	}
+	.playbtn {
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		bottom: 30px;
+		right: 20px;
+	}
+	.movie_title {
+		text-align: center;
+		font-size: 15px;
+		font-weight: bold;
+    	text-decoration : none;
+    	text-overflow: ellipsis;
+    	color: black;
+	}
+	
+	.weather {
+	margin : auto;
+	width : 90%;
+	}
+	
+	.weather_day {
+	
+	display : flex;
+	
+	}
+	.weather1,.weather2,.weather3,.weather4,.weather5,.weather6,.weather7  {
+	margin : auto;
+	align : center;
+	}
+	#map , #review_h2 ,.info_detail ,.review{
+	width : 900px;
+	margin : auto;
+	}
+	#review_h2{
+		margin-bottom: 40px;
+		margin-top : 20px;	
+	}
+	
+	
+	.search_keyword{ 
+	width : 900px;
+	height : 70px;
+	margin : auto;
+	margin-top : 20px;
+	
+	text-align : center;
+	}
+	.search_detail{ 
+	width : 1000px;
+	margin : auto;
+	text-align : center;
+	}
+	.search-disply{
+	width : 800px;
+	margin : auto;
+	padding : 20px;
+	text-align : right;
+	}
+	#searchbar {
+	width : 300px;
+	height : 70px;
+	}
+	#searchbtn {
+	width : 60px;
+	height : 60px;
+	vertical-align : bottom;
+	}
+	#searchbtn2 {
+	width : 150px;
+	height : 150px;
+	vertical-align : bottom;
+	}
+	#dt_th {
+	width : 70px;
+	}
+	#dt_td {
+	width : 600px;
+	}
+	
+	    .navbar {
+        display: flex;
+        margin: auto;
+        padding-top : 20px;
+        padding-bottom: 10px;
+        height: 90px;
+        text-align: center;
+        vertical-align : bottom;
+    }
+    
+    .navbtn {
+        width: auto;
+        margin: auto;
+        padding: auto;
+        display :flex;
+        text-align: center;
+        
+    }
+  
+    a.navbtn{
+    	
+    	margin: auto;
+    	text-align: center;
+    	text-decoration-line : none;
+    	color: black;
+    }
+    a.navbtn.h4{
+    	width: 80px;
+    	margin: auto;
+    	text-align: center;
+    }
+    .logbtn {
+        width: 150px;
+        margin: auto;
+        display : inline-block;
+        
+    }
+    #loginbtn, #logoutbtn {
+        width: 100px;
+        height: 40px;
+        vertical-align : bottom;
+        text-align: center;
+       	border: 0;
+    }
+    #logoutbtn.navbtn{
+    	text-align: center;
+    }
+   	.logout {
+   		width: 500px;
+   		margin:auto;
+   		text-align: center;
+   		margin-top : 50px;
+   		margin-bottom: 220px;
+   	} 
+   
+    #userid {
+    	margin : auto;
+    	margin-top : 10px;
+    	text-align: right;
+    	width: 70px;
+    	padding-top: 5px;
+    	
+    }
+    
+    #cs_logo {
+        width: 80px;
+        height: 80px;
+    }
+    #mypage {
+    	
+    	margin:auto;
+    	padding: 10px;
+    	text-align: center;
+    }
+        .main_intro{
+    	
+    	margin :auto;
+    	width : auto;
+    	height: 90vh;
+    	position: relative;
+    	
+    }
+    .main_intro::before{
+    	content: "";
+    	background : url("../resources/camp/images/bg_main.jpeg");	
+    	background-repeat:no-repeat;
+    	background-size:cover;
+    	opacity : 0.6;
+    	margin :auto;
+    	position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+    	
+    }
+    .introbox{
+    	position: relative;
+    	padding: 20px;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        background-origin:content-box;
+        background-color: #ffffff;
+        background-color: rgba( 255, 255, 255, 0.5 );
+       
+    }
+    #mainlogo {
+    	opacity : 1;
+    	margin: auto;
+    	padding: 40px;
+    	text-align: center;
+    	position: relative;
+    	top: 80px;
+    
+    }
+    
+    
+    #mainsearch {
+    	opacity : 1;
+    	margin: auto;
+    	padding: 40px;
+    	text-align: center;
+    	position: relative;
+    }
+    
+    .usr_button {
+    	padding-top: 20px;
+    	margin-left : 0px;
+    	
+    	display: flex;
+    	vertical-align : bottom;
+    	
+    }
+    .info_btn {
+    	width : 200px;
+    	padding: 20px;
+    	margin : auto;
+    	font-weight: bold;
+    	vertical-align : bottom;
+    }
+    #kwordList{
+    	padding : 20px;
+    	margin:auto;
+    }
+   
+    
+    .keyword , #kwordList > .mainkeyword{
+	padding: 5px;
+	margin: auto !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-decoration : none !important; 
+    color: black !important; 
+    background-color: silver !important; 
+    background-size: 3px !important;  
+	}
+	
+	
+	.info_detail > .unknowninfo {
+		font-size: 17px;
+		font-weight: bold;
+		color: gray;
+		
+		
+	}
+	.admin_stats {
+		margin: auto;
+		padding: 10px;
+		width : 1300px;
+	}
+	.keyword_stats , .readcount_stats {
+		margin: auto;
+		display: flex;
+		padding: 10px;
+		width : 1200px;
+	}
+	
+	.stat_table {
+		width : 500px;
+		margin : auto;
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	.stat_table th	{
+		padding: 10px;
+		border-bottom: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.keyword_stats_all, .readcount_stats_all {
+		margin: auto;
+		padding: 10px;
+		width:600px;
+		
+	}
+	
+	.keyword_stats_daily, .readcount_stats_daily {
+		margin-right:50px;
+		padding: 20px;
+	}
+	.admin_stats_hl {
+		width : 200px;
+		padding-left: 100px;
+	}
+	
+	.th_head {
+	background-color: silver;
+	}
+	
+	.good_stats{
+		margin-right: 600px;
+		padding-top: 20px;
+	}
+	
+	 .ad_navbar {
+        display: flex;
+        margin: auto;
+    	padding-top : 10px;
+        padding-bottom: 10px;
+        height: 30px;
+        text-align: center;
+      	vertical-align:top;
+        background-color: silver;
+    }
+    
+
+    .ad_navbtn {
+        width: auto;
+        margin: 3px;
+        padding: auto;
+        display :flex;
+        text-align: center;
+        
+    }
+  
+    a.ad_navbtn{
+    	
+    	margin: auto;
+    	text-align: center;
+    	text-decoration-line : none;
+    	color: black;
+    }
+    .h3_adnav {
+    	
+    	margin-top: 3px;
+    }
+    
+    .admincampdiv {
+    	margin: auto;
+		display: flex;
+		padding: 10px;
+		width : 1500px;
+    }
+	
+	.newcamp , .updatecamp ,.delcamp{
+		margin-left : auto;
+		margin-right : auto;
+		padding: 10px;
+		width:400px;
+	
+	}
+	
+	.del_Camp_table , .updateCamp_table, .newCamp_table {
+		margin : auto;
+		width : 380px;
+		border: 1px solid;
+		border-collapse: collapse;
+	
+	}
+	.del_Camp_table th , .updateCamp_table th, .newCamp_table th{
+		padding: 10px;
+		border-bottom: 1px solid;
+		border-collapse: collapse;
+	
+	}
+	
+	.delcamp_form {
+		width : 350px;
+		margin : auto;
+		margin-bottom : 30px;
+	}
+	
+	.loginform {
+		width : 300px;
+		height : 320px;
+		margin : auto;
+		padding : 20px;
+		background-color: silver;
+		text-align:  center;
+		border-style: solid;
+		margin-top : 90px;
+		margin-bottom : 220px;
+		border-radius: 2em;
+		border-top-left-radius: 2em;
+		border-top-right-radius: 2em;
+		border-bottom-left-radius: 2em;
+		border-bottom-right-radius: 2em;
+		
+	}
+	#meminput {
+		color:gray;
+		text-decoration: none;
+	}
+	
+	.idbox , .pwbox {
+		width : 250px;
+		height : 60px;
+		margin : auto;
+		margin-top : 10px;
+		padding : 30px;
+	}
+	
+	.loginbtn {
+		width : 180px;
+		height : 50px;
+		margin-top: 20px;
+		border: none;
+	}
+	
+	.meminputform {
+		width : 500px;
+		height : 400px;
+		margin : auto;
+		padding : 20px;
+		text-align: center;
+		margin-top: 20px;
+		margin-bottom : 220px;
+		
+	}
+	
+	.meminputtbl {
+		width : 480px;
+		margin : auto;
+		background-color: white;
+		border: 1px solid;
+		border-collapse: collapse;
+		
+	}
+	.meminputtbl tr , .meminputtbl td , .meminputtbl th {
+		border: 1px solid;
+		padding: 10px;
+	}
+	
+	.meminputth {
+		background-color: silver;
+	}
+	
+	.memintputtxt {
+		width : 250px;
+		
+	}
+	.meminputbtn {
+		width : 180px;
+		height : 50px;
+		margin-top: 20px;
+		border: none;
+	}
+	.meminfodiv{
+		width : 510px;
+		height : 400px;
+		margin : auto;
+		text-align: right;
+		padding-top : 40px;
+		margin-bottom : 150px;
+	}
+	
+	.meminfodiv a {
+		color : black;
+		padding-right : 20px;
+		
+	}
+	
+    .meminfotbl {
+		width : 480px;
+		margin : auto;
+		background-color: white;
+		border: 1px solid;
+		border-collapse: collapse;
+		
+	}
+	.meminfotbl tr , .meminfotbl td , .meminfotbl th {
+		border: 1px solid;
+		padding: 10px;
+	}
+	
+	.meminfoth {
+		background-color: silver;
+	}
+	
+	.memdeldiv{
+	
+		width : 500px;
+		height : 300px;
+		margin : auto;
+		text-align: center;
+		margin-top : 40px;
+		padding-top : 40px;
+		margin-bottom : 250px;
+		background-color: silver;
+		border-radius: 2em;
+		border-top-left-radius: 2em;
+		border-top-right-radius: 2em;
+		border-bottom-left-radius: 2em;
+		border-bottom-right-radius: 2em;
+	
+	}
+	
+	.memdeldiv form {
+		margin : auto;
+		padding : 20px;
+		width : 350px;
+		background-color: white;
+	}
+	.memdeldiv a {
+		color : gray;
+		margin-top : 30px;
+	}
+	
+	.camptalkctler {
+		margin : auto;
+		width : 1100px;
+		height : 40px;
+		margin-top : 30px;
+	}
+	.camptalkctltbl {
+		width : 1000;
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	.camptalkctltbl td {
+		
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.camptalkctltbl input :button {
+		border: 0;
+		background-Color: #D2D6D9;
+	}
+	
+	.camptalklistdiv {
+		width : 720px;
+		margin-top : 20px;
+		font-family: sans-serif;
+		font-style: normal;
+		font: bold;
+	}
+	
+	.camptalklisttbl {
+		margin : auto;
+		border: 1px solid;
+		border-collapse: collapse;
+		border-right: 3px solid;
+		border-bottom: 3px solid;
+	}
+	.camptalklistdiv td {
+		padding : 10px;
+		margin : 10px;
+		text-align: left;
+	}
+	
+	
+	#locationbtn , #commentbtn {
+		vertical-align: bottom;
+		margin-top : 15px;
+	}
+	.camptalklistdiv a {
+		text-decoration: none;
+		text-decoration: underline none;
+	}
+	
+	.talkanswerform {
+		margin-top : 15px;
+		background-color: #d2d6d9;
+		padding-left : 20px;
+	}
+	
+	#answerInput {
+		padding-top : 10px;
+		margin-bottom : 10px;
+	}
+	
+ 	#exup {
+  background-color : #eee; 
+  border-radius: 50%;
+  width: 50px; height: 50px; 
+  display: table-cell; vertical-align: middle; text-align:center;
+}
+	#exdown {
+  background-color : #eee; 
+  border-radius: 50%;
+  width: 50px; height: 50px; 
+  display: table-cell; vertical-align: middle; text-align:center;
+} 
+	.camptalkpaging {
+		margin-top : 20px;
+		padding-top : 30px;
+		word-spacing: 30px;
+	}
+	.camptalkpaging a{
+		color : black;
+		text-decoration: none;
+		font-size: x-large;
+		
+	}
+	.talktable{
+		
+		border: 1px solid;
+		border-collapse: collapse;
+		padding : 20px;
+		
+	}
+	
+	.talktable th {
+		background-color: #d2d6d9;
+		padding : 10px;
+	}
+	.talktable td {
+		padding : 10px;
+	}
+	
+	.talkwritecontent {
+		height : 70px;
+	}
+	.talkwritebtn {
+		text-align: center;
+	}
+	.campsearchdiv {
+		width : 500px;
+		margin : auto;
+		padding : auto;
+	}
+	.campsearchtbl {
+		margin:auto;
+		margin-top: 30px;
+		width : 360px;
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	.campsearchtbl2 {
+		margin:auto;
+		margin-top: 30px;
+		width : 500px;
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.campsearchtbl2 a{
+		color:black;
+	}
+	
+	.campsearchtbl2 td{
+		margin-top: 30px;
+		padding-top : 30px;
+		padding-left : 20px;
+	}
+	.CSwrite  {
+		width : 650px;
+		margin:auto;
+		margin-top: 30px;
+		text-align: center;
+	}
+	
+	
+	.CS_select {
+		width : 650px;
+		margin:auto;
+		margin-top: 30px;
+		margin-bottom : 10px;
+		display: flex;
+		justify-content :space-between;
+	}
+	
+	.writetblcolor ,.csanswer{
+		background-color: #d2d6d9;
+	}
+	
+	
+	.CSwrite_table {
+		width : 550px;
+		margin:auto;
+		margin-top: 30px;
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	.Noticewrite_table {
+		width : 650px;
+		margin:auto;
+		margin-top: 30px;
+		border: 1px solid;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	
+	.Noticetbl td{
+		margin : 10px;
+		padding : 10px;
+	}
+	
+	.CSwrite_table tr , .CSwrite_table td,
+	.Noticewrite_table tr , .Noticewrite_table td{
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	
+	.writetbltr td{
+		
+		
+		border-top : 7px inset white;
+		border-collapse: collapse;
+	}
+	
+	.myCs , .cs_search{
+		width : 650px;
+		margin:auto;
+		margin-top: 20px;
+		
+		text-align: center;
+	}
+	
+	.cs_search {
+		margin-bottom : 50px;
+	}
+	.membermenu {
+		position: absolute;
+		z-index: 3;
+		background-color: white;
+		text-align: center;
+		
+		margin-left : 40px;
+		
+	}
+	
+	.membermenu input[type=checkbox]{
+	    display: none;
+	}
+	.membermenu input[type=checkbox]+label{
+	    padding-left: 25px;
+	    background-image: url('/resources/camp/images/menu-open.svg');
+	    background-repeat: no-repeat;
+	}
+	.membermenu input[type=checkbox]+label>span{
+	    font-weight: bold;
+	}
+	.membermenu input[type=checkbox]:checked+label{
+	    background-image: url('/resources/camp/images/menu-close.svg');
+	}
+	/* 메뉴 목록*/
+	.membermenu .menuitems{
+	    display: none;
+	}
+	.membermenu .menuitems{
+	    list-style: none;
+	}
+	.membermenu .menuitems li{
+	    padding: 5px;
+	}
+	.membermenu .menuitems li a{
+	    text-decoration: none;
+	    color: black;
+	    margin: auto;
+	    padding-right : 30px;
+	    
+	}
+	/* 메뉴 펼침 - 체크박스 체크되면 메뉴목록 표시 */
+	.membermenu input[type=checkbox]:checked~.menuitems{
+	    display: block;
+	}
+	.pagesubject {
+		width : 300px;
+		text-align: center;
+		padding : auto;
+		margin: auto;
+		margin-top: 30px;
+		padding-bottom:10px;
+		border-bottom: 9px solid gray;
+	}
+	
+	.admin_talk_div {
+		margin: auto;
+		padding: 10px;
+		width : 900px;
+		margin-top: 30px;
+		margin-bottom : 160px;
+	}
+	
+	.admin_talk_div form {
+		padding-left : 20px;
+	}
+	
+	.admin_talk_tbl {
+		width : 850px;
+		margin: auto;
+		padding: 10px;
+		text-align: center;
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.admin_talk_tbl th , .admin_talk_tbl td{
+		padding: 10px;
+		text-align: center;
+		
+		
+	}
+	
+	.admin_talk_tbl th {
+		background-color: silver;
+			
+		
+	}
+	.admin_talk_tbl td{
+		
+		border-bottom: 1px solid;
+		border-collapse: collapse;
+	}
+	.admin_member_div {
+		width : 1400px;
+		margin: auto;
+		padding: 10px;
+		text-align: center; 
+		margin-bottom : 80px;
+	}
+	.admin_member_count{
+		width : 300px;
+		margin-top : 30px;
+	}
+	
+	.admin_member_tbl {
+		margin: auto;
+		padding: 10px;
+		text-align: center;
+		border: 1px solid;
+		border-collapse: collapse;
+		margin-top : 30px;
+	}
+	
+	.admin_member_tbl th , .admin_member_tbl td{
+		padding: 10px;
+		text-align: center;
+		
+		
+	}
+	
+	.admin_member_tbl th {
+		background-color: silver;
+			
+		
+	}
+	.admin_member_tbl td{
+		
+		border-bottom: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.favorite_div {
+		width : 800px;
+		text-align: center;
+		margin : auto;
+		margin-top:30px;
+		
+	}
+	.favorite_div a {
+		margin-top : 10px;
+		margin-bottom: 10px;
+		padding-top : 10px;
+		padding-bottom: 10px;
+		color: black;
+		text-decoration: underline none;
+	}
+	
+	#rq_pw {
+		color : gray;
+		font-size: small;
+	}
+	.newcampbtn {
+		margin-bottom: 10px;
+	}
+	#notlist_newcampbtn {
+		margin-top : 10px;
+	}
+	
+	.map_wrap {
+		width : 400px;
+		padding : auto;
+		text-align: center;
+		margin: auto;
+		margin-top : 30px;
+		border : 1px solid;
+	}
+	.map_wrap form { 
+		margin-top : 10px;
+	}
+	
+	.camp_input_div {
+		width : 1000px;
+		padding : auto;
+		text-align: center;
+		margin: auto;
+		margin-top : 30px;
+	
+	}
+	.camp_input_table {
+		width : 800px;
+		margin: auto;
+		border: 1px solid;
+		border-collapse: collapse;
+		padding : auto;
+	}
+	.camp_input_table th {
+		width : 200px;
+		padding: auto;
+		background-color: silver;
+		border-right: 2px inset;
+		
+	}
+	.camp_input_table td {
+		text-align: left;
+		padding-left : 30px;
+		
+	} 
+	
+	.camp_input_table input[type=text] {
+		width : 500px;
+		height: 30px;
+	}
+	
+	.camp_input_div input[type=submit] {
+		margin-top: 30px;
+		width : 150px;
+		height : 50px;
+		border : 0;
+	} 
+	
+	.footer {
+		display: flex;
+		margin: auto;
+		background-color: silver;
+		border-top: 5px solid gray;
+	}
+	.footer_left {
+		width : 900px;
+		margin: auto;
+	
+	}
+	 .footer_right {
+		width : 400px;
+		height : 130px;
+		margin: auto;
+	}
+	.footer_right h3 ,.footer_right p ,.footer_right a{
+		color :gray;
+		 line-height: 50%;
+		
+	}
+	.status_update {
+		width : 150px;
+		margin : auto;
+	}
+	.status_update input[type=submit] {
+		border : 0;
+		width : 150px;
+		height : 50px;
+		
+	}
+	
+	
+	
+	input[id="menuicon"] {
+	display: none
+	}
+	
+	input[id="menuicon"]+label {
+		display: block;
+		margin: 10px;
+		width: 30px;
+		height: 30px;
+		position: fixed;
+		right: 30px;
+		top: 140px;
+		transition: all .35s;
+		cursor: pointer;
+		z-index:2;
+	}
+	
+	input[id="menuicon"]:checked+label {
+		z-index: 2;
+		margin: 10px;
+		width: 24px;
+		height: 24px;
+		position: fixed;
+		right: 330px;
+	}
+	
+	div[class="sidebar"] {
+		width: 300px;
+		height: 70%;
+		background: #fff;
+		position: fixed;
+		top: 150px;
+		right: -310px;
+		z-index: 2;
+		transition: all .53s;
+		border: 5px inset;
+	}
+	
+	input[id="menuicon"]:checked+label+div {
+		right: -10px;
+		
+	}
+	
+	form[class="chat_form"]{
+		margin-top: 20px;	
+		margin-left: 20px;	
+		
+	}
+	
+	
+	.chat_textArea{
+	margin-left: 20px;	
+	height: 70%;
+	}
+	
+	#myimg {
+		margin-right : 10px;
+		padding-right : 20px;
+	}
+	
+	.boardContentlists {
+		display: flex;
+		width : 700px;
+		margin: auto;
+		margin-bottom : 30px;
+		margin-top : 30px;
+		border-top : 1px solid;
+		border-left : 1px solid;
+		border-right : 5px solid;
+		border-bottom : 5px solid;
+	}
+	
+	.list_thumbnail img ,.list_thumbnail {
+		width : 360px;
+		height : 200px;
+		margin-top : auto;
+		margin-bottom : auto;
+	}
+	
+	.list_info {
+		padding : 20px;
+		padding-top : 30px;
+		margin-left : 20px;
+	}
+	
+	.list_info a{
+		text-decoration: none;
+		color : black;
+		font-size: large;
+		font-weight: bold;
+	}
+	
+	.board_paging , .board_search {
+		width : 400px;
+		margin : auto;
+		text-align: center;
+		margin-top : 20px;
+	}
+	.board_write {
+		width : 200px;
+		margin-left : 20px;
+		margin-bottom : 40px;
+	
+	}
+	#insert_btn {
+		width : 100px;
+		height : 30px;
+		border: 0px;
+	}
+	.right_panel {
+		width : 700px;
+		margin: auto;
+		margin-bottom : 30px;
+		margin-top : 30px;
+		border: 2px solid;
+		
+	}
+	.moviebox {
+		width : 560px;
+		heigh : 315px;
+		margin : auto;
+		margin-top : 20px;
+	}
+	.contentview {
+		width : 650px;
+		margin : auto;
+		margin-top : 30px;
+		padding-left : 10px;
+	}
+	
+	.contentview p {
+		font-weight: bold;
+	}
+	
+	#content_title {
+		font-size: x-large;
+	}
+	
+	.content_content {
+		width : 650px;
+		padding : auto;
+		margin: auto;
+		
+	}
+	
+	.content_content p {
+		text-indent: 10px;
+		font-size: medium;
+			
+	}
+	
+	.btn_box {
+		width : 440px;
+		margin : auto;
+		text-align:center;
+	}
+	
+	.update_btn , .delete_btn, .list_btn , .cancel_btn  {
+		width : 100px;
+		height : 30px;
+		border : 0px;
+		margin : 20px;
+	}
+	
+	.content_comment {
+		width : 500px;
+		margin: auto;
+		margin-top : 30px;
+	}
+	.commentList label , .comment_card_left label {
+		font-weight: bold;
+	}
+	
+	.comment_card {
+		display : flex;
+		width : 500px;
+		margin : auto;
+		margin-top : 30px;
+		margin-bottom : 30px;
+		border : 2px solid;
+		padding: auto;
+		
+	}
+	.comment_card_left {
+		width : 400px;
+	}
+	.comment_card_left p {
+		padding-left : 10px;
+	}
+	
+	.comment_card_right {
+		width : 100px;
+		margin : auto;
+	}
+	.commentUpdateBtn , .commentDeleteBtn {
+		width : 80px;
+		height : 30px;
+		margin : auto;
+		border: 0;
+		margin-top :10px;
+		margin-bottom : 10px;
+	}
+	.comment_card_left h5{
+		padding-left : 15px;
+	}
+	
+	.content_comment input[type=text] {
+		width : 300px;
+		height : 30px;
+	}
+	.insertCommentBtn {
+		width : 80px;
+		height : 30px;
+		border:0;
+	}
+	
+	#root {
+		width : 600px;
+		margin : auto;
+		margin-top : 20px;
+		margin-bottom : 30px;
+	}
+	
+	.board_content_table {
+		width : 500px;
+		height : 360px;
+		margin : auto;
+		margin-top : 30px;
+		margin-bottom : 30px;
+		
+	}
+	
+	.board_content_table th {
+		width : 80px;
+		margin: auto;
+		padding : auto;
+		
+		background-color: silver;
+	}
+	
+	.board_content_table td {
+		width : 400px;
+		
+		margin: auto;
+		padding : auto;
+		text-align: center;
+	}
+	
+	.board_content_table input[type=text] {
+		width : 380px;
+		margin : auto;
+		padding : auto;
+		
+	}
+	
+	.board_content_table textarea {
+		width : 380px;
+		height : 200px;
+		margin : auto;
+		padding : auto;
+	}
+	
+	.board_content_table button[type=submit] {
+		width : 100px;
+		height : 30px;
+		border : 0;
+		margin : auto;
+		margin-top : 10px;
+		
+	}
+	
+	#update_date {
+		text-align: left;
+		
+	}
+	#update_date label {
+		margin-left : 20px;
+	}
+	
+	#comment_root {
+		width : 300px;
+		height : 250px;
+		margin : auto;
+		
+	}
+	
+	.comment_update_tbl {
+		width : 270px;
+		height : 220px;
+		text-align: center;
+		
+	}
+	
+	#comment_udt_btnzone {
+		text-align: center;
+	}
+	
+	#comment_udt_btnzone button {
+		width : 100px;
+		height : 30px;
+		border: 0;
+	}
+	#comment_root p {
+		font-size: large;
+		font-weight: bold;
+		
+	} 
+	
+	#kword_live {
+    width : 260px;
+    margin: auto;
+    padding: 10px;
+    background: #696969;
+    z-index: 5;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    
+}
+
+	#rank-list a {
+	    color: #FFF;
+	    text-decoration: none;
+	    z-index: 5;
+	}
+	
+	#rank-list a:hover {
+	    text-decoration: underline;
+	}
+	
+	#rank-list {
+	    overflow: hidden;
+	    width: 220px;
+	    height: 20px;
+	    margin: 0;
+	    z-index: 5;
+	}
+	
+	#rank-list dt {
+	    display: none;
+	}
+	
+	#rank-list dd {
+	    position: relative;
+	    margin: 0;
+	}
+	
+	#rank-list ol {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    margin: 0;
+	    padding: 0;
+	    list-style-type: none;
+	}
+	
+	#rank-list li {
+	    height: 20px;
+	    line-height: 20px;
+	}
+	#rank-list label {
+		font-weight: bold;
+		font-size: large;
+		padding-right: 15px;
+		color: #FFF;
+	}
+	#kword_live label {
+		font-weight: bold;
+		font-size: large;
+		color: #FFF;
+		margin-bottom : 15px;
+		
+	}	
+		

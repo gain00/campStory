@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 인터페이스의 이름  -->
+<mapper namespace="com.campstory.mybatis.ChatMapper">
+
+	<insert id="insert">
+		insert into chat(username, msg, seq) values(#{username},#{msg}, seq_chat.nextval)
+	</insert>
+
+	<select id="getChat" resultType="hashmap">
+		select * from chat order by reg
+	</select>
+	
+	<select id="getCountChat" resultType="int">
+		select count(*) from chat
+	</select>
+	
+	<delete id="delChat">
+		<![CDATA[
+		delete from chat where seq in (select seq from (select seq, rownum r from (select * from chat order by reg)) where r <= 10)
+		]]>
+	</delete>
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 인터페이스의 이름  -->
+<mapper namespace="com.campstory.mybatis.CampTalkMapper">
+	
+	<!-- 기본 검색+지역 -->
+	<select id="getTalkList" resultType="com.campstory.bean.CampTalkDTO">
+	 	<![CDATA[
+		 	select * from 
+		 	(select resul.*, rownum rn from 
+		 	(select talk.*, info.mapx, info.mapy, info.firstimageurl from 
+		 		camptalk talk, camp_info1 info where talk.contentid= info.contentid and talk.area like '%'||#{area}||'%' order by reg_time desc) 
+		 	resul) where rn >= #{rowStart} and rn <=#{rowEnd}
+		]]>
+	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(*) from camptalk where area like '%' || #{area} || '%'
+	</select>
+
+	<!-- myTalk -->	
+	<select id="getMyTalkList" resultType="com.campstory.bean.CampTalkDTO">
+	 	<![CDATA[
+		 	select * from 
+		 	(select resul.*, rownum rn from 
+		 	(select talk.*, info.mapx, info.mapy, info.firstimageurl from 
+		 		camptalk talk, camp_info1 info where talk.contentid= info.contentid and talk.area like '%'||#{area}||'%' and talk.writer = #{id} order by reg_time desc) 
+		 	resul) where rn >= #{rowStart} and rn <=#{rowEnd}
+		]]>
+	</select>
+	<select id="getMyTalkCount" resultType="int">
+		select count(*) from camptalk where writer = #{id}
+	</select>
+	
+	<!-- myGood -->
+	<select id="getMyGoodList" resultType="com.campstory.bean.CampTalkDTO">
+	 	<![CDATA[
+		 	select * from 
+		 	(select resul.*, rownum rn from 
+		 	(select talk.*, info.mapx, info.mapy, info.firstimageurl from 
+		 		camptalk talk, camp_info1 info, talkgoodlist good where talk.contentid = info.contentid and talk.num_talk = good.num_talk and talk.area like '%'||#{area}||'%' and good.writer = #{id} order by reg_time desc) 
+		 	resul) where rn >= #{rowStart} and rn <=#{rowEnd}
+		]]>
+	</select>
+	<select id="getMyGoodCount" resultType="int">
+		select count(*) from talkgoodlist where writer = #{id}
+	</select>
+	
+	<!-- talk campSearch -->
+	<select id="getCampSearch" resultType="com.campstory.bean.CampTalkDTO">
+	 	<![CDATA[
+		 	select * from 
+		 	(select resul.*, rownum rn from 
+		 	(select talk.*, info.mapx, info.mapy, info.firstimageurl from 
+		 		camptalk talk, camp_info1 info where talk.contentid= info.contentid and talk.area like '%'||#{area}||'%' and talk.camp like '%'||#{camp}||'%' order by reg_time desc) 
+		 	resul) where rn >= #{rowStart} and rn <=#{rowEnd}
+		]]>
+	</select>
+	<select id="getCampSearchCount" resultType="int">
+		select count(*) from camptalk where area like '%'||#{area} ||'%' and camp like '%'||#{camp}||'%'
+	</select>	
+	
+	
+	
+	<!-- 톡작성->캠프명 검색 -->
+	<select id="campInfoSearch" resultType="com.campstory.bean.CampTalkDTO">
+		<![CDATA[
+			select * from 
+			(select contentid, facltnm, donm, addr1,rownum rn from 
+			(select * from camp_info1 where donm like '%'||#{area}||'%' and facltnm like '%'||#{camp}||'%' )
+			) where rn >= #{rowStart} and rn<= #{rowEnd}
+		]]>
+	</select>	
+	<!-- count 톡장석->캠프명 검색 -->
+	<select id="campInfoSearchCount" resultType="int">
+		select count(*) from camp_info1 where donm like '%'||#{area}||'%' and facltnm like '%'||#{camp}||'%' 
+	</select>
+	
+	
+	
+	<!-- 톡 굿 UP -->
+	<update id="talkGoodUp">
+		update camptalk set good = good +1 where num_talk=#{num_talk}
+	</update>
+	<!-- 톡 굿 UP -->
+	<insert id="goodListInput">
+		insert into talkgoodlist values(#{id},#{num_talk})
+	</insert>
+
+	<!-- 톡 굿 DOWN -->
+	<update id="talkGoodDown">
+		update camptalk set good = good -1 where num_talk=#{num_talk}
+	</update>
+	<!-- 톡 굿 DOWN -->
+	<delete id="goodListDel">
+		delete talkgoodlist where writer = #{id} and num_talk=#{num_talk} 
+	</delete>
+	
+
+
+	<!-- good 리스트 -->
+	<select id="goodListAll" resultType="com.campstory.bean.CampTalkDTO">
+		select * from talkgoodlist
+	</select>
+	
+	<!-- 톡 작성  -->
+	<insert id="talkWrite">
+		insert into camptalk(num_talk, area, camp, content, reg_time, writer, contentid, ano, sub) values(seq_camptalk.nextval,#{area},#{camp},#{content},sysdate,#{writer},#{contentid},#{ano},#{sub})
+	</insert>
+	
+	<!-- talk update -->
+	<select id="getTalk" resultType="com.campstory.bean.CampTalkDTO">
+		 	select * from camptalk where num_talk = #{num_talk}
+	</select>
+	<update id="talkUpdate">
+		update camptalk set content = #{content}, reg_time = sysdate, ano = #{ano} where num_talk = #{num_talk} 
+	</update>
+	
+	<!-- talkDelete -->
+	<delete id="talkDelete">
+		delete camptalk where num_talk = #{num_talk}
+	</delete>
+	
+	<!-- talk qna -->
+	<insert id="talkWriteQnA" >
+	 	insert into talkqna(num_talkqna, num_talk, content, writer, ano) values(talk_qna.nextval,#{num_talk},#{content},#{writer},#{ano})
+	</insert>
+	
+	<select id="getTalkQnA" resultType="com.campstory.bean.CampTalkDTO">
+		select * from talkqna where num_talk = #{num_talk} order by num_talkqna
+	</select>
+	
+	<!-- qnaDelete -->
+	<delete id="qnaDel">
+		delete talkqna where num_talkqna = #{num_talkqna}
+	</delete>
+	
+	<!-- notify input -->
+	<insert id="inputNotify">
+		insert into talknotify(num_talk, notifyid) values(#{num_talk},#{sid})
+	</insert>
+	
+	<select id="getNotify" resultType="int">
+		select count(*) from talknotify where num_talk = #{num_talk} and notifyid = #{sid}
+	</select>
+	
+	
+	<select id="getNotifyList" resultType="com.campstory.bean.CampTalkDTO">
+		select a.num_talk, a.area, a.camp, a.content, a.reg_time, a.writer, a.ano, a.sub,a.notifycheck, count(*) cnt 
+		from camptalk a join talknotify on a.num_talk = talknotify.num_talk 
+		where a.notifycheck like '%'||#{check}||'%' group by a.num_talk, a.area, a.camp, a.content, a.reg_time, a.writer, a.ano, a.sub, a.notifycheck having count(*) >= #{count} order by reg_time desc
+	</select>
+	
+	<update id="setNotify">
+		update camptalk set notifycheck = 'hold' where num_talk = #{num_talk}
+	</update>
+</mapper>

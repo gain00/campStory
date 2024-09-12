@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 인터페이스의 이름  -->
+<mapper namespace="com.campstory.mybatis.CampMapper">
+	<!-- 메서드 이름 // 결과의 타입 : 결과를 저장할 데이터 타입 - DTO, String, Integer or Long -->
+	<!--  <![CDATA[ 안쪽에있는 비교연산자를 괄호로 인식못하게 -->
+	
+<select id="getList" resultType="com.campstory.bean.CampDTO">
+		<![CDATA[	
+	
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,r 
+		from (select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,rownum r 
+		from  camp_info1_${sorter} ) 
+		where r >= #{startRow} and r <= #{endRow} 
+	
+		]]> 
+</select>	
+	
+<select id="getCount" resultType="int">
+		<![CDATA[
+		select count(*) from Camp_info1 
+		]]> 
+</select>	
+	
+	
+<select id="getContent" resultType="com.campstory.bean.CampDTO" >
+	<![CDATA[
+		
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime, good,readcount, managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus from
+	(select a.contentid , a.facltnm, a.lineintro, a.intro, a.allar,a.hvofbgnde,a.hvofenddle,a.featurenm,a.induty,a.lctcl,a.donm,a.sigungunm,a.zipcode,a.addr1,a.addr2,
+	a.mapx,a.mapy,a.direction,a.tel,a.homepage,a.resveurl,a.resvecl,a.sbrscl,a.sbrsetc,a.posblfcltycl,a.posblfcltyetc,a.cltureventat,a.clturevent,a.exprnprogrmat,a.exprnprogrm,
+	a.themaenvrncl,a.animalcmgcl,a.toureracl,a.firstimageurl,a.createdtime,a.modifiedtime,good,readcount,
+	b.contentid AS bcontentid ,b.managenmpr,b.gnrlsiteco,b.autositeco,b.glampsiteco,b.caravsiteco,b.indvdlcaravSiteco,b.sitedstnc,b.sitemg1width,b.sitemg2width,b.sitemg3width,b.sitemg1vrticl,b.sitemg2vrticl,b.sitemg3vrticl,
+	b.sitemg1co,b.sitemg2co,b.sitemg3co,b.sitebottomcl1,b.sitebottomcl2,b.sitebottomcl3,b.sitebottomcl4,b.sitebottomcl5,b.tooltip,b.glampinnerfclty,b.caravinnerfclty,
+	c.contentid AS ccontentid ,c.prmisnde,c.operpdcl,c.operdecl,c.trleracmpnyat,c.caravacmpnyat,c.toiletco,c.swrmco,c.wtrplco,c.braziercl,c.extshrco,c.frprvtwrppco,c.frprvtsandco,
+	c.firesensorco,c.eqpmnlendcl,c.insrncat,c.trsagntno,c.bizrno,c.facltdivnm,c.mangedivnm,c.mgcdiv,c.managesttus
+	from camp_info1 a, camp_info2 b, camp_info3 c where a.contentid = b.contentid  and b.contentid =  c.contentid) where contentid = #{contentid}
+		
+	]]> 
+</select>
+
+<select id="getDSearchCount" resultType="int">
+		<![CDATA[
+		select count(*) from Camp_info1 where ${sql}
+		]]> 
+</select>		
+
+<select id="getDSearchList" resultType="com.campstory.bean.CampDTO">
+		<![CDATA[	
+	
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,r 
+		from (select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,rownum r 
+		from  camp_info1 where ${sql} order by modifiedtime desc ) 
+		
+	
+		]]> 
+</select>
+
+<select id="getKSearchList" resultType="com.campstory.bean.CampDTO">
+		<![CDATA[	
+	
+	 
+			select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,r 
+		from (select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,good,readcount,rownum r 
+		from  camp_info1 where facltnm like '%${keyword}%' or donm like '%${keyword}%' or sigungunm like '%${keyword}%' order by modifiedtime desc ) 
+		where  r >= #{startRow} and r <= #{endRow} 
+		
+
+		
+	
+		]]> 
+</select>
+
+<select id="getKSearchCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from Camp_info1 where facltnm like '%${keyword}%' 
+				or donm like '%${keyword}%' or sigungunm like '%${keyword}%'
+				
+		]]> 
+</select>
+<update id="readcountUp">
+	update camp_info1 set 
+		readcount = readcount+1
+		where contentid=#{contentid}
+
+</update>
+
+<select id="goodCheck" resultType="int">
+		<![CDATA[
+		select count(*) from good where contentid = #{contentid} and id = #{id}
+		]]> 
+</select>
+
+<select id="favCheck" resultType="int">
+		<![CDATA[
+		select count(*) from favorite where camp = #{contentid} and id = #{id}
+		]]> 
+</select>
+<update id="goodUp" parameterType="String"> 
+<![CDATA[
+	update camp_info1 set 
+		good = good +1
+		where contentid = #{contentid}
+]]> 
+</update>
+<update id="goodDown" parameterType="String">
+<![CDATA[
+	update camp_info1 set 
+		good = good -1
+		where contentid = #{contentid}
+]]> 
+</update>
+
+<insert id="goodInsert" parameterType="String">
+	<![CDATA[
+		insert into good(contentid,id)
+		values(#{contentid}, #{id})
+		]]> 
+</insert>
+
+<delete id="goodDelete" parameterType="String">
+	<![CDATA[
+		delete good where contentid=#{contentid} and id=#{id} 
+		]]> 
+</delete>
+
+<insert id="favInsert" parameterType="String">
+	<![CDATA[
+		insert into favorite(num_favorite,camp,id)
+		values(seq_favorite.nextval, #{contentid}, #{id})
+		]]> 
+</insert>
+
+<delete id="favDelete" parameterType="String">
+	<![CDATA[
+		delete favorite where camp=#{contentid} and id=#{id} 
+		]]> 
+</delete>
+
+<select id="keywordCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from keyword where keyword = #{keyword}
+
+		]]> 
+</select>	
+
+<insert id="keywordInsert" parameterType="String">
+	<![CDATA[
+		insert into keyword(keyword,s_count)
+		values(#{keyword}, 1)
+		]]> 
+</insert>
+
+<update id="keywordUp" parameterType="String"> 
+<![CDATA[
+	update keyword set 
+		s_count = s_count +1
+		where keyword = #{keyword}
+]]> 
+</update>
+
+<select id="getKeywordList" resultType="com.campstory.bean.KeywordDTO" >
+		<![CDATA[
+	select keyword,s_count  from  keyword order by s_count desc
+	]]> 
+</select>
+
+<select id="getSigungunm" resultType="com.campstory.bean.CampDTO" >
+<![CDATA[
+SELECT DISTINCT sigungunm FROM camp_info1 order by sigungunm
+]]> 
+</select>
+
+<insert id="inputCamp_info1" >
+		insert into temp_camp_info1(contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime) 
+			values(seq_temp_camp_info1.nextval, #{facltnm}, #{lineintro}, #{intro}, #{allar}, #{hvofbgnde},
+			#{hvofenddle}, #{featurenm}, #{induty}, #{lctcl}, #{donm},#{sigungunm}, #{zipcode}, #{addr1}, #{addr2}, #{mapx}, 
+			#{mapy},#{direction},#{tel},#{homepage},#{resveurl},#{resvecl},#{sbrscl},#{sbrsetc},#{posblfcltycl},#{posblfcltyetc},
+			#{cltureventat},#{clturevent},#{exprnprogrmat},#{exprnprogrm},#{themaenvrncl},#{animalcmgcl},
+			#{toureracl},#{firstimageurl},sysdate,sysdate)
+	</insert>
+	<insert id="inputCamp_info2" >
+		insert into temp_camp_info2(contentid, managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty) 
+			values(seq_temp_camp_info2.nextval, #{managenmpr}, #{gnrlsiteco}, #{autositeco}, #{glampsiteco}, #{caravsiteco},
+			#{indvdlcaravSiteco}, #{sitedstnc}, #{sitemg1width}, #{sitemg2width}, #{sitemg3width},#{sitemg1vrticl}, #{sitemg2vrticl}, #{sitemg3vrticl}, #{sitemg1co}, #{sitemg2co}, 
+			#{sitemg3co},#{sitebottomcl1},#{sitebottomcl2},#{sitebottomcl3},#{sitebottomcl4},#{sitebottomcl5},#{tooltip},#{glampinnerfclty},#{caravinnerfclty})
+	</insert>
+	<insert id="inputCamp_info3" >
+		insert into temp_camp_info3(contentid, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus) 
+			values(seq_temp_camp_info3.nextval, #{prmisnde}, #{operpdcl}, #{operdecl}, #{trleracmpnyat}, #{caravacmpnyat},
+			#{toiletco}, #{swrmco}, #{wtrplco}, #{braziercl}, #{extshrco},#{frprvtwrppco}, #{frprvtsandco}, #{firesensorco}, #{eqpmnlendcl}, #{insrncat}, 
+			#{trsagntno},#{bizrno},#{facltdivnm},#{mangedivnm},#{mgcdiv},#{managesttus})
+	</insert>
+	
+<select id="keywordDateCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from keyworddate where keyword = #{keyword} and keyworddate = TO_DATE(sysdate,'yyyy-mm-dd')
+
+		]]> 
+</select>	
+
+<insert id="keywordDateInsert" parameterType="String">
+	<![CDATA[
+		insert into keyworddate(keyword,s_count,keyworddate)
+		values(#{keyword}, 1 , TO_DATE(sysdate,'yyyy-mm-dd'))
+		]]> 
+</insert>
+
+<update id="keywordDateUp" parameterType="String"> 
+<![CDATA[
+	update keyworddate set 
+		s_count = s_count +1
+		where keyword = #{keyword} and keyworddate = TO_DATE(sysdate,'yyyy-mm-dd')
+]]> 
+</update>
+
+<select id="readDateCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from readdate where contentid = #{contentid} and readdate = TO_DATE(sysdate,'yyyy-mm-dd')
+
+		]]> 
+</select>
+
+<select id="getReadDateCount" resultType="int">
+		<![CDATA[
+		
+			select count(*) from readdate where  TO_DATE(readdate,'yy/mm/dd') = #{readdate}
+
+		]]> 
+</select>		
+
+<select id="getReadDateList" resultType="com.campstory.bean.CampDTO" >
+		<![CDATA[
+		SELECT bCONTENTID, FACLTNM ,READCOUNT, READDATE FROM 
+(select b.contentid  AS bcontentid, b.facltnm, a.CONTENTID AS acontentid,a.READCOUNT, a.READDATE 
+from readdate a,camp_info1 b where a.contentid = b.contentid) WHERE  TO_DATE(readdate,'yy/mm/dd') = #{readdate}   order by readcount desc
+	
+	]]> 
+</select>
+
+<select id="getReadCountList" resultType="com.campstory.bean.CampDTO" >
+		<![CDATA[
+		SELECT CONTENTID, FACLTNM ,READCOUNT FROM camp_info1 where readcount > 0 order by readcount desc
+	
+	]]> 
+</select>
+
+<insert id="readDateInsert" parameterType="String">
+	<![CDATA[
+		insert into readdate(contentid,readcount,readdate)
+		values(#{contentid}, 1 ,TO_DATE(sysdate,'yyyy-mm-dd'))
+		]]> 
+</insert>
+
+<update id="readDateUp" parameterType="String"> 
+<![CDATA[
+	update readdate set 
+		readcount = readcount +1
+		where contentid = #{contentid} and readdate = TO_DATE(sysdate,'yyyy-mm-dd')
+]]> 
+</update>
+
+<select id="getKeywordDateCount" resultType="int" >
+		<![CDATA[
+		SELECT count(*) FROM keyworddate WHERE  TO_DATE(keyworddate,'yy/mm/dd') = #{keyworddate} 
+	
+	]]> 
+</select>
+<select id="getKeywordDateList" resultType="com.campstory.bean.KeywordDTO" >
+		<![CDATA[
+		SELECT keyword,s_count FROM keyworddate WHERE  TO_DATE(keyworddate,'yy/mm/dd') = #{keyworddate}   order by s_count desc
+	
+	]]> 
+</select>
+<select id="getGoodList" resultType="com.campstory.bean.CampDTO" >
+		<![CDATA[
+		SELECT CONTENTID, FACLTNM ,Good FROM camp_info1 where good > 0 order by good desc 
+	
+	]]> 
+</select>
+<select id="getNewCampList" resultType="com.campstory.bean.CampDTO" >
+		<![CDATA[
+		SELECT CONTENTID, FACLTNM  FROM temp_camp_info1  order by contentid desc
+	
+	]]> 
+</select>
+<select id="getUpdateCampList" resultType="com.campstory.bean.CampDTO" >
+		<![CDATA[
+		SELECT CONTENTID, FACLTNM  FROM update_camp_info1  order by contentid desc
+	
+	]]> 
+</select>
+<select id="getNewContent" resultType="com.campstory.bean.CampDTO" >
+	<![CDATA[
+		
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,  managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus from
+	(select a.contentid , a.facltnm, a.lineintro, a.intro, a.allar,a.hvofbgnde,a.hvofenddle,a.featurenm,a.induty,a.lctcl,a.donm,a.sigungunm,a.zipcode,a.addr1,a.addr2,
+	a.mapx,a.mapy,a.direction,a.tel,a.homepage,a.resveurl,a.resvecl,a.sbrscl,a.sbrsetc,a.posblfcltycl,a.posblfcltyetc,a.cltureventat,a.clturevent,a.exprnprogrmat,a.exprnprogrm,
+	a.themaenvrncl,a.animalcmgcl,a.toureracl,a.firstimageurl,a.createdtime,a.modifiedtime,
+	b.contentid AS bcontentid ,b.managenmpr,b.gnrlsiteco,b.autositeco,b.glampsiteco,b.caravsiteco,b.indvdlcaravSiteco,b.sitedstnc,b.sitemg1width,b.sitemg2width,b.sitemg3width,b.sitemg1vrticl,b.sitemg2vrticl,b.sitemg3vrticl,
+	b.sitemg1co,b.sitemg2co,b.sitemg3co,b.sitebottomcl1,b.sitebottomcl2,b.sitebottomcl3,b.sitebottomcl4,b.sitebottomcl5,b.tooltip,b.glampinnerfclty,b.caravinnerfclty,
+	c.contentid AS ccontentid ,c.prmisnde,c.operpdcl,c.operdecl,c.trleracmpnyat,c.caravacmpnyat,c.toiletco,c.swrmco,c.wtrplco,c.braziercl,c.extshrco,c.frprvtwrppco,c.frprvtsandco,
+	c.firesensorco,c.eqpmnlendcl,c.insrncat,c.trsagntno,c.bizrno,c.facltdivnm,c.mangedivnm,c.mgcdiv,c.managesttus
+	from temp_camp_info1 a, temp_camp_info2 b, temp_camp_info3 c where a.contentid = b.contentid  and b.contentid =  c.contentid) where contentid = #{contentid}
+		
+	]]> 
+</select>
+
+<select id="getUpdateContent" resultType="com.campstory.bean.CampDTO" >
+	<![CDATA[
+		
+	select contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime,  managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus from
+	(select a.contentid , a.facltnm, a.lineintro, a.intro, a.allar,a.hvofbgnde,a.hvofenddle,a.featurenm,a.induty,a.lctcl,a.donm,a.sigungunm,a.zipcode,a.addr1,a.addr2,
+	a.mapx,a.mapy,a.direction,a.tel,a.homepage,a.resveurl,a.resvecl,a.sbrscl,a.sbrsetc,a.posblfcltycl,a.posblfcltyetc,a.cltureventat,a.clturevent,a.exprnprogrmat,a.exprnprogrm,
+	a.themaenvrncl,a.animalcmgcl,a.toureracl,a.firstimageurl,a.createdtime,a.modifiedtime,
+	b.contentid AS bcontentid ,b.managenmpr,b.gnrlsiteco,b.autositeco,b.glampsiteco,b.caravsiteco,b.indvdlcaravSiteco,b.sitedstnc,b.sitemg1width,b.sitemg2width,b.sitemg3width,b.sitemg1vrticl,b.sitemg2vrticl,b.sitemg3vrticl,
+	b.sitemg1co,b.sitemg2co,b.sitemg3co,b.sitebottomcl1,b.sitebottomcl2,b.sitebottomcl3,b.sitebottomcl4,b.sitebottomcl5,b.tooltip,b.glampinnerfclty,b.caravinnerfclty,
+	c.contentid AS ccontentid ,c.prmisnde,c.operpdcl,c.operdecl,c.trleracmpnyat,c.caravacmpnyat,c.toiletco,c.swrmco,c.wtrplco,c.braziercl,c.extshrco,c.frprvtwrppco,c.frprvtsandco,
+	c.firesensorco,c.eqpmnlendcl,c.insrncat,c.trsagntno,c.bizrno,c.facltdivnm,c.mangedivnm,c.mgcdiv,c.managesttus
+	from update_camp_info1 a, update_camp_info2 b, update_camp_info3 c where a.contentid = b.contentid  and b.contentid =  c.contentid) where contentid = #{contentid}
+		
+	]]> 
+</select>
+
+<insert id="final_inputCamp_info1" >
+		insert into camp_info1(contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime, good, readcount) 
+			values(#{contentid}, #{facltnm}, #{lineintro}, #{intro}, #{allar}, #{hvofbgnde},
+			#{hvofenddle}, #{featurenm}, #{induty}, #{lctcl}, #{donm},#{sigungunm}, #{zipcode}, #{addr1}, #{addr2}, #{mapx}, 
+			#{mapy},#{direction},#{tel},#{homepage},#{resveurl},#{resvecl},#{sbrscl},#{sbrsetc},#{posblfcltycl},#{posblfcltyetc},
+			#{cltureventat},#{clturevent},#{exprnprogrmat},#{exprnprogrm},#{themaenvrncl},#{animalcmgcl},
+			#{toureracl},#{firstimageurl},sysdate,sysdate ,0 ,0)
+	</insert>
+	<insert id="final_inputCamp_info2" >
+		insert into camp_info2(contentid, managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty) 
+			values(#{contentid}, #{managenmpr}, #{gnrlsiteco}, #{autositeco}, #{glampsiteco}, #{caravsiteco},
+			#{indvdlcaravSiteco}, #{sitedstnc}, #{sitemg1width}, #{sitemg2width}, #{sitemg3width},#{sitemg1vrticl}, #{sitemg2vrticl}, #{sitemg3vrticl}, #{sitemg1co}, #{sitemg2co}, 
+			#{sitemg3co},#{sitebottomcl1},#{sitebottomcl2},#{sitebottomcl3},#{sitebottomcl4},#{sitebottomcl5},#{tooltip},#{glampinnerfclty},#{caravinnerfclty})
+	</insert>
+	<insert id="final_inputCamp_info3" >
+		insert into camp_info3(contentid, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus) 
+			values(#{contentid}, #{prmisnde}, #{operpdcl}, #{operdecl}, #{trleracmpnyat}, #{caravacmpnyat},
+			#{toiletco}, #{swrmco}, #{wtrplco}, #{braziercl}, #{extshrco},#{frprvtwrppco}, #{frprvtsandco}, #{firesensorco}, #{eqpmnlendcl}, #{insrncat}, 
+			#{trsagntno},#{bizrno},#{facltdivnm},#{mangedivnm},#{mgcdiv},#{managesttus})
+	</insert>
+	
+	<insert id="updateCamp_info1" >
+		insert into update_camp_info1(contentid, facltnm, lineintro, intro, allar, hvofbgnde, hvofenddle, featurenm, induty, lctcl, donm,
+                  sigungunm, zipcode, addr1, addr2, mapx, mapy, direction, tel, homepage, resveurl, resvecl, sbrscl,
+                  sbrsetc, posblfcltycl, posblfcltyetc, cltureventat, clturevent, exprnprogrmat, exprnprogrm,
+                  themaenvrncl, animalcmgcl, toureracl, firstimageurl, createdtime, modifiedtime ) 
+			values(#{contentid}, #{facltnm}, #{lineintro}, #{intro}, #{allar}, #{hvofbgnde},
+			#{hvofenddle}, #{featurenm}, #{induty}, #{lctcl}, #{donm},#{sigungunm}, #{zipcode}, #{addr1}, #{addr2}, #{mapx}, 
+			#{mapy},#{direction},#{tel},#{homepage},#{resveurl},#{resvecl},#{sbrscl},#{sbrsetc},#{posblfcltycl},#{posblfcltyetc},
+			#{cltureventat},#{clturevent},#{exprnprogrmat},#{exprnprogrm},#{themaenvrncl},#{animalcmgcl},
+			#{toureracl},#{firstimageurl},#{createdtime},sysdate )
+	</insert>
+	<insert id="updateCamp_info2" >
+		insert into update_camp_info2(contentid, managenmpr, gnrlsiteco, autositeco, glampsiteco, caravsiteco, indvdlcaravSiteco, sitedstnc,
+                  sitemg1width, sitemg2width, sitemg3width, sitemg1vrticl, sitemg2vrticl, sitemg3vrticl, sitemg1co,
+                  sitemg2co, sitemg3co, sitebottomcl1, sitebottomcl2, sitebottomcl3, sitebottomcl4, sitebottomcl5,
+                  tooltip, glampinnerfclty, caravinnerfclty) 
+			values(#{contentid}, #{managenmpr}, #{gnrlsiteco}, #{autositeco}, #{glampsiteco}, #{caravsiteco},
+			#{indvdlcaravSiteco}, #{sitedstnc}, #{sitemg1width}, #{sitemg2width}, #{sitemg3width},#{sitemg1vrticl}, #{sitemg2vrticl}, #{sitemg3vrticl}, #{sitemg1co}, #{sitemg2co}, 
+			#{sitemg3co},#{sitebottomcl1},#{sitebottomcl2},#{sitebottomcl3},#{sitebottomcl4},#{sitebottomcl5},#{tooltip},#{glampinnerfclty},#{caravinnerfclty})
+	</insert>
+	<insert id="updateCamp_info3" >
+		insert into update_camp_info3(contentid, prmisnde, operpdcl, operdecl, trleracmpnyat, caravacmpnyat, toiletco, swrmco, wtrplco,
+                  braziercl, extshrco, frprvtwrppco, frprvtsandco, firesensorco, eqpmnlendcl, insrncat, trsagntno,
+                  bizrno, facltdivnm, mangedivnm, mgcdiv, managesttus) 
+			values(#{contentid}, #{prmisnde}, #{operpdcl}, #{operdecl}, #{trleracmpnyat}, #{caravacmpnyat},
+			#{toiletco}, #{swrmco}, #{wtrplco}, #{braziercl}, #{extshrco},#{frprvtwrppco}, #{frprvtsandco}, #{firesensorco}, #{eqpmnlendcl}, #{insrncat}, 
+			#{trsagntno},#{bizrno},#{facltdivnm},#{mangedivnm},#{mgcdiv},#{managesttus})
+	</insert>
+	
+	<update id="final_updateCamp_info1" >
+		update camp_info1 set 
+		facltnm=#{facltnm}, lineintro=#{lineintro}, intro=#{intro}, allar=#{allar}, hvofbgnde=#{hvofbgnde}, hvofenddle=#{hvofenddle},
+		featurenm=#{featurenm}, induty=#{induty}, lctcl=#{lctcl}, donm=#{donm},sigungunm=#{sigungunm}, zipcode=#{zipcode},
+		addr1=#{addr1}, addr2=#{addr2}, mapx=#{mapx}, mapy=#{mapy}, direction=#{direction}, tel=#{tel}, homepage=#{homepage}, 
+		resveurl=#{resveurl}, resvecl=#{resvecl}, sbrscl=#{sbrscl},sbrsetc=#{sbrsetc}, posblfcltycl=#{posblfcltycl}, posblfcltyetc=#{posblfcltyetc},
+		cltureventat=#{cltureventat}, clturevent=#{clturevent}, exprnprogrmat=#{exprnprogrmat}, exprnprogrm=#{exprnprogrm},
+        themaenvrncl=#{themaenvrncl}, animalcmgcl=#{animalcmgcl}, toureracl=#{toureracl}, firstimageurl=#{firstimageurl}, createdtime=#{createdtime}, modifiedtime=#{modifiedtime},
+        where contentid=#{contentid}
+	</update>
+	<update id="final_updateCamp_info2" >
+		update camp_info2 set 
+		managenmpr=#{managenmpr}, gnrlsiteco=#{gnrlsiteco}, autositeco=#{autositeco}, glampsiteco=#{glampsiteco}, caravsiteco=#{caravsiteco}, 
+		indvdlcaravSiteco=#{indvdlcaravSiteco}, sitedstnc=#{sitedstnc},sitemg1width=#{sitemg1width}, sitemg2width=#{sitemg2width}, 
+		sitemg3width=#{sitemg3width}, sitemg1vrticl=#{sitemg1vrticl}, sitemg2vrticl=#{sitemg2vrticl}, sitemg3vrticl=#{sitemg3vrticl}, sitemg1co=#{sitemg1co},
+        sitemg2co=#{sitemg2co}, sitemg3co=#{sitemg3co}, sitebottomcl1=#{sitebottomcl1}, sitebottomcl2=#{sitebottomcl2}, sitebottomcl3=#{sitebottomcl3}, 
+        sitebottomcl4=#{sitebottomcl4}, sitebottomcl5=#{sitebottomcl5},tooltip=#{tooltip}, glampinnerfclty=#{glampinnerfclty}, caravinnerfclty=#{caravinnerfclty}
+        where contentid=#{contentid}
+	</update>
+	<update id="final_updateCamp_info3" >
+		update camp_info3 set 
+		prmisnde=#{prmisnde}, operpdcl=#{operpdcl}, operdecl=#{operdecl}, trleracmpnyat=#{trleracmpnyat}, caravacmpnyat=#{caravacmpnyat}, toiletco=#{toiletco},
+		swrmco=#{swrmco}, wtrplco=#{wtrplco},braziercl=#{braziercl}, extshrco=#{extshrco}, frprvtwrppco=#{frprvtwrppco}, frprvtsandco=#{frprvtsandco}, 
+		firesensorco=#{firesensorco}, eqpmnlendcl=#{eqpmnlendcl}, insrncat=#{insrncat}, trsagntno=#{trsagntno},bizrno=#{bizrno}, 
+		facltdivnm=#{facltdivnm}, mangedivnm=#{mangedivnm}, mgcdiv=#{mgcdiv}, managesttus=#{managesttus}
+		 where contentid=#{contentid}
+	</update>
+	
+	<select id="getFacltnmList" resultType="com.campstory.bean.CampDTO">
+		<![CDATA[	
+			select contentid, facltnm
+			from  camp_info1 where facltnm like '%${keyword}%'  
+		]]> 
+	</select>
+	<select id="getFacltnmCount" resultType="int">
+		<![CDATA[
+			select count(*) from Camp_info1 where facltnm like '%${keyword}%' 	
+		]]> 
+	</select>
+	
+	<select id="getFacltnm" resultType="com.campstory.bean.CampDTO" >
+	<![CDATA[
+	SELECT DISTINCT facltnm FROM camp_info1 order by facltnm
+	]]> 
+	</select>	
+	
+	<delete id="delete_camp1">
+		delete camp_info1 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_camp2">
+		delete camp_info2 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_camp3">
+		delete camp_info3 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_temp_camp1">
+		delete temp_camp_info1 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_temp_camp2">
+		delete temp_camp_info2 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_temp_camp3">
+		delete temp_camp_info3 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_update_camp1">
+		delete update_camp_info1 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_update_camp2">
+		delete update_camp_info2 where contentid=#{contentid}
+	</delete>
+	<delete id="delete_update_camp3">
+		delete update_camp_info3 where contentid=#{contentid}
+	</delete>			
+</mapper>
